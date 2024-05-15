@@ -1,5 +1,5 @@
 import { fn } from '@storybook/test';
-import { LayerToggle } from './LayerToggle';
+import { LayerToggle } from '../components/LayerToggle';
 
 export default {
   title: 'Components/LayerToggle',
