@@ -1,4 +1,4 @@
-.layerIconButton button {
+.iconButton button {
     border: 0;
     background: none;
     padding: 4px;
@@ -8,7 +8,7 @@
     color: #3b3b50;
 }
 
-.layerIconButton button:hover {
+.iconButton button:hover {
     border: 0;
     background: #dbdbdb;
 }

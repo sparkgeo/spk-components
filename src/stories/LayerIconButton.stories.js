@@ -1,9 +1,9 @@
 import { fn } from '@storybook/test';
-import { LayerIconButton } from '../components/LayerIconButton';
+import { IconButton } from '../components/core/IconButton';
 
 export default {
-  title: 'Components/LayerIconButton',
-  component: LayerIconButton,
+  title: 'Core/IconButton',
+  component: IconButton,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   parameters: {

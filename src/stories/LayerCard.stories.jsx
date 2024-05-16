@@ -1,11 +1,8 @@
 import { fn } from '@storybook/test';
-import { LayerCard } from '../components/LayerCard';
-import { LayerToggle } from '../components/LayerToggle';
-import { LayerButtonReel } from '../components/LayerButtonReel';
-import {LayerIconButton} from '../components/LayerIconButton';
+import { LayerCard } from '../components/composite/LayerCard';
 
 export default {
-  title: 'Components/LayerCard',
+  title: 'Composite/Layer Card',
   component: LayerCard,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -16,15 +13,15 @@ export default {
 };
 
 export const Default = {
-    render: (args) => (
-        <LayerCard {...args}>
-            <LayerToggle></LayerToggle>
-            <LayerButtonReel>
-                <LayerIconButton iconName='fill' onClick={fn}/>
-                <LayerIconButton iconName='filter' onClick={fn}/>
-                <LayerIconButton iconName='info' onClick={fn}/>
-                <LayerIconButton iconName='trash' onClick={fn}/>
-            </LayerButtonReel>
-        </LayerCard>
-    )
+  args: {
+    layerName: 'Example Layer',
+    isActive: true,
+    onChange: fn(),
+    buttons: {
+      fill: fn(),
+      filter: fn(),
+      info: fn(),
+      trash: fn(),
+    }
+  }
 };

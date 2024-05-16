@@ -2,7 +2,7 @@ import React from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faFilter, faInfo, faFillDrip, faEllipsisVertical  } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';
-import './LayerIconButton.css'
+import './IconButton.css'
 
 const ICON_MAP = {
     trash: faTrash,
@@ -12,19 +12,19 @@ const ICON_MAP = {
     ellipsis: faEllipsisVertical
 };
 
-export const LayerIconButton = ({onClick, iconName}) => (
-    <div className="layerIconButton">
+export const IconButton = ({onClick, iconName}) => (
+    <div className="iconButton">
         <button onClick={onClick}>
             <FontAwesomeIcon icon={ICON_MAP[iconName]}></FontAwesomeIcon>
         </button>
     </div>
 )
 
-LayerIconButton.propTypes = {
+IconButton.propTypes = {
     iconName: PropTypes.oneOf(['trash', 'filter', 'info', 'fill', 'ellipsis']),
     onClick: PropTypes.func,
 };
   
-LayerIconButton.defaultProps = {
+IconButton.defaultProps = {
     iconName: 'ellipsis'
 };

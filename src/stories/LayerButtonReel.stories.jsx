@@ -1,9 +1,15 @@
 import { fn } from '@storybook/test';
-import { LayerButtonReel } from '../components/LayerButtonReel';
-import { LayerIconButton } from '../components/LayerIconButton';
+import { LayerButtonReel } from '../components/composite/LayerButtonReel';
+
+const BUTTONS = {
+  fill: fn(),
+  filter: fn(),
+  info: fn(),
+  trash: fn(),
+};
 
 export default {
-  title: 'Components/LayerButtonReel',
+  title: 'Composite/LayerButtonReel',
   component: LayerButtonReel,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -13,13 +19,14 @@ export default {
   },
 };
 
-export const Default = {
-    render: (args) => (
-        <LayerButtonReel {...args} >
-            <LayerIconButton iconName='fill' onClick={fn}/>
-            <LayerIconButton iconName='filter' onClick={fn}/>
-            <LayerIconButton iconName='info' onClick={fn}/>
-            <LayerIconButton iconName='trash' onClick={fn}/>
-        </LayerButtonReel>
-    )
+export const SingleButton = {
+  args: {
+    buttons: {ellipsis: fn()}
+  }
+};
+
+export const MultipleButtons = {
+  args: {
+    buttons: BUTTONS
+  }
 };
