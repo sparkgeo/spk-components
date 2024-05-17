@@ -1,6 +1,6 @@
 import React from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faFilter, faInfo, faFillDrip, faEllipsisVertical  } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faFilter, faInfo, faFillDrip, faEllipsisVertical, faChevronRight, faChevronLeft  } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';
 import './IconButton.css'
 
@@ -9,7 +9,9 @@ const ICON_MAP = {
     filter: faFilter,
     info: faInfo,
     fill: faFillDrip,
-    ellipsis: faEllipsisVertical
+    ellipsis: faEllipsisVertical,
+    chevronRight: faChevronRight,
+    chevronLeft: faChevronLeft
 };
 
 export const IconButton = ({onClick, iconName}) => (
@@ -21,7 +23,7 @@ export const IconButton = ({onClick, iconName}) => (
 )
 
 IconButton.propTypes = {
-    iconName: PropTypes.oneOf(['trash', 'filter', 'info', 'fill', 'ellipsis']),
+    iconName: PropTypes.oneOf(['trash', 'filter', 'info', 'fill', 'ellipsis', 'chevronLeft', 'chevronRight']),
     onClick: PropTypes.func,
 };
   

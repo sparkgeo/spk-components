@@ -9,6 +9,5 @@ export const LayerCard = ({layerName, isActive, onChange, buttons}) => (
             <LayerToggle layerName={layerName} isActive={isActive} onChange={onChange} />
             <LayerButtonReel buttons={buttons}/>
         </div>
-        <hr></hr>
     </div>
 )
