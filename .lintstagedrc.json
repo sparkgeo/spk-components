@@ -1,8 +1,4 @@
 {
-    "*.js": [
-        "npm run lint"
-    ],
-    "*.jsx": [
-        "npm run lint"
-    ]
+    "*.js": ["npm run lint"],
+    "*.jsx": ["npm run lint"]
 }

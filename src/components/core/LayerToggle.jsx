@@ -1,12 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './layerToggle.css';
+import React from "react";
+import PropTypes from "prop-types";
+import "./layerToggle.css";
 
 export const LayerToggle = ({ layerName, isActive, onChange }) => (
     <div className="layerToggle">
         <p>{layerName}</p>
         <div className="switch">
-            <input type="checkbox" value={layerName} checked={isActive} onChange={onChange} />
+            <input
+                type="checkbox"
+                value={layerName}
+                checked={isActive}
+                onChange={onChange}
+            />
             <span className="slider" />
         </div>
     </div>
@@ -19,6 +24,6 @@ LayerToggle.propTypes = {
 };
 
 LayerToggle.defaultProps = {
-    layerName: 'Example Layer',
+    layerName: "Example Layer",
     isActive: false,
 };

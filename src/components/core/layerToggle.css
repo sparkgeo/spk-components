@@ -32,19 +32,19 @@
     height: 100%;
     display: grid;
     grid-template-columns: 0fr 1fr 1fr;
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .slider::after {
-    content: '';
+    content: "";
     border-radius: 50%;
     background: #fff;
     grid-column: 2;
-    transition: background .2s;
+    transition: background 0.2s;
 }
 
 input:checked + .slider {
-    grid-template-columns: 1fr 1fr 0fr; 
+    grid-template-columns: 1fr 1fr 0fr;
 }
 
 input:checked + .slider::after {

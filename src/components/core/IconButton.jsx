@@ -1,10 +1,16 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faTrash, faFilter, faInfo, faFillDrip, faEllipsisVertical, faChevronRight, faChevronLeft,
-} from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types';
-import './IconButton.css';
+    faTrash,
+    faFilter,
+    faInfo,
+    faFillDrip,
+    faEllipsisVertical,
+    faChevronRight,
+    faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
+import "./IconButton.css";
 
 const ICON_MAP = {
     trash: faTrash,
@@ -25,10 +31,18 @@ export const IconButton = ({ onClick, iconName }) => (
 );
 
 IconButton.propTypes = {
-    iconName: PropTypes.oneOf(['trash', 'filter', 'info', 'fill', 'ellipsis', 'chevronLeft', 'chevronRight']),
+    iconName: PropTypes.oneOf([
+        "trash",
+        "filter",
+        "info",
+        "fill",
+        "ellipsis",
+        "chevronLeft",
+        "chevronRight",
+    ]),
     onClick: PropTypes.func.isRequired,
 };
 
 IconButton.defaultProps = {
-    iconName: 'ellipsis',
+    iconName: "ellipsis",
 };
