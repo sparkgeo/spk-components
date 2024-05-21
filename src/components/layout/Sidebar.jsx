@@ -1,24 +1,32 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './sidebar.css';
 import { IconButton } from '../core/IconButton';
 
-export function SideBar({ children }) {
-  const [isClosed, setIsClosed] = useState(false);
+export const Sidebar = ({ children }) => {
+    const [isClosed, setIsClosed] = useState(false);
 
-  const classNames = `sidebar ${isClosed ? 'closed' : ''}`;
+    const classNames = `sidebar ${isClosed ? 'closed' : ''}`;
 
-  const handleSidebarToggle = () => {
-    setIsClosed(!isClosed);
-  };
+    const handleSidebarToggle = () => {
+        setIsClosed(!isClosed);
+    };
 
-  return (
-    <div className="sidebarContainer">
-      <div className={classNames}>
-        {children}
-      </div>
-      <div className="sidebarToggle">
-        <IconButton onClick={handleSidebarToggle} iconName={isClosed ? 'chevronRight' : 'chevronLeft'} />
-      </div>
-    </div>
-  );
-}
+    return (
+        <div className="sidebarContainer">
+            <div className={classNames}>
+                {children}
+            </div>
+            <div className="sidebarToggle">
+                <IconButton onClick={handleSidebarToggle} iconName={isClosed ? 'chevronRight' : 'chevronLeft'} />
+            </div>
+        </div>
+    );
+};
+
+Sidebar.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node,
+    ]).isRequired,
+};
