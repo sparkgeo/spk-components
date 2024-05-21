@@ -1,4 +1,11 @@
 {
-    "*.js": ["npm run lint"],
-    "*.jsx": ["npm run lint"]
+    "*.js": [
+        "prettier --write --ignore-unknown",
+        "npm run lint"
+    ],
+    "*.jsx": [
+        "prettier --write --ignore-unknown",
+        "npm run lint"
+    ],
+    "*.css": "prettier --write --ignore-unknown"
 }
