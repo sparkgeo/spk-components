@@ -9,7 +9,7 @@ const LAYERS = [
     onchange: fn(),
     buttons: {
       info: fn(),
-    }
+    },
   },
   {
     layerName: 'Layer Two',
@@ -18,7 +18,7 @@ const LAYERS = [
     buttons: {
       info: fn(),
       trash: fn(),
-    }
+    },
   },
   {
     layerName: 'Layer Three',
@@ -29,7 +29,7 @@ const LAYERS = [
       filter: fn(),
       info: fn(),
       trash: fn(),
-    }
+    },
   },
   {
     layerName: 'Layer Four',
@@ -40,7 +40,7 @@ const LAYERS = [
       filter: fn(),
       info: fn(),
       trash: fn(),
-    }
+    },
   },
   {
     layerName: 'Layer Five',
@@ -49,7 +49,7 @@ const LAYERS = [
     buttons: {
       info: fn(),
       trash: fn(),
-    }
+    },
   },
   {
     layerName: 'Layer Six',
@@ -60,9 +60,9 @@ const LAYERS = [
       filter: fn(),
       info: fn(),
       trash: fn(),
-    }
-  }
-]
+    },
+  },
+];
 
 export default {
   title: 'Layout/Sidebar',
@@ -79,16 +79,15 @@ export default {
 };
 
 export const Empty = {
-  
-}
+
+};
 
 export const WithLayerCards = {
   render: () => (
     <SideBar>
       {LAYERS.map((layer) => (
-        <LayerCard {...layer}/>
+        <LayerCard {...layer} />
       ))}
     </SideBar>
-  )
-}
-
+  ),
+};

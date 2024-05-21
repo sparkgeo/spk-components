@@ -22,6 +22,6 @@ export const Default = {
       filter: fn(),
       info: fn(),
       trash: fn(),
-    }
-  }
+    },
+  },
 };

@@ -13,18 +13,18 @@ export default {
   args: {
     layerName: 'Example Layer',
     isActive: true,
-    onChange: fn()
+    onChange: fn(),
   },
 };
 
 export const Active = {
   args: {
-    isActive: true
+    isActive: true,
   },
 };
 
 export const Inactive = {
-    args: {
-        isActive: false
-    },
+  args: {
+    isActive: false,
+  },
 };

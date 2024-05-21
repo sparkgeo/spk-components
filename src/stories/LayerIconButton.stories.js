@@ -11,12 +11,12 @@ export default {
     layout: 'fullscreen',
   },
   args: {
-    onClick: fn()
+    onClick: fn(),
   },
 };
 
 export const Default = {
   args: {
-    iconName: 'ellipsis'
+    iconName: 'ellipsis',
   },
 };

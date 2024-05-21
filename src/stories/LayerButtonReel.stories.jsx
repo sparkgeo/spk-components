@@ -21,12 +21,12 @@ export default {
 
 export const SingleButton = {
   args: {
-    buttons: {ellipsis: fn()}
-  }
+    buttons: { ellipsis: fn() },
+  },
 };
 
 export const MultipleButtons = {
   args: {
-    buttons: BUTTONS
-  }
+    buttons: BUTTONS,
+  },
 };

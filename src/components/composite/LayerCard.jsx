@@ -1,13 +1,17 @@
-import React from "react";
+import React from 'react';
 import { LayerToggle } from '../core/LayerToggle';
 import { LayerButtonReel } from './LayerButtonReel';
-import './layerCard.css'
+import './layerCard.css';
 
-export const LayerCard = ({layerName, isActive, onChange, buttons}) => (
+export function LayerCard({
+  layerName, isActive, onChange, buttons,
+}) {
+  return (
     <div className="layerCard">
-        <div className="layerCardWrapper">
-            <LayerToggle layerName={layerName} isActive={isActive} onChange={onChange} />
-            <LayerButtonReel buttons={buttons}/>
-        </div>
+      <div className="layerCardWrapper">
+        <LayerToggle layerName={layerName} isActive={isActive} onChange={onChange} />
+        <LayerButtonReel buttons={buttons} />
+      </div>
     </div>
-)
+  );
+}
