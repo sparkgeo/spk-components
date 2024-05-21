@@ -8,8 +8,6 @@ export const Sidebar = ({ children }) => {
 
     const classNames = `sidebar ${isClosed ? 'closed' : ''}`;
 
-    console.log('Hello World!');
-
     const handleSidebarToggle = () => {
         setIsClosed(!isClosed);
     };
