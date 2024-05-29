@@ -1,8 +1,21 @@
-# React + Vite
+# Sparkgeo Component Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an early attempt at creating a collection of useful and reusable React components focussed on Web GIS applications. 
 
-Currently, two official plugins are available:
+As many fundamental UI components are available in the vast ecosystem of React UI libraries that currently exsit, the current aim for this project is to provide larger and more complicated UI components that are commonly used within geospatial UI. This aim however will likely make the components within this library much more opinonated.
 
--   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
--   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is open to contributions from anyone who is intrested. If you would like to join any discussions please join the slack channel `#spk-ui-component-library`
+
+Note: This project is still very much a WIP and will be subject to extreme/breaking changes for the near future.
+
+## Running Storybook
+
+Install all dependencies using:
+
+```npm install```
+
+Run storybook using the following command:
+
+```npm run storybook```
+
+This should automatically open a browser tab to the storybook server running on `localhost` port `6000` by default.
