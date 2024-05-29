@@ -4,7 +4,7 @@ This is an early attempt at creating a collection of useful and reusable React c
 
 As many fundamental UI components are available in the vast ecosystem of React UI libraries that currently exsit, the current aim for this project is to provide larger and more complicated UI components that are commonly used within geospatial UI. This aim however will likely make the components within this library much more opinonated.
 
-This project is open to contributions from anyone who is intrested. If you would like to join any discussions please join the slack channel `#spk-ui-component-library`
+This project is open to contributions from anyone who is intrested. If you would like to participate any discussions please join the slack channel `#spk-ui-component-library`
 
 Note: This project is still very much a WIP and will be subject to extreme/breaking changes for the near future.
 
