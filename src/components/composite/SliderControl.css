@@ -1,0 +1,14 @@
+.slider-control-wrapper {
+    display: grid;
+    grid-template-columns: max-content auto;
+    grid-template-rows: repeat(auto-fill, 1fr);
+    grid-auto-flow: dense;
+}
+
+.slider-label {
+    grid-column-start: 1;
+}
+
+.simple-slider {
+    grid-column-start: 2;
+}

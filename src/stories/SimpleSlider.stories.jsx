@@ -22,6 +22,7 @@ export default {
 export const Empty = {
     args: {
         value: 0.0,
+        label: "Value",
     },
 };
 
