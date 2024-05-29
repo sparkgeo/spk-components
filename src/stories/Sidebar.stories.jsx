@@ -1,7 +1,7 @@
 import React from "react";
 import { fn } from "@storybook/test";
 import { Sidebar } from "../components/layout/Sidebar";
-import LayerCard from "../components/composite/LayerCard";
+import { LayerCard } from "../components/composite/LayerCard";
 
 const LAYERS = [
     {
