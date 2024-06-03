@@ -1,0 +1,26 @@
+/* Swatch container */
+.swatch-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.swatch {
+    padding: 8px;
+    border: 1px solid grey;
+    box-sizing: border-box;
+}
+
+/* Swatch label */
+.swatch-label {
+    font-size: 14px;
+    text-align: center;
+    margin: 0 8px;
+}
+
+/* Swatch value */
+.swatch-value {
+    font-size: 14px;
+    text-align: center;
+}
