@@ -12,17 +12,18 @@ export const SimpleSlider = ({
     value,
 }) => (
     <div className="simple-slider">
-        <div className="ui-label">{label}</div>
-        <input
-            onChange={onChange}
-            className="simple-slider-input"
-            type="range"
-            value={value}
-            min={min}
-            max={max}
-            step={step}
-        />
-
+        <div>
+            {label && <div className="ui-label">{label}</div>}
+            <input
+                onChange={onChange}
+                className="simple-slider-input"
+                type="range"
+                value={value}
+                min={min}
+                max={max}
+                step={step}
+            />
+        </div>
         <div className="simple-slider-min-max-container">
             <div className="ui-label">
                 {min}

@@ -7,7 +7,7 @@ const SLIDERS = [
         min: 0.0,
         max: 255.0,
         step: 1.0,
-        label: "Red Colouring",
+        label: "Red",
         onChange: fn(),
     },
     {
@@ -33,7 +33,7 @@ export default {
     tags: ["autodocs"],
     parameters: {
         // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
-        layout: "fullscreen",
+        layout: "padded",
     },
     args: {
         title: "Resolution",
