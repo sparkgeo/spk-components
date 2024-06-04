@@ -26,3 +26,14 @@ export const BasicGradientLegend = {
         height: "20px",
     },
 };
+
+export const TitleBelowGradientLegend = {
+    args: {
+        title: "Title Below",
+        startColor: "red",
+        endColor: "yellow",
+        width: "100px",
+        height: "20px",
+        titleBelow: true,
+    },
+};
