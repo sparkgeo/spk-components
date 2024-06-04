@@ -8,9 +8,7 @@
     justify-content: space-between;
 }
 
-h4 {
-    font-size: 1rem;
-    font-weight: 100;
-    margin: 0;
-    color: blue;
+.gradient-legend {
+    width: 200px;
+    height: 30px;
 }
