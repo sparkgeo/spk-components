@@ -50,3 +50,14 @@ GradientLegend.propTypes = {
     bins: PropTypes.number,
     precision: PropTypes.number,
 };
+
+GradientLegend.defaultProps = {
+    title: "Gradient Legend",
+    startColor: "red",
+    endColor: "yellow",
+    startNo: 0,
+    endNo: 100,
+    titleBelow: false,
+    bins: 0,
+    precision: 2,
+};
