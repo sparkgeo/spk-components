@@ -1,0 +1,43 @@
+.color-box {
+    height: 24px;
+    width: 24px;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+}
+
+.binned-numbers.horizontal {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.binned-numbers {
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+.color-row,
+.label-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: 10px;
+}
+
+.grid-color-box {
+    height: 20px;
+    width: 100%;
+    padding: 0;
+}
+
+.color-row {
+    gap: 0;
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
