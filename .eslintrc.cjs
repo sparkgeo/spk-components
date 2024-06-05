@@ -37,4 +37,12 @@ module.exports = {
         ],
         "import/prefer-default-export": ["off"],
     },
+    overrides: [
+        {
+            "files": ['*.stories.@(ts|tsx|js|jsx|mjs|cjs)'],
+            "rules": {
+                'react-hooks/rules-of-hooks': 'off',
+            }
+        }
+    ]
 };
