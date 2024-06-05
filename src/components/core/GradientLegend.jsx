@@ -14,14 +14,14 @@ export const GradientLegend = ({
     bins = 0,
     precision = 2,
 }) => {
-    const binsArray = Array.from({ length: bins }, (_, i) => (
+    const binsArray = Array.from({ length: bins - 1 }, (_, i) => (
         <span>
             {(((endNo - startNo) / bins) * (i + 1)).toPrecision(precision)}
         </span>
     ));
     return (
         <div className="gradient-box">
-            {!titleBelow && <h4> {title}</h4>}
+            {!titleBelow && <div className="ui-title"> {title}</div>}
             <div className="gradient-legend">
                 <div
                     className="gradient"
@@ -34,7 +34,7 @@ export const GradientLegend = ({
                     {binsArray}
                     <span>{endNo}</span>
                 </div>
-                {titleBelow && <h4>{title}</h4>}
+                {titleBelow && <div className="ui-title"> {title}</div>}
             </div>
         </div>
     );
