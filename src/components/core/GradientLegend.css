@@ -1,0 +1,14 @@
+.gradient {
+    width: 100%;
+    height: 24px;
+}
+
+.gradient-numbers {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gradient-legend {
+    width: 100%;
+    height: 100%;
+}
