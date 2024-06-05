@@ -14,11 +14,16 @@ export const GradientLegend = ({
     bins = 0,
     precision = 2,
 }) => {
-    const binsArray = Array.from({ length: bins - 1 }, (_, i) => (
-        <span>
-            {(((endNo - startNo) / bins) * (i + 1)).toPrecision(precision)}
-        </span>
-    ));
+    const binsArray = Array(bins - 1)
+        .fill(0)
+        .map((_, i) => {
+            const value = (
+                startNo +
+                ((endNo - startNo) / bins) * (i + 1)
+            ).toPrecision(precision);
+            return <span key={value}>{value}</span>;
+        });
+
     return (
         <div className="gradient-box">
             {!titleBelow && <div className="ui-title"> {title}</div>}
@@ -49,15 +54,4 @@ GradientLegend.propTypes = {
     titleBelow: PropTypes.bool,
     bins: PropTypes.number,
     precision: PropTypes.number,
-};
-
-GradientLegend.defaultProps = {
-    title: "Gradient Legend",
-    startColor: "red",
-    endColor: "yellow",
-    startNo: 0,
-    endNo: 100,
-    titleBelow: false,
-    bins: 0,
-    precision: 2,
 };
