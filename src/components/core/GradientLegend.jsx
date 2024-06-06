@@ -14,15 +14,18 @@ export const GradientLegend = ({
     bins = 0,
     precision = 2,
 }) => {
-    const binsArray = Array(bins - 1)
-        .fill(0)
-        .map((_, i) => {
-            const value = (
-                startNo +
-                ((endNo - startNo) / bins) * (i + 1)
-            ).toPrecision(precision);
-            return <span key={value}>{value}</span>;
-        });
+    const binsArray =
+        bins > 0
+            ? Array(bins - 1)
+                  .fill(0)
+                  .map((_, i) => {
+                      const value = (
+                          startNo +
+                          ((endNo - startNo) / bins) * (i + 1)
+                      ).toPrecision(precision);
+                      return <span key={value}>{value}</span>;
+                  })
+            : [];
 
     return (
         <div className="gradient-box">
