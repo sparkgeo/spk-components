@@ -1,7 +1,7 @@
-import React from "react";
-import "./layerButtonReel.css";
 import PropTypes from "prop-types";
+import React from "react";
 import { IconButton } from "../core/IconButton";
+import "./LayerButtonReel.css";
 
 export const LayerButtonReel = ({ buttons }) => (
     <div className="layerButtonReel">

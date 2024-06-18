@@ -1,8 +1,8 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import { LayerToggle } from "../core/LayerToggle";
 import { LayerButtonReel } from "./LayerButtonReel";
-import "./layerCard.css";
+import "./LayerCard.css";
 
 export const LayerCard = ({ layerName, isActive, onChange, buttons }) => (
     <div className="layerCard">

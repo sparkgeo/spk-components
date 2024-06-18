@@ -1,6 +1,6 @@
-import React from "react";
 import PropTypes from "prop-types";
-import "./layerToggle.css";
+import React from "react";
+import "./LayerToggle.css";
 
 export const LayerToggle = ({ layerName, isActive, onChange }) => (
     <div className="layerToggle">
