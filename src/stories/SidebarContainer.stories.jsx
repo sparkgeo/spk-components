@@ -1,6 +1,6 @@
 import React from "react";
 import { fn } from "@storybook/test";
-import { Sidebar } from "../components/layout/Sidebar";
+import { Sidebar } from "../components/containers/SidebarContainer";
 import { LayerCard } from "../components/composite/LayerCard";
 
 const LAYERS = [
@@ -66,7 +66,7 @@ const LAYERS = [
 ];
 
 export default {
-    title: "Layout/Sidebar",
+    title: "Containers/Sidebar",
     component: Sidebar,
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
     tags: ["autodocs"],

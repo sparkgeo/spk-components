@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { IconButton } from "../core/IconButton";
-import "./Sidebar.css";
+import "./SidebarContainer.css";
 
 export const Sidebar = ({ children }) => {
     const [isClosed, setIsClosed] = useState(false);
