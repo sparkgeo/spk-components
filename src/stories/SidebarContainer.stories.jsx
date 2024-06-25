@@ -1,69 +1,7 @@
 import React from "react";
-import { fn } from "@storybook/test";
 import { Sidebar } from "../components/containers/SidebarContainer";
 import { LayerCard } from "../components/composite/LayerCard";
-
-const LAYERS = [
-    {
-        layerName: "Layer One",
-        isActive: false,
-        onChange: fn(),
-        buttons: {
-            info: fn(),
-        },
-    },
-    {
-        layerName: "Layer Two",
-        isActive: false,
-        onChange: fn(),
-        buttons: {
-            info: fn(),
-            trash: fn(),
-        },
-    },
-    {
-        layerName: "Layer Three",
-        isActive: false,
-        onChange: fn(),
-        buttons: {
-            fill: fn(),
-            filter: fn(),
-            info: fn(),
-            trash: fn(),
-        },
-    },
-    {
-        layerName: "Layer Four",
-        isActive: false,
-        onChange: fn(),
-        buttons: {
-            fill: fn(),
-            filter: fn(),
-            info: fn(),
-            trash: fn(),
-        },
-    },
-    {
-        layerName: "Layer Five",
-        isActive: false,
-        onChange: fn(),
-        buttons: {
-            info: fn(),
-            trash: fn(),
-        },
-    },
-    {
-        layerName: "Layer Six",
-        isActive: false,
-        onChange: fn(),
-        buttons: {
-            fill: fn(),
-            filter: fn(),
-            info: fn(),
-            trash: fn(),
-        },
-    },
-];
+import { EXAMPLE_LAYERS } from "./constants";
 
 export default {
     title: "Containers/Sidebar",
@@ -79,22 +17,30 @@ export default {
     },
 };
 
-export const Empty = {};
+export const Empty = {
+    render: () => (
+        <div style={{ width: "25vw", height: "100vh" }}>
+            <Sidebar />
+        </div>
+    ),
+};
 
 export const WithLayerCards = {
     render: () => (
-        <Sidebar>
-            {LAYERS.map((layer) => {
-                const { layerName, isActive, onChange, buttons } = layer;
-                return (
-                    <LayerCard
-                        layerName={layerName}
-                        isActive={isActive}
-                        onChange={onChange}
-                        buttons={buttons}
-                    />
-                );
-            })}
-        </Sidebar>
+        <div style={{ width: "25vw", height: "100vh" }}>
+            <Sidebar>
+                {EXAMPLE_LAYERS.map((layer) => {
+                    const { layerName, isActive, onChange, buttons } = layer;
+                    return (
+                        <LayerCard
+                            layerName={layerName}
+                            isActive={isActive}
+                            onChange={onChange}
+                            buttons={buttons}
+                        />
+                    );
+                })}
+            </Sidebar>
+        </div>
     ),
 };
