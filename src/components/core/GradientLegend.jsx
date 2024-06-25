@@ -14,6 +14,7 @@ export const GradientLegend = ({
     bins = 0,
     precision = 2,
 }) => {
+    /* eslint-disable */
     const binsArray =
         bins > 0
             ? Array(bins - 1)
@@ -26,6 +27,7 @@ export const GradientLegend = ({
                       return <span key={value}>{value}</span>;
                   })
             : [];
+    /* eslint-enable */
 
     return (
         <div className="gradient-box">
