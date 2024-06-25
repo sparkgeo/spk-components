@@ -1,0 +1,17 @@
+.layout-standard.left {
+    display: grid;
+    grid-template-columns: 25vw auto;
+    grid-template-rows: 64px calc(100vh - 64px);
+    grid-template-areas:
+        "nav nav"
+        "sidebar map";
+}
+
+.layout-standard.right {
+    display: grid;
+    grid-template-columns: auto 25vw;
+    grid-template-rows: 64px calc(100vh - 64px);
+    grid-template-areas:
+        "nav nav"
+        "map sidebar";
+}
