@@ -10,9 +10,8 @@ export const RangeSlider = ({ label, bounds, initialValues }) => {
         BAR: Symbol("bar")
     }), []);
 
-    const [lowerValue, setLowerValue] = useState(initialValues.lower);
-    const [upperValue, setUpperValue] = useState(initialValues.upper);
-    const sliderBarRef = useRef(null);
+    const [values, setValues] = useState(initialValues);
+    const sliderTrackRef = useRef(null);
     const [pxLeft, setPxLeft] = useState(0);
     const [pxRight, setPxRight] = useState(0);
     const [mouseDownValue, setMouseDownValue] = useState(0);
@@ -20,11 +19,11 @@ export const RangeSlider = ({ label, bounds, initialValues }) => {
 
     function valueToPixelsImpl(value) {
         const v = (value - bounds.min) / (bounds.max - bounds.min);
-        return sliderBarRef.current.clientWidth * v;
+        return sliderTrackRef.current.clientWidth * v;
     }
 
     function pixelsToValueImpl(position) {
-        const v = position / sliderBarRef.current.clientWidth;
+        const v = position / sliderTrackRef.current.clientWidth;
         return bounds.min + (bounds.max - bounds.min) * v;
     }
 
@@ -32,11 +31,9 @@ export const RangeSlider = ({ label, bounds, initialValues }) => {
     const pixelsToValue = useCallback(pixelsToValueImpl, [pixelsToValueImpl]);
 
     useEffect(() => {
-        setLowerValue(Math.max(bounds.min, lowerValue));
-        setUpperValue(Math.min(bounds.max, upperValue));
-        setPxLeft(valueToPixels(lowerValue));
-        setPxRight(valueToPixels(upperValue));
-    }, [bounds, lowerValue, upperValue, valueToPixels]);
+        setPxLeft(valueToPixels(values.lower));
+        setPxRight(valueToPixels(values.upper));
+    }, [bounds, valueToPixels, values]);
 
     const handleHandlebarMouseDown = (handle) => (event) => {
         event.preventDefault();
@@ -59,44 +56,44 @@ export const RangeSlider = ({ label, bounds, initialValues }) => {
 
             let delta = pixelsToValue(event.movementX);
 
-            if (lowerValue + delta < bounds.min) {
-                delta = bounds.min - lowerValue;
-            } else if (upperValue + delta > bounds.max) {
-                delta = bounds.max - upperValue;
+            if (values.lower + delta < bounds.min) {
+                delta = bounds.min - values.lower;
+            } else if (values.upper + delta > bounds.max) {
+                delta = bounds.max - values.upper;
             }
 
             setMouseDownValue(mouseDownValue + delta);
 
             if (mouseDownHandle === Handles.LEFT) {
-                if (lowerValue + delta > upperValue) {
-                    setUpperValue(lowerValue + delta);
+                if (values.lower + delta > values.upper) {
                     setMouseDownHandle(Handles.RIGHT);
+                    setValues({lower: values.lower, upper: values.lower + delta});
                 } else {
-                    setLowerValue(lowerValue + delta);
+                    setValues({lower: values.lower + delta, upper: values.upper});
                 }
             } else if (mouseDownHandle === Handles.RIGHT) {
-                if (upperValue + delta < lowerValue) {
-                    setLowerValue(upperValue + delta);
+                if (values.upper + delta < values.lower) {
                     setMouseDownHandle(Handles.LEFT);
+                    setValues({lower: values.upper + delta, upper: values.upper});
                 } else {
-                    setUpperValue(upperValue + delta);
+                    setValues({lower: values.lower, upper: values.upper + delta});
                 }
             } else if (mouseDownHandle === Handles.BAR) {
-                setLowerValue(lowerValue + delta);
-                setUpperValue(upperValue + delta);
+                setValues({lower: values.lower + delta, upper: values.upper + delta});
             } else {
                 // eslint-disable-next-line
                 console.error('Unexpected handle', mouseDownHandle);
             }
+
+            // setValues({lower: Math.max(bounds.min, values.lower), upper: Math.min(bounds.max, values.upper)});
         },
         [
             mouseDownValue,
             mouseDownHandle,
-            lowerValue,
-            upperValue,
             bounds,
             pixelsToValue,
-            Handles
+            Handles,
+            values
         ]
     );
 
@@ -114,16 +111,34 @@ export const RangeSlider = ({ label, bounds, initialValues }) => {
         };
     }, [mouseDownHandle, handleHandleDrag, handleHandlebarMouseUp, Handles]);
 
+    const handleTrackClick = (event) => {
+        event.preventDefault();
+
+        const value = pixelsToValue(event.nativeEvent.offsetX);
+
+        if (value < values.lower) {
+            setValues({lower: value, upper: values.upper});
+        } else if (value > values.upper) {
+            setValues({lower: values.lower, upper: value});
+        }
+    };
+
     return (
         <div className="range-slider">
             <div className="range-slider-container">
-                <div className="range-slider-bar" ref={sliderBarRef} />
+                <div
+                    className="range-slider-track"
+                    ref={sliderTrackRef}
+                    role="none"
+                    tabIndex="-1"
+                    onClick={handleTrackClick}
+                />
                 <div
                     className="range-slider-handle-bar"
                     role="slider"
                     tabIndex="0"
                     aria-label={label}
-                    aria-valuenow={(lowerValue + upperValue) / 2.0}
+                    aria-valuenow={(values.lower + values.upper) / 2.0}
                     aria-valuetext="from {values.lower} to {values.upper}"
                     aria-valuemin={bounds.min}
                     aria-valuemax={bounds.max}
