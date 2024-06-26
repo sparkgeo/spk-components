@@ -15,6 +15,13 @@ export default {
             min: 0.0,
             max: 100.0,
         },
+        step: 0.0,
+        // valuesChanging: (values) => {
+        //     console.log("valuesChanging: ", values);
+        // },
+        // valuesChanged: (values) => {
+        //     console.log("valuesChanged: ", values);
+        // }
     },
 };
 

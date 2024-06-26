@@ -1,8 +1,32 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState, useReducer } from "react";
 import "./RangeSlider.css";
 import PropTypes from "prop-types";
 
-export const RangeSlider = ({ label, bounds, valuesChanging, valuesChanged }) => {
+
+function valueReducer(values, action) {
+    switch (action.type) {
+    case "ChangeStep": {
+        let v = {lower: values.lower, upper: values.upper};
+
+        if (action.step > 0.0) {
+            v = {
+                lower: Math.max(action.bounds.min, Math.floor(values.lower / action.step) * action.step),
+                upper: Math.min(action.bounds.max, Math.ceil(values.upper / action.step) * action.step)
+            };
+        }
+
+        action.callback(v);
+        return v;
+    }
+    case "ChangeValues":
+        return {lower: Math.max(action.bounds.min, action.values[0]), upper: Math.min(action.bounds.max, action.values[1])};
+
+    default:
+        throw Error(`Unknown action:  ${action.type}`);
+    }
+}
+
+export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged }) => {
     const Handles = useMemo(() => ({
         NONE: Symbol("none"),
         LEFT: Symbol("left"),
@@ -10,11 +34,13 @@ export const RangeSlider = ({ label, bounds, valuesChanging, valuesChanged }) =>
         BAR: Symbol("bar")
     }), []);
 
-    const [values, setValues] = useState({lower: bounds.min, upper: bounds.max});
+    // noinspection JSCheckFunctionSignatures
+    const [values, dispatch] = useReducer(valueReducer, {lower: bounds.min, upper: bounds.max});
     const sliderTrackRef = useRef(null);
     const [pxLeft, setPxLeft] = useState(0);
     const [pxRight, setPxRight] = useState(0);
     const [mouseDownHandle, setMouseDownHandle] = useState(Handles.NONE);
+    const [cumulativeDelta, setCumulativeDelta] = useState(0.0);
 
     const valueToPixels = useCallback((value) => {
         const v = (value - bounds.min) / (bounds.max - bounds.min);
@@ -35,9 +61,20 @@ export const RangeSlider = ({ label, bounds, valuesChanging, valuesChanged }) =>
         valuesChanging(values);
     }, [values, valuesChanging]);
 
+    useEffect(() => {
+        // noinspection JSCheckFunctionSignatures
+        dispatch({
+            type: 'ChangeStep',
+            callback: valuesChanged,
+            step,
+            bounds
+        });
+    }, [step, valuesChanged, bounds]);
+
     const handleHandlebarMouseDown = (handle) => (event) => {
         event.preventDefault();
         setMouseDownHandle(handle);
+        setCumulativeDelta(0.0);
     };
 
     const handleHandlebarMouseUp = useCallback((event) => {
@@ -56,6 +93,28 @@ export const RangeSlider = ({ label, bounds, valuesChanging, valuesChanged }) =>
 
             let delta = pixelsToValue(event.movementX);
 
+            if (step !== 0.0) {
+                let cumDelta = cumulativeDelta + delta;
+
+                setCumulativeDelta(cumDelta);
+
+                if (Math.abs(cumDelta) < Math.abs(step)) {
+                    return;
+                }
+
+                if (cumDelta > 0.0) {
+                    cumDelta -= Math.abs(step);
+                    delta = Math.abs(step);
+                } else {
+                    cumDelta += Math.abs(step);
+                    delta = -Math.abs(step);
+                }
+
+                setCumulativeDelta(cumDelta);
+            }
+
+            let v = [values.lower, values.upper];
+
             if (mouseDownHandle === Handles.LEFT) {
                 if (values.lower + delta < bounds.min) {
                     delta = bounds.min - values.lower;
@@ -63,9 +122,9 @@ export const RangeSlider = ({ label, bounds, valuesChanging, valuesChanged }) =>
 
                 if (values.lower + delta > values.upper) {
                     setMouseDownHandle(Handles.RIGHT);
-                    setValues({lower: values.lower, upper: values.lower + delta});
+                    v = [values.lower, values.lower + delta];
                 } else {
-                    setValues({lower: values.lower + delta, upper: values.upper});
+                    v = [values.lower + delta, values.upper];
                 }
             } else if (mouseDownHandle === Handles.RIGHT) {
                 if (values.upper + delta > bounds.max) {
@@ -74,9 +133,9 @@ export const RangeSlider = ({ label, bounds, valuesChanging, valuesChanged }) =>
 
                 if (values.upper + delta < values.lower) {
                     setMouseDownHandle(Handles.LEFT);
-                    setValues({lower: values.upper + delta, upper: values.upper});
+                    v = [values.upper + delta, values.upper];
                 } else {
-                    setValues({lower: values.lower, upper: values.upper + delta});
+                    v = [values.lower, values.upper + delta];
                 }
             } else if (mouseDownHandle === Handles.BAR) {
                 if (values.lower + delta < bounds.min) {
@@ -85,18 +144,22 @@ export const RangeSlider = ({ label, bounds, valuesChanging, valuesChanged }) =>
                     delta = bounds.max - values.upper;
                 }
 
-                setValues({lower: values.lower + delta, upper: values.upper + delta});
+                v = [values.lower + delta, values.upper + delta];
             } else {
-                // eslint-disable-next-line
-                console.error('Unexpected handle', mouseDownHandle);
+                throw Error(`Unknown handle:  mouseDownHandle`);
             }
+
+            // noinspection JSCheckFunctionSignatures
+            dispatch({type: "ChangeValues", values: v, bounds});
         },
         [
             mouseDownHandle,
             bounds,
             pixelsToValue,
             Handles,
-            values
+            values,
+            cumulativeDelta,
+            step
         ]
     );
 
@@ -120,9 +183,11 @@ export const RangeSlider = ({ label, bounds, valuesChanging, valuesChanged }) =>
         const value = pixelsToValue(event.nativeEvent.offsetX);
 
         if (value < values.lower) {
-            setValues({lower: value, upper: values.upper});
+            // noinspection JSCheckFunctionSignatures
+            dispatch({type: "ChangeValues", values: [value, values.upper], bounds});
         } else if (value > values.upper) {
-            setValues({lower: values.lower, upper: value});
+            // noinspection JSCheckFunctionSignatures
+            dispatch({type: "ChangeValues", values: [values.lower, value], bounds});
         }
     };
 
@@ -178,11 +243,13 @@ RangeSlider.propTypes = {
         min: PropTypes.number.isRequired,
         max: PropTypes.number.isRequired
     }),
+    step: PropTypes.number,
     valuesChanging: PropTypes.func,
     valuesChanged: PropTypes.func,
 };
 
 RangeSlider.defaultProps = {
+    step: 0.0,
     valuesChanging: () => {},
     valuesChanged: () => {},
 };
