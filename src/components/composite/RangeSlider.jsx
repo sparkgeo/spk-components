@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import "./RangeSlider.css";
 import PropTypes from "prop-types";
 
-export const RangeSlider = ({ label, bounds }) => {
+export const RangeSlider = ({ label, bounds, valuesChanging, valuesChanged }) => {
     const Handles = useMemo(() => ({
         NONE: Symbol("none"),
         LEFT: Symbol("left"),
@@ -16,23 +16,24 @@ export const RangeSlider = ({ label, bounds }) => {
     const [pxRight, setPxRight] = useState(0);
     const [mouseDownHandle, setMouseDownHandle] = useState(Handles.NONE);
 
-    function valueToPixelsImpl(value) {
+    const valueToPixels = useCallback((value) => {
         const v = (value - bounds.min) / (bounds.max - bounds.min);
         return sliderTrackRef.current.clientWidth * v;
-    }
+    }, [bounds]);
 
-    function pixelsToValueImpl(position) {
+    const pixelsToValue = useCallback((position) => {
         const v = position / sliderTrackRef.current.clientWidth;
         return bounds.min + (bounds.max - bounds.min) * v;
-    }
-
-    const valueToPixels = useCallback(valueToPixelsImpl, [valueToPixelsImpl]);
-    const pixelsToValue = useCallback(pixelsToValueImpl, [pixelsToValueImpl]);
+    }, [bounds]);
 
     useEffect(() => {
         setPxLeft(valueToPixels(values.lower));
         setPxRight(valueToPixels(values.upper));
-    }, [bounds, valueToPixels, values]);
+    }, [valueToPixels, values]);
+
+    useEffect(() => {
+        valuesChanging(values);
+    }, [values, valuesChanging]);
 
     const handleHandlebarMouseDown = (handle) => (event) => {
         event.preventDefault();
@@ -42,7 +43,8 @@ export const RangeSlider = ({ label, bounds }) => {
     const handleHandlebarMouseUp = useCallback((event) => {
         event.preventDefault();
         setMouseDownHandle(Handles.NONE);
-    }, [Handles]);
+        valuesChanged(values);
+    }, [Handles, values, valuesChanged]);
 
     const handleHandleDrag = useCallback(
         (event) => {
@@ -176,4 +178,11 @@ RangeSlider.propTypes = {
         min: PropTypes.number.isRequired,
         max: PropTypes.number.isRequired
     }),
+    valuesChanging: PropTypes.func,
+    valuesChanged: PropTypes.func,
+};
+
+RangeSlider.defaultProps = {
+    valuesChanging: () => {},
+    valuesChanged: () => {},
 };
