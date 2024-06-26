@@ -15,10 +15,6 @@ export default {
             min: 0.0,
             max: 100.0,
         },
-        initialValues: {
-            lower: 20.0,
-            upper: 60.0,
-        },
     },
 };
 
@@ -28,10 +24,6 @@ export const Default = {
         bounds: {
             min: 0.0,
             max: 100.0,
-        },
-        initialValues: {
-            lower: 20.0,
-            upper: 60.0,
         },
     },
 };

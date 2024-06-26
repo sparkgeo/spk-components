@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import "./RangeSlider.css";
 import PropTypes from "prop-types";
 
-export const RangeSlider = ({ label, bounds, initialValues }) => {
+export const RangeSlider = ({ label, bounds }) => {
     const Handles = useMemo(() => ({
         NONE: Symbol("none"),
         LEFT: Symbol("left"),
@@ -10,11 +10,10 @@ export const RangeSlider = ({ label, bounds, initialValues }) => {
         BAR: Symbol("bar")
     }), []);
 
-    const [values, setValues] = useState(initialValues);
+    const [values, setValues] = useState({lower: bounds.min, upper: bounds.max});
     const sliderTrackRef = useRef(null);
     const [pxLeft, setPxLeft] = useState(0);
     const [pxRight, setPxRight] = useState(0);
-    const [mouseDownValue, setMouseDownValue] = useState(0);
     const [mouseDownHandle, setMouseDownHandle] = useState(Handles.NONE);
 
     function valueToPixelsImpl(value) {
@@ -37,7 +36,6 @@ export const RangeSlider = ({ label, bounds, initialValues }) => {
 
     const handleHandlebarMouseDown = (handle) => (event) => {
         event.preventDefault();
-        setMouseDownValue(pixelsToValue(event.clientX));
         setMouseDownHandle(handle);
     };
 
@@ -56,15 +54,11 @@ export const RangeSlider = ({ label, bounds, initialValues }) => {
 
             let delta = pixelsToValue(event.movementX);
 
-            if (values.lower + delta < bounds.min) {
-                delta = bounds.min - values.lower;
-            } else if (values.upper + delta > bounds.max) {
-                delta = bounds.max - values.upper;
-            }
-
-            setMouseDownValue(mouseDownValue + delta);
-
             if (mouseDownHandle === Handles.LEFT) {
+                if (values.lower + delta < bounds.min) {
+                    delta = bounds.min - values.lower;
+                }
+
                 if (values.lower + delta > values.upper) {
                     setMouseDownHandle(Handles.RIGHT);
                     setValues({lower: values.lower, upper: values.lower + delta});
@@ -72,6 +66,10 @@ export const RangeSlider = ({ label, bounds, initialValues }) => {
                     setValues({lower: values.lower + delta, upper: values.upper});
                 }
             } else if (mouseDownHandle === Handles.RIGHT) {
+                if (values.upper + delta > bounds.max) {
+                    delta = bounds.max - values.upper;
+                }
+
                 if (values.upper + delta < values.lower) {
                     setMouseDownHandle(Handles.LEFT);
                     setValues({lower: values.upper + delta, upper: values.upper});
@@ -79,16 +77,19 @@ export const RangeSlider = ({ label, bounds, initialValues }) => {
                     setValues({lower: values.lower, upper: values.upper + delta});
                 }
             } else if (mouseDownHandle === Handles.BAR) {
+                if (values.lower + delta < bounds.min) {
+                    delta = bounds.min - values.lower;
+                } else if (values.upper + delta > bounds.max) {
+                    delta = bounds.max - values.upper;
+                }
+
                 setValues({lower: values.lower + delta, upper: values.upper + delta});
             } else {
                 // eslint-disable-next-line
                 console.error('Unexpected handle', mouseDownHandle);
             }
-
-            // setValues({lower: Math.max(bounds.min, values.lower), upper: Math.min(bounds.max, values.upper)});
         },
         [
-            mouseDownValue,
             mouseDownHandle,
             bounds,
             pixelsToValue,
@@ -175,8 +176,4 @@ RangeSlider.propTypes = {
         min: PropTypes.number.isRequired,
         max: PropTypes.number.isRequired
     }),
-    initialValues: PropTypes.shape({
-        lower: PropTypes.number.isRequired,
-        upper: PropTypes.number.isRequired
-    })
 };
