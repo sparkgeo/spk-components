@@ -1,0 +1,6 @@
+.layout-stacked {
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 64px calc(75vh - 32px) calc(25vh - 32px);
+    grid-template-areas: "nav" "map" "sidebar";
+}

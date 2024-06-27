@@ -1,0 +1,17 @@
+import { Meta, Story, Canvas } from '@storybook/blocks';
+import { Sidebar } from '../../components/containers/SidebarContainer'
+
+<Meta title="Containers/Containers" component={Sidebar}/>
+
+# Containers
+
+The Container components are a series of simple wrappers that utilise named grid areas to "slot" themselves into the relevant area in a corresponding grid template. The containers have styling that will cause them to take 100% of the height and width available, **if the parent element has an explicit height or width.**
+
+The `grid-area` names that are currently used in the containers are:
+
+* **MapContainer** - `map`
+* **SidebarContainer** - `sidebar`
+
+## Usage
+
+The container components can be passed children and will act like a standard `div` (unless the parent element has an explicit height or width). They could be use to create custom layouts in a similar fashion to the layout components.

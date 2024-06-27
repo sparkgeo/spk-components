@@ -1,0 +1,17 @@
+import { Meta, Story, Canvas } from '@storybook/blocks';
+
+<Meta title="Layouts/Layouts"/>
+
+# Layouts
+
+The Layout components are a series of CSS grid based wrappers that utilise named grid templates to "slot" any children with the relevant `grid-area` name. The `grid-area` names that are currently used in the layout templates are:
+
+* `nav`
+* `sidebar`
+* `map`
+
+![Standard Grid Layout - Example ](/standard_grid_example.png)
+
+## Usage
+
+The layout components have been designed to be used alongside the container components as they should work out of the box for quickly aligning content. Should you wish to use the layout components without using the containers or would like to add your own containers, you can use of the `grid-area` names mentioned above.

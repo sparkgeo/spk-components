@@ -1,9 +1,6 @@
-import React from "react";
 import { fn } from "@storybook/test";
-import { Sidebar } from "../components/layout/Sidebar";
-import { LayerCard } from "../components/composite/LayerCard";
 
-const LAYERS = [
+export const EXAMPLE_LAYERS = [
     {
         layerName: "Layer One",
         isActive: false,
@@ -64,37 +61,3 @@ const LAYERS = [
         },
     },
 ];
-
-export default {
-    title: "Layout/Sidebar",
-    component: Sidebar,
-    // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-    tags: ["autodocs"],
-    parameters: {
-        // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
-        layout: "fullscreen",
-        backgrounds: {
-            default: "dark",
-        },
-    },
-};
-
-export const Empty = {};
-
-export const WithLayerCards = {
-    render: () => (
-        <Sidebar>
-            {LAYERS.map((layer) => {
-                const { layerName, isActive, onChange, buttons } = layer;
-                return (
-                    <LayerCard
-                        layerName={layerName}
-                        isActive={isActive}
-                        onChange={onChange}
-                        buttons={buttons}
-                    />
-                );
-            })}
-        </Sidebar>
-    ),
-};

@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import { DeckGL, TileLayer, BitmapLayer } from "deck.gl";
-import { MapContainer } from "../components/layout/MapContainer";
+import { MapContainer } from "../components/containers/MapContainer";
 
 import "maplibre-gl/dist/maplibre-gl.css";
 
 export default {
-    title: "Layout/MapContainer",
+    title: "Containers/MapContainer",
     component: MapContainer,
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
     tags: ["autodocs"],
