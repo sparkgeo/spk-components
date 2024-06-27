@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState, useReducer } from "react";
+import React, { useCallback, useEffect, useRef, useState, useReducer } from "react";
 import "./RangeSlider.css";
 import PropTypes from "prop-types";
 
@@ -15,31 +15,36 @@ function valueReducer(values, action) {
             };
         }
 
-        action.callback(v);
+        if (action.callback) {
+            action.callback(v);
+        }
         return v;
     }
     case "ChangeValues":
-        return {lower: Math.max(action.bounds.min, action.values[0]), upper: Math.min(action.bounds.max, action.values[1])};
+        if (action.step > 0.0) {
+            return {
+                lower: Math.max(action.bounds.min, Math.floor(action.values[0] / action.step) * action.step),
+                upper: Math.min(action.bounds.max, Math.ceil(action.values[1] / action.step) * action.step)
+            };
+        }
+
+        return {
+            lower: Math.max(action.bounds.min, action.values[0]),
+            upper: Math.min(action.bounds.max, action.values[1])
+        };
 
     default:
         throw Error(`Unknown action:  ${action.type}`);
     }
 }
 
-export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged }) => {
-    const Handles = useMemo(() => ({
-        NONE: Symbol("none"),
-        LEFT: Symbol("left"),
-        RIGHT: Symbol("right"),
-        BAR: Symbol("bar")
-    }), []);
-
+export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesChanged }) => {
     // noinspection JSCheckFunctionSignatures
     const [values, dispatch] = useReducer(valueReducer, {lower: bounds.min, upper: bounds.max});
     const sliderTrackRef = useRef(null);
     const [pxLeft, setPxLeft] = useState(0);
     const [pxRight, setPxRight] = useState(0);
-    const [mouseDownHandle, setMouseDownHandle] = useState(Handles.NONE);
+    const [mouseDownHandle, setMouseDownHandle] = useState("none");
     const [cumulativeDelta, setCumulativeDelta] = useState(0.0);
 
     const valueToPixels = useCallback((value) => {
@@ -58,7 +63,9 @@ export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged
     }, [valueToPixels, values]);
 
     useEffect(() => {
-        valuesChanging(values);
+        if (valuesChanging) {
+            valuesChanging(values);
+        }
     }, [values, valuesChanging]);
 
     useEffect(() => {
@@ -71,21 +78,23 @@ export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged
         });
     }, [step, valuesChanged, bounds]);
 
-    const handleHandlebarMouseDown = (handle) => (event) => {
+    const handleHandlebarMouseDown = (event) => {
         event.preventDefault();
-        setMouseDownHandle(handle);
+        setMouseDownHandle(event.target.getAttribute("data-handle-id"));
         setCumulativeDelta(0.0);
     };
 
     const handleHandlebarMouseUp = useCallback((event) => {
         event.preventDefault();
-        setMouseDownHandle(Handles.NONE);
-        valuesChanged(values);
-    }, [Handles, values, valuesChanged]);
+        setMouseDownHandle("none");
+        if (valuesChanged) {
+            valuesChanged(values);
+        }
+    }, [values, valuesChanged]);
 
     const handleHandleDrag = useCallback(
         (event) => {
-            if (mouseDownHandle === Handles.NONE || event.buttons === 0) {
+            if (mouseDownHandle === "none" || event.buttons === 0) {
                 return;
             }
 
@@ -115,29 +124,29 @@ export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged
 
             let v = [values.lower, values.upper];
 
-            if (mouseDownHandle === Handles.LEFT) {
+            if (mouseDownHandle === "left") {
                 if (values.lower + delta < bounds.min) {
                     delta = bounds.min - values.lower;
                 }
 
                 if (values.lower + delta > values.upper) {
-                    setMouseDownHandle(Handles.RIGHT);
+                    setMouseDownHandle("right");
                     v = [values.lower, values.lower + delta];
                 } else {
                     v = [values.lower + delta, values.upper];
                 }
-            } else if (mouseDownHandle === Handles.RIGHT) {
+            } else if (mouseDownHandle === "right") {
                 if (values.upper + delta > bounds.max) {
                     delta = bounds.max - values.upper;
                 }
 
                 if (values.upper + delta < values.lower) {
-                    setMouseDownHandle(Handles.LEFT);
+                    setMouseDownHandle("left");
                     v = [values.upper + delta, values.upper];
                 } else {
                     v = [values.lower, values.upper + delta];
                 }
-            } else if (mouseDownHandle === Handles.BAR) {
+            } else if (mouseDownHandle === "bar") {
                 if (values.lower + delta < bounds.min) {
                     delta = bounds.min - values.lower;
                 } else if (values.upper + delta > bounds.max) {
@@ -146,17 +155,16 @@ export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged
 
                 v = [values.lower + delta, values.upper + delta];
             } else {
-                throw Error(`Unknown handle:  mouseDownHandle`);
+                throw Error(`Unknown handle: ${mouseDownHandle}`);
             }
 
             // noinspection JSCheckFunctionSignatures
-            dispatch({type: "ChangeValues", values: v, bounds});
+            dispatch({type: "ChangeValues", values: v, bounds, step});
         },
         [
             mouseDownHandle,
             bounds,
             pixelsToValue,
-            Handles,
             values,
             cumulativeDelta,
             step
@@ -164,7 +172,7 @@ export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged
     );
 
     useEffect(() => {
-        if (mouseDownHandle !== Handles.NONE) {
+        if (mouseDownHandle !== "none") {
             window.addEventListener("mousemove", handleHandleDrag);
             window.addEventListener("mouseup", handleHandlebarMouseUp);
         } else {
@@ -175,7 +183,7 @@ export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged
             window.removeEventListener("mousemove", handleHandleDrag);
             window.removeEventListener("mouseup", handleHandlebarMouseUp);
         };
-    }, [mouseDownHandle, handleHandleDrag, handleHandlebarMouseUp, Handles]);
+    }, [mouseDownHandle, handleHandleDrag, handleHandlebarMouseUp]);
 
     const handleTrackClick = (event) => {
         event.preventDefault();
@@ -184,10 +192,10 @@ export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged
 
         if (value < values.lower) {
             // noinspection JSCheckFunctionSignatures
-            dispatch({type: "ChangeValues", values: [value, values.upper], bounds});
+            dispatch({type: "ChangeValues", values: [value, values.upper], bounds, step});
         } else if (value > values.upper) {
             // noinspection JSCheckFunctionSignatures
-            dispatch({type: "ChangeValues", values: [values.lower, value], bounds});
+            dispatch({type: "ChangeValues", values: [values.lower, value], bounds, step});
         }
     };
 
@@ -210,7 +218,8 @@ export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged
                     aria-valuetext="from {values.lower} to {values.upper}"
                     aria-valuemin={bounds.min}
                     aria-valuemax={bounds.max}
-                    onMouseDown={handleHandlebarMouseDown(Handles.BAR)}
+                    data-handle-id="bar"
+                    onMouseDown={handleHandlebarMouseDown}
                     style={{
                         left: `${pxLeft}px`,
                         width: `${pxRight - pxLeft}px`
@@ -221,7 +230,8 @@ export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged
                     role="button"
                     tabIndex="0"
                     aria-label={`${label} lower handle`}
-                    onMouseDown={handleHandlebarMouseDown(Handles.LEFT)}
+                    data-handle-id="left"
+                    onMouseDown={handleHandlebarMouseDown}
                     style={{ left: `${pxLeft}px` }}
                 />
                 <div
@@ -229,7 +239,8 @@ export const RangeSlider = ({ label, bounds, step, valuesChanging, valuesChanged
                     role="button"
                     tabIndex="0"
                     aria-label={`${label} upper handle`}
-                    onMouseDown={handleHandlebarMouseDown(Handles.RIGHT)}
+                    data-handle-id="right"
+                    onMouseDown={handleHandlebarMouseDown}
                     style={{ left: `${pxRight}px` }}
                 />
             </div>
@@ -246,10 +257,4 @@ RangeSlider.propTypes = {
     step: PropTypes.number,
     valuesChanging: PropTypes.func,
     valuesChanged: PropTypes.func,
-};
-
-RangeSlider.defaultProps = {
-    step: 0.0,
-    valuesChanging: () => {},
-    valuesChanged: () => {},
 };

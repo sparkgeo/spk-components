@@ -1,7 +1,7 @@
-import { RangeSlider } from "../components/composite/RangeSlider";
+import { RangeSlider } from "../components/core/RangeSlider";
 
 export default {
-    title: "composite/RangeSlider",
+    title: "core/RangeSlider",
     component: RangeSlider,
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
     tags: ["autodocs"],
