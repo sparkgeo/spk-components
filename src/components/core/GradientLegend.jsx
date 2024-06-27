@@ -17,14 +17,14 @@ export const GradientLegend = ({
     const binsArray =
         bins > 0
             ? Array(bins - 1)
-                  .fill(0)
-                  .map((_, i) => {
-                      const value = (
-                          startNo +
-                          ((endNo - startNo) / bins) * (i + 1)
-                      ).toPrecision(precision);
-                      return <span key={value}>{value}</span>;
-                  })
+                .fill(0)
+                .map((_, i) => {
+                    const value = (
+                        startNo +
+                        ((endNo - startNo) / bins) * (i + 1)
+                    ).toPrecision(precision);
+                    return <span key={value}>{value}</span>;
+                })
             : [];
 
     return (

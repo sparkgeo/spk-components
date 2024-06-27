@@ -4,7 +4,7 @@
         "npm run lint"
     ],
     "*.jsx": [
-        "prettier --write --ignore-unknown",
+        "prettier --write --ignore-unknown --fix",
         "npm run lint"
     ],
     "*.css": "prettier --write --ignore-unknown"
