@@ -1,8 +1,8 @@
-import { RangeSlider } from "../components/core/RangeSlider";
+import { DateRangeSlider } from "../components/composite/DateRangeSlider";
 
 export default {
-    title: "core/RangeSlider",
-    component: RangeSlider,
+    title: "composite/DateRangeSlider",
+    component: DateRangeSlider,
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
     tags: ["autodocs"],
     parameters: {
@@ -10,15 +10,7 @@ export default {
         layout: "padded",
     },
     args: {
-        label: "Flux capacity",
-        bounds: {
-            min: 0.0,
-            max: 100.0,
-        },
-        step: 0.0,
-        // valuesChanging: (values) => {
-        //     console.log("valuesChanging: ", values);
-        // },
+        label: "Interesting dates",
         // valuesChanged: (values) => {
         //     console.log("valuesChanged: ", values);
         // }
@@ -27,10 +19,10 @@ export default {
 
 export const Default = {
     args: {
-        label: "Flux capacity",
+        label: "Interesting dates",
         bounds: {
-            min: 0.0,
-            max: 100.0,
-        },
+            min: new Date(2024, 2, 13),
+            max: new Date(2024, 5, 10),
+        }
     },
 };
