@@ -7,7 +7,7 @@ import "./DateRangeSlider.css";
 export const DateRangeSlider = ({ label, bounds, valuesChanging, valuesChanged }) => {
     const timelineRef = useRef(null);
     const [sliderBounds, setSliderBounds] = useState({ min: bounds.min.getTime() / 1000.0, max: bounds.max.getTime() / 1000.0 });
-    const foo = useRef(null);
+    const sliderWrapperRef = useRef(null);
 
     const cbValuesChanged = useCallback((values)=> {
         if (valuesChanged) {
@@ -23,9 +23,8 @@ export const DateRangeSlider = ({ label, bounds, valuesChanging, valuesChanged }
 
     useEffect(() => {
         const timeScale = d3
-            .scaleTime([foo.current.clientLeft, foo.current.clientWidth])
-            .domain([bounds.min, bounds.max])
-            .nice();
+            .scaleTime([sliderWrapperRef.current.clientLeft, sliderWrapperRef.current.clientWidth + sliderWrapperRef.current.clientLeft])
+            .domain([bounds.min, bounds.max]);
 
         setSliderBounds({ min: bounds.min.getTime() / 1000.0, max: bounds.max.getTime() / 1000.0 });
         const axisGenerator = d3.axisBottom(timeScale);
@@ -35,7 +34,7 @@ export const DateRangeSlider = ({ label, bounds, valuesChanging, valuesChanged }
     }, [bounds]);
 
     return (
-        <div ref={foo} className="date-range-slider">
+        <div ref={sliderWrapperRef} className="date-range-slider">
             <div className="ui-label">{label}</div>
             <RangeSlider label={label} bounds={sliderBounds} valuesChanged={cbValuesChanged} valuesChanging={cbValuesChanging} />
             <svg ref={timelineRef} className="daterange-slider-timeline">

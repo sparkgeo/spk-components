@@ -20,18 +20,25 @@ function valueReducer(values, action) {
         }
         return v;
     }
-    case "ChangeValues":
+    case "ChangeValues": {
+        let v = {
+            lower: Math.max(action.bounds.min, action.values[0]),
+            upper: Math.min(action.bounds.max, action.values[1])
+        };
+
         if (action.step > 0.0) {
-            return {
+            v = {
                 lower: Math.max(action.bounds.min, Math.floor(action.values[0] / action.step) * action.step),
                 upper: Math.min(action.bounds.max, Math.ceil(action.values[1] / action.step) * action.step)
             };
         }
 
-        return {
-            lower: Math.max(action.bounds.min, action.values[0]),
-            upper: Math.min(action.bounds.max, action.values[1])
-        };
+        if (action.callback) {
+            action.callback(v);
+        }
+
+        return v;
+    }
 
     default:
         throw Error(`Unknown action:  ${action.type}`);
@@ -197,10 +204,10 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
 
         if (value < values.lower) {
             // noinspection JSCheckFunctionSignatures
-            dispatch({type: "ChangeValues", values: [value, values.upper], bounds, step});
+            dispatch({type: "ChangeValues", values: [value, values.upper], bounds, step, callback: valuesChanged});
         } else if (value > values.upper) {
             // noinspection JSCheckFunctionSignatures
-            dispatch({type: "ChangeValues", values: [values.lower, value], bounds, step});
+            dispatch({type: "ChangeValues", values: [values.lower, value], bounds, step, callback: valuesChanged});
         }
     };
 
