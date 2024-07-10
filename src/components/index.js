@@ -8,8 +8,8 @@ import { LayerToggle } from "./core/LayerToggle";
 import { SimpleSlider } from "./core/SimpleSlider";
 import { Swatch } from "./core/Swatch";
 
-import { MapContainer } from "./layout/MapContainer";
-import { Sidebar } from "./layout/Sidebar";
+import { MapContainer } from "./containers/MapContainer";
+import { Sidebar } from "./containers/SidebarContainer";
 
 import { SliderControl } from "./composite/SliderControl";
 

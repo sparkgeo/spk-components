@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 function valueReducer(values, action) {
     switch (action.type) {
     case "ChangeStep": {
-        let v = {lower: values.lower, upper: values.upper};
+        let v = {lower: Math.max(action.bounds.min, values.lower), upper: Math.min(action.bounds.max, values.upper)};
 
         if (action.step > 0.0) {
             v = {
@@ -20,18 +20,25 @@ function valueReducer(values, action) {
         }
         return v;
     }
-    case "ChangeValues":
+    case "ChangeValues": {
+        let v = {
+            lower: Math.max(action.bounds.min, action.values[0]),
+            upper: Math.min(action.bounds.max, action.values[1])
+        };
+
         if (action.step > 0.0) {
-            return {
+            v = {
                 lower: Math.max(action.bounds.min, Math.floor(action.values[0] / action.step) * action.step),
                 upper: Math.min(action.bounds.max, Math.ceil(action.values[1] / action.step) * action.step)
             };
         }
 
-        return {
-            lower: Math.max(action.bounds.min, action.values[0]),
-            upper: Math.min(action.bounds.max, action.values[1])
-        };
+        if (action.callback) {
+            action.callback(v);
+        }
+
+        return v;
+    }
 
     default:
         throw Error(`Unknown action:  ${action.type}`);
@@ -55,6 +62,11 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
     const pixelsToValue = useCallback((position) => {
         const v = position / sliderTrackRef.current.clientWidth;
         return bounds.min + (bounds.max - bounds.min) * v;
+    }, [bounds]);
+
+    const deltaPixelsToValue = useCallback((position) => {
+        const v = position / sliderTrackRef.current.clientWidth;
+        return (bounds.max - bounds.min) * v;
     }, [bounds]);
 
     useEffect(() => {
@@ -100,7 +112,7 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
 
             event.preventDefault();
 
-            let delta = pixelsToValue(event.movementX);
+            let delta = deltaPixelsToValue(event.movementX);
 
             if (step !== 0.0) {
                 let cumDelta = cumulativeDelta + delta;
@@ -164,7 +176,7 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
         [
             mouseDownHandle,
             bounds,
-            pixelsToValue,
+            deltaPixelsToValue,
             values,
             cumulativeDelta,
             step
@@ -192,10 +204,10 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
 
         if (value < values.lower) {
             // noinspection JSCheckFunctionSignatures
-            dispatch({type: "ChangeValues", values: [value, values.upper], bounds, step});
+            dispatch({type: "ChangeValues", values: [value, values.upper], bounds, step, callback: valuesChanged});
         } else if (value > values.upper) {
             // noinspection JSCheckFunctionSignatures
-            dispatch({type: "ChangeValues", values: [values.lower, value], bounds, step});
+            dispatch({type: "ChangeValues", values: [values.lower, value], bounds, step, callback: valuesChanged});
         }
     };
 
