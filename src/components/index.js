@@ -9,7 +9,10 @@ import { SimpleSlider } from "./core/SimpleSlider";
 import { Swatch } from "./core/Swatch";
 
 import { MapContainer } from "./containers/MapContainer";
-import { Sidebar } from "./containers/SidebarContainer";
+import { SidebarContainer } from "./containers/SidebarContainer";
+
+import { Stacked } from "./layout/Stacked";
+import { Standard } from "./layout/Standard";
 
 import { SliderControl } from "./composite/SliderControl";
 
@@ -20,9 +23,11 @@ export {
     LayerCard,
     LayerToggle,
     MapContainer,
-    Sidebar,
+    SidebarContainer,
     SimpleSlider,
     SliderControl,
     Swatch,
     SwatchLegend,
+    Stacked,
+    Standard,
 };
