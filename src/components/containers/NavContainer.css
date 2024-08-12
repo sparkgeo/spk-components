@@ -1,0 +1,8 @@
+.nav-container {
+  grid-area: nav;
+  height: 100%;
+  width: 100%;
+    color: white;
+    background-color: #003247;
+    text-align: center;
+}
