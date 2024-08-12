@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import { MapContainer } from "../components/containers/MapContainer";
+import { NavContainer } from "../components/containers/NavContainer";
 import { Sidebar } from "../components/containers/SidebarContainer";
 import { Standard as Layout } from "../components/layout/Standard";
 import { LayerCard } from "../components/composite/LayerCard";
@@ -21,18 +22,9 @@ export default {
 };
 
 const Navigation = () => (
-    <div
-        style={{
-            gridArea: "nav",
-            height: "100%",
-            width: "100%",
-            background: "#003247",
-            textAlign: "center",
-            color: "white",
-        }}
-    >
+    <NavContainer>
         <h2>Example</h2>
-    </div>
+    </NavContainer>
 );
 
 export const LeftAligned = {

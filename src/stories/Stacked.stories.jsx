@@ -1,5 +1,6 @@
 import React from "react";
 import { MapContainer } from "../components/containers/MapContainer";
+import { NavContainer } from "../components/containers/NavContainer";
 import { Sidebar } from "../components/containers/SidebarContainer";
 import { Stacked as Layout } from "../components/layout/Stacked";
 
@@ -18,18 +19,9 @@ export default {
 };
 
 const Navigation = () => (
-    <div
-        style={{
-            gridArea: "nav",
-            height: "100%",
-            width: "100%",
-            background: "#003247",
-            textAlign: "center",
-            color: "white",
-        }}
-    >
-        <p>Navigation</p>
-    </div>
+    <NavContainer>
+        <h2>Example</h2>
+    </NavContainer>
 );
 
 export const Default = {
