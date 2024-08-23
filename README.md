@@ -1,14 +1,20 @@
 # Sparkgeo Component Library
 
-This is an early attempt at creating a collection of useful and reusable React components focussed on Web GIS applications. 
+Storybook documentation: https://sparkgeo.github.io/spk-components/
 
-As many fundamental UI components are available in the vast ecosystem of React UI libraries that currently exsit, the current aim for this project is to provide larger and more complicated UI components that are commonly used within geospatial UI. This aim however will likely make the components within this library much more opinonated.
+---
+This is an early attempt at creating a collection of useful and reusable React components focussed on geospatial web map applications. 
+
+As many fundamental UI components already exist in the vast ecosystem of React UI libraries, the aim for this project is to be a tool which provides larger and more complex components that are common within a geospatial UI. This aim will likely make the library's components more opinonated.
 
 This project is open to contributions from anyone who is intrested. If you would like to participate any discussions please join the slack channel `#spk-ui-component-library`
 
-Note: This project is still very much a WIP and will be subject to extreme/breaking changes for the near future.
+Note: This project still very much a WIP and will be subject to breaking changes in the near future.
 
-## Running Storybook
+## Features
+???
+
+## Running Storybook locally
 
 Install all dependencies using:
 
@@ -39,3 +45,18 @@ If you want to use the components in a local react project locally, while testin
 To remove the linked package:
 - In your react project where you have been using the package run `npm unlink spk-components`
 - In spk-components run `npm unlink`
+
+
+## Contribution & Development
+See [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+## License
+See [LICENSE](./LICENSE)
+
+## Authors
+Created by [Sparkgeo](https://sparkgeo.com/)
+
+See [contributors](./graphs/contributors) for a listing of individual contributors.
+
+## Changes
+See [CHANGES.md](./CHANGES.md).
