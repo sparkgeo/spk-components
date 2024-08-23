@@ -13,6 +13,8 @@ import { Sidebar } from "./containers/SidebarContainer";
 
 import { SliderControl } from "./composite/SliderControl";
 
+import "./styles/variables.css";
+
 export {
     GradientLegend,
     IconButton,
