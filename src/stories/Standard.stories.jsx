@@ -1,8 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import { MapContainer } from "../components/containers/MapContainer";
+<<<<<<< HEAD
 import { NavContainer } from "../components/containers/NavContainer";
 import { Sidebar } from "../components/containers/SidebarContainer";
+=======
+import { SidebarContainer } from "../components/containers/SidebarContainer";
+>>>>>>> 1103a7a (fix: numerous fixes for issues discovered during POC usage)
 import { Standard as Layout } from "../components/layout/Standard";
 import { LayerCard } from "../components/composite/LayerCard";
 import { EXAMPLE_LAYERS } from "./constants";
@@ -31,7 +35,7 @@ export const LeftAligned = {
     render: () => (
         <Layout>
             <Navigation />
-            <Sidebar />
+            <SidebarContainer />
             <MapContainer />
         </Layout>
     ),
@@ -41,7 +45,7 @@ export const RightAligned = {
     render: () => (
         <Layout align="right">
             <Navigation />
-            <Sidebar />
+            <SidebarContainer />
             <MapContainer />
         </Layout>
     ),
@@ -66,7 +70,7 @@ export const PopulatedExample = {
         return (
             <Layout>
                 <Navigation />
-                <Sidebar>
+                <SidebarContainer>
                     {EXAMPLE_LAYERS.map((layer) => {
                         const { layerName, isActive, onChange, buttons } =
                             layer;
@@ -79,7 +83,7 @@ export const PopulatedExample = {
                             />
                         );
                     })}
-                </Sidebar>
+                </SidebarContainer>
                 <MapContainer mapContainer={mapContainer} />
             </Layout>
         );

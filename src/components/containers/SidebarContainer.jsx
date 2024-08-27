@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { IconButton } from "../core/IconButton";
 import "./SidebarContainer.css";
 
-export const Sidebar = ({ showToggle, children }) => {
+export const SidebarContainer = ({ showToggle, children }) => {
     const [isClosed, setIsClosed] = useState(false);
 
     const classNames = `sidebar ${isClosed ? "closed" : ""}`;
@@ -27,7 +27,7 @@ export const Sidebar = ({ showToggle, children }) => {
     );
 };
 
-Sidebar.propTypes = {
+SidebarContainer.propTypes = {
     showToggle: PropTypes.bool,
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),

@@ -1,11 +1,11 @@
 import React from "react";
-import { Sidebar } from "../components/containers/SidebarContainer";
+import { SidebarContainer } from "../components/containers/SidebarContainer";
 import { LayerCard } from "../components/composite/LayerCard";
 import { EXAMPLE_LAYERS } from "./constants";
 
 export default {
     title: "Containers/Sidebar",
-    component: Sidebar,
+    component: SidebarContainer,
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
     tags: ["autodocs"],
     parameters: {
@@ -20,7 +20,7 @@ export default {
 export const Empty = {
     render: () => (
         <div style={{ width: "25vw", height: "100vh" }}>
-            <Sidebar />
+            <SidebarContainer />
         </div>
     ),
 };
@@ -28,7 +28,7 @@ export const Empty = {
 export const WithLayerCards = {
     render: () => (
         <div style={{ width: "25vw", height: "100vh" }}>
-            <Sidebar>
+            <SidebarContainer>
                 {EXAMPLE_LAYERS.map((layer) => {
                     const { layerName, isActive, onChange, buttons } = layer;
                     return (
@@ -40,7 +40,7 @@ export const WithLayerCards = {
                         />
                     );
                 })}
-            </Sidebar>
+            </SidebarContainer>
         </div>
     ),
 };
