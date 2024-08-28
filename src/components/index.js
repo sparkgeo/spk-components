@@ -16,6 +16,8 @@ import { Standard } from "./layout/Standard";
 
 import { SliderControl } from "./composite/SliderControl";
 
+import "./styles/variables.css";
+
 export {
     GradientLegend,
     IconButton,
