@@ -1,11 +1,7 @@
 import React from "react";
 import { MapContainer } from "../components/containers/MapContainer";
-<<<<<<< HEAD
 import { NavContainer } from "../components/containers/NavContainer";
-import { Sidebar } from "../components/containers/SidebarContainer";
-=======
 import { SidebarContainer } from "../components/containers/SidebarContainer";
->>>>>>> 1103a7a (fix: numerous fixes for issues discovered during POC usage)
 import { Stacked as Layout } from "../components/layout/Stacked";
 
 export default {
