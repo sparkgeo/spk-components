@@ -4,7 +4,7 @@ import { LayerToggle } from "../core/LayerToggle";
 import { LayerButtonReel } from "./LayerButtonReel";
 import "./LayerCard.css";
 
-export const LayerCard = ({ layerName, isActive, onChange, buttons }) => (
+export const LayerCard = ({ layerName, isActive, onChange, buttons, children }) => (
     <div className="layerCard">
         <div className="layerCardWrapper">
             <LayerToggle
@@ -14,6 +14,11 @@ export const LayerCard = ({ layerName, isActive, onChange, buttons }) => (
             />
             <LayerButtonReel buttons={buttons} />
         </div>
+        {isActive && (
+            <div className="layerCardChildren">
+                {children}
+            </div>
+        )}
     </div>
 );
 
@@ -22,9 +27,8 @@ LayerCard.propTypes = {
     isActive: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     buttons: PropTypes.objectOf(PropTypes.func),
-};
-
-LayerCard.defaultProps = {
-    isActive: false,
-    buttons: null,
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node,
+    ])
 };
