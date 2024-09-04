@@ -61,3 +61,75 @@ export const EXAMPLE_LAYERS = [
         },
     },
 ];
+
+export const GROUPED_LAYERS = [
+    {
+        groupName: "Group One",
+        layers: [
+            {
+                layerName: "Layer One",
+                isActive: false,
+                onChange: fn(),
+                buttons: {
+                    info: fn(),
+                },
+            },
+            {
+                layerName: "Layer Two",
+                isActive: false,
+                onChange: fn(),
+                buttons: {
+                    info: fn(),
+                    trash: fn(),
+                },
+            },
+            {
+                layerName: "Layer Three",
+                isActive: false,
+                onChange: fn(),
+                buttons: {
+                    fill: fn(),
+                    filter: fn(),
+                    info: fn(),
+                    trash: fn(),
+                },
+            },
+        ]
+    },
+    {
+        groupName: "Group Two",
+        layers: [
+            {
+                layerName: "Layer Four",
+                isActive: false,
+                onChange: fn(),
+                buttons: {
+                    fill: fn(),
+                    filter: fn(),
+                    info: fn(),
+                    trash: fn(),
+                },
+            },
+            {
+                layerName: "Layer Five",
+                isActive: false,
+                onChange: fn(),
+                buttons: {
+                    info: fn(),
+                    trash: fn(),
+                },
+            },
+            {
+                layerName: "Layer Six",
+                isActive: false,
+                onChange: fn(),
+                buttons: {
+                    fill: fn(),
+                    filter: fn(),
+                    info: fn(),
+                    trash: fn(),
+                },
+            },
+        ]
+    },
+];
