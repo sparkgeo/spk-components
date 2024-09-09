@@ -1,0 +1,9 @@
+.swatch-legend {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+.swatch-container {
+    margin: 4px;
+}
