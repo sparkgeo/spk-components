@@ -1,6 +1,7 @@
 .layer-group-wrapper {
-    border: 1px solid var(--border-color);;
+    border: solid 2px var(--primary-color);
     border-radius: 0;
+    box-sizing: border-box;
     background-color: var(--primary-color);
     color: var(--text-color-secondary);
     display: flex;
@@ -15,10 +16,23 @@
     padding: 8px;
 }
 
+.layer-group-wrapper:hover {
+    border-color: #fcba03;
+}
+
+.layer-group-wrapper:focus, .layer-group-wrapper:focus-visible {
+    outline: none;
+    border-color: #fcba03;
+}
+
 .layer-group-name {
     padding: 8px;
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+:nth-last-child(1 of .layer-group) .layer-group-children {
+    border-bottom: 8px solid var(--primary-color); 
 }
