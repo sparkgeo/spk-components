@@ -1,7 +1,8 @@
 import React from "react";
 import { SidebarContainer } from "../components/containers/SidebarContainer";
 import { LayerCard } from "../components/composite/LayerCard";
-import { EXAMPLE_LAYERS } from "./constants";
+import { EXAMPLE_LAYERS, GROUPED_LAYERS } from "./constants";
+import { LayerGroup } from "../components/core/LayerGroup";
 
 export default {
     title: "Containers/Sidebar",
@@ -39,6 +40,33 @@ export const WithLayerCards = {
                             buttons={buttons}
                         />
                     );
+                })}
+            </SidebarContainer>
+        </div>
+    ),
+};
+
+export const WithLayerGroups = {
+    render: () => (
+        <div style={{ width: "25vw", height: "100vh" }}>
+            <SidebarContainer>
+                {GROUPED_LAYERS.map((group) => {
+                    const { groupName, layers } = group;
+                    return (
+                        <LayerGroup groupName={groupName}>
+                            {layers.map((layer) => {
+                                const { layerName, isActive, onChange, buttons } = layer;
+                                return (
+                                    <LayerCard
+                                        layerName={layerName}
+                                        isActive={isActive}
+                                        onChange={onChange}
+                                        buttons={buttons}
+                                    />
+                                );
+                            })}
+                        </LayerGroup>
+                    )
                 })}
             </SidebarContainer>
         </div>

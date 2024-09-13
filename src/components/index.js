@@ -7,6 +7,7 @@ import { IconButton } from "./core/IconButton";
 import { LayerToggle } from "./core/LayerToggle";
 import { SimpleSlider } from "./core/SimpleSlider";
 import { Swatch } from "./core/Swatch";
+import { LayerGroup } from "./core/LayerGroup";
 
 import { MapContainer } from "./containers/MapContainer";
 import { SidebarContainer } from "./containers/SidebarContainer";
@@ -23,6 +24,7 @@ export {
     IconButton,
     LayerButtonReel,
     LayerCard,
+    LayerGroup,
     LayerToggle,
     MapContainer,
     SidebarContainer,
