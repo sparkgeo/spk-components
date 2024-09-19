@@ -10,6 +10,7 @@ import { Swatch } from "./core/Swatch";
 import { LayerGroup } from "./core/LayerGroup";
 
 import { MapContainer } from "./containers/MapContainer";
+import { NavContainer } from "./containers/NavContainer";
 import { SidebarContainer } from "./containers/SidebarContainer";
 
 import { Stacked } from "./layout/Stacked";
@@ -27,6 +28,7 @@ export {
     LayerGroup,
     LayerToggle,
     MapContainer,
+    NavContainer,
     SidebarContainer,
     SimpleSlider,
     SliderControl,
