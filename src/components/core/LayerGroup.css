@@ -1,5 +1,5 @@
 .layer-group-wrapper {
-    border: solid 2px var(--primary-color);
+    border: solid 2px var(--primaary-color);
     border-radius: 0;
     box-sizing: border-box;
     background-color: var(--primary-color);
@@ -17,12 +17,12 @@
 }
 
 .layer-group-wrapper:hover {
-    border-color: #fcba03;
+    border-color: var(--accent-color);
 }
 
 .layer-group-wrapper:focus, .layer-group-wrapper:focus-visible {
     outline: none;
-    border-color: #fcba03;
+    border-color: var(--accent-color);
 }
 
 .layer-group-name {
