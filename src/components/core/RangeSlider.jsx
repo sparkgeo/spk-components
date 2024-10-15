@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState, useReducer } from "react";
-import "./RangeSlider.css";
 import PropTypes from "prop-types";
+import styles from "./RangeSlider.module.css";
 
 
 function valueReducer(values, action) {
@@ -212,17 +212,17 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
     };
 
     return (
-        <div className="range-slider">
-            <div className="range-slider-container">
+        <div className={styles.rangeSlider}>
+            <div className={styles.rangeSliderContainer}>
                 <div
-                    className="range-slider-track"
+                    className={styles.rangeSliderTrack}
                     ref={sliderTrackRef}
                     role="none"
                     tabIndex="-1"
                     onClick={handleTrackClick}
                 />
                 <div
-                    className="range-slider-handle-bar"
+                    className={styles.rangeSliderHandleBar}
                     role="slider"
                     tabIndex="0"
                     aria-label={label}
@@ -238,7 +238,7 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
                     }}
                 />
                 <div
-                    className="range-slider-handle-left"
+                    className={styles.rangeSliderHandleLeft}
                     role="button"
                     tabIndex="0"
                     aria-label={`${label} lower handle`}
@@ -247,7 +247,7 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
                     style={{ left: `${pxLeft}px` }}
                 />
                 <div
-                    className="range-slider-handle-right"
+                    className={styles.rangeSliderHandleRight}
                     role="button"
                     tabIndex="0"
                     aria-label={`${label} upper handle`}

@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { SimpleSlider } from "../core/SimpleSlider";
-import "./SliderControl.css";
+import styles from "./SliderControl.module.css";
 
 export const SliderControl = ({ title, units, sliderConfig }) => (
-    <div className=" slider-control-wrapper">
+    <div className={styles.sliderControlWrapper}>
         <div className="ui-label">{title}</div>
         <div />
 
         {sliderConfig &&
             sliderConfig.map((slider) => {
                 const { label } = slider;
-                return <div className="slider-label">{label}</div>;
+                return <div className={styles.sliderLabel}>{label}</div>;
             })}
 
         {sliderConfig &&

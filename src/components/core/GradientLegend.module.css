@@ -3,12 +3,12 @@
     height: 24px;
 }
 
-.gradient-numbers {
+.gradientNumbers {
     display: flex;
     justify-content: space-between;
 }
 
-.gradient-legend {
+.gradientLegend {
     width: 100%;
     height: 100%;
 }

@@ -1,6 +1,7 @@
 import React from "react";
-import "./SimpleSlider.css";
 import PropTypes from "prop-types";
+import styles from "./SimpleSlider.module.css";
+
 
 export const SimpleSlider = ({
     units,
@@ -11,12 +12,12 @@ export const SimpleSlider = ({
     step,
     value,
 }) => (
-    <div className="simple-slider">
+    <div className={styles.simpleSlider}>
         <div>
             {label && <div className="ui-label">{label}</div>}
             <input
                 onChange={onChange}
-                className="simple-slider-input"
+                className={styles.simpleSliderInput}
                 type="range"
                 value={value}
                 min={min}
@@ -24,7 +25,7 @@ export const SimpleSlider = ({
                 step={step}
             />
         </div>
-        <div className="simple-slider-min-max-container">
+        <div className={styles.simpleSliderMinMaxContainer}>
             <div className="ui-label">
                 {min}
                 {units}

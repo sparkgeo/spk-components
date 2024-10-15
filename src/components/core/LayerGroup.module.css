@@ -1,4 +1,4 @@
-.layer-group-wrapper {
+.layerGroupWrapper {
     border: solid 2px var(--primaary-color);
     border-radius: 0;
     box-sizing: border-box;
@@ -12,20 +12,20 @@
     align-items: center;
 }
 
-.layer-group-chevron {
+.layerGroupChevron {
     padding: 8px;
 }
 
-.layer-group-wrapper:hover {
+.layerGroupWapper:hover {
     border-color: var(--accent-color);
 }
 
-.layer-group-wrapper:focus, .layer-group-wrapper:focus-visible {
+.layerGroupWrapper:focus, .layer-group-wrapper:focus-visible {
     outline: none;
     border-color: var(--accent-color);
 }
 
-.layer-group-name {
+.layerGroupName {
     padding: 8px;
     font-weight: bold;
     white-space: nowrap;
@@ -33,6 +33,6 @@
     text-overflow: ellipsis;
 }
 
-:nth-last-child(1 of .layer-group) .layer-group-children {
+:nth-last-child(1 of .layer-group) .layerGroupChildren {
     border-bottom: 8px solid var(--primary-color); 
 }
