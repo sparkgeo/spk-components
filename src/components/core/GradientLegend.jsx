@@ -2,7 +2,7 @@
 import React from "react";
 
 import PropTypes from "prop-types";
-import "./GradientLegend.css";
+import styles from "./GradientLegend.module.css";
 
 export const GradientLegend = ({
     title = "Gradient Legend",
@@ -30,19 +30,19 @@ export const GradientLegend = ({
     return (
         <div className="gradient-box">
             {!titleBelow && <div className="ui-title"> {title}</div>}
-            <div className="gradient-legend">
+            <div className={styles.gradientLegend}>
                 <div
-                    className="gradient"
+                    className={styles.gradient}
                     style={{
                         background: `linear-gradient(to right, ${startColor} , ${endColor})`,
                     }}
                 />
-                <div className="gradient-numbers">
+                <div className={styles.gradientNumbers}>
                     <span>{startNo}</span>
                     {binsArray}
                     <span>{endNo}</span>
                 </div>
-                {titleBelow && <div className="ui-title"> {title}</div>}
+                {titleBelow && <div className={styles.uiTitle}> {title}</div>}
             </div>
         </div>
     );
