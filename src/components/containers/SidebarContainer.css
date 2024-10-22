@@ -7,7 +7,7 @@
 .sidebar {
     height: 100%;
     min-width: 200px;
-    background-color: var(--background-color);
+    background-color: var(--secondary-color);
     transition:
         width 0.5s,
         min-width 0.5s;
