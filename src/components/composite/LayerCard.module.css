@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: start;
     border-bottom: 1px solid var(--border-color);
-    background-color: var(--background-color);
+    background-color: var(--secondary-color);
 }
 
 .layerCardWrapper {
@@ -19,4 +19,6 @@
     flex-direction: column;
     align-items: start;
     width: 100%;
+    background-color: var(--background-color);
+    color: var(--text-color-secondary);
 }
