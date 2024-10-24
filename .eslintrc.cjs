@@ -12,11 +12,20 @@ module.exports = {
         "prettier",
     ],
     ignorePatterns: ["dist", ".eslintrc.cjs", "!.storybook"],
+    parser: '@typescript-eslint/parser',
     parserOptions: { ecmaVersion: "latest", sourceType: "module" },
-    settings: { react: { version: "18.2" } },
+    settings: { 
+        react: { version: "18.2" },
+        "import/resolver": {
+            "node": {
+              "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+          }
+    },
     plugins: ["react-refresh"],
     rules: {
         "react/jsx-no-target-blank": "off",
+        'react/jsx-filename-extension': [2, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
         "react-refresh/only-export-components": [
             "warn",
             { allowConstantExport: true },
@@ -37,6 +46,16 @@ module.exports = {
         ],
         "import/prefer-default-export": ["off"],
         "react/require-default-props": ["off"],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+              "js": "never",
+              "jsx": "never",
+              "ts": "never",
+              "tsx": "never"
+            }
+          ]
     },
     overrides: [
         {

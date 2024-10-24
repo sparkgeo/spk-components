@@ -1,14 +1,17 @@
 import react from "@vitejs/plugin-react";
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
+
 import * as packageJson from "./package.json";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react()],
+    plugins: [
+        react(),
+    ],
     build: {
         lib: {
-            entry: resolve("src", "components/index.js"),
+            entry: resolve("src", "components/index.ts"),
             name: "SpkLibrary",
             formats: ["es", "umd"],
             fileName: (format) => `spk-library.${format}.js`,
