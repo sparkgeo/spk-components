@@ -1,0 +1,14 @@
+.simpleSlider {
+    grid-column-start: 2;
+    padding: 4px;
+    align-items: center;
+}
+
+.simpleSliderInput {
+    width: 100%;
+}
+
+.simpleSliderMinMaxContainer {
+    display: flex;
+    justify-content: space-between;
+}

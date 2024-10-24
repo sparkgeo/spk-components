@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Swatch } from "../core/Swatch";
-import "./SwatchLegend.css";
+import styles from "./SwatchLegend.module.css";
 
 export const SwatchLegend = ({ swatches }) => (
-    <div className="swatch-legend">
+    <div className={styles.swatchLegend}>
         {swatches &&
             swatches.map((swatch) => {
                 const { color, label, value, units } = swatch;

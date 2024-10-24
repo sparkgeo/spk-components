@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { IconButton } from "../core/IconButton";
-import "./LayerButtonReel.css";
+import styles from "./LayerButtonReel.module.css";
 
 export const LayerButtonReel = ({ buttons }) => (
-    <div className="layerButtonReel">
+    <div className={styles.layerButtonReel}>
         {buttons &&
             Object.keys(buttons).map((key) => (
                 <IconButton iconName={key} onClick={buttons[key]} />

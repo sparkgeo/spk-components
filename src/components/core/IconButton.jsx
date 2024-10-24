@@ -10,7 +10,7 @@ import {
     faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
-import "./IconButton.css";
+import styles from "./IconButton.module.css";
 
 const ICON_MAP = {
     trash: faTrash,
@@ -23,7 +23,7 @@ const ICON_MAP = {
 };
 
 export const IconButton = ({ onClick, iconName }) => (
-    <div className="iconButton">
+    <div className={styles.iconButton}>
         <button aria-label={iconName} type="button" onClick={onClick}>
             <FontAwesomeIcon icon={ICON_MAP[iconName]} />
         </button>

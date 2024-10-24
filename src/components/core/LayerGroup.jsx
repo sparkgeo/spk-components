@@ -5,7 +5,7 @@ import {
     faChevronRight,
     faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
-import "./LayerGroup.css";
+import styles from "./LayerGroup.module.css";
 
 export const LayerGroup = ({ groupName, children }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,15 +15,15 @@ export const LayerGroup = ({ groupName, children }) => {
     }
 
     return (
-        <div className="layer-group">
-            <button type="button" className="layer-group-wrapper" onClick={handleClick}>
-                <div className="layer-group-chevron">
+        <div className={styles.layerGroup}>
+            <button type="button" className={styles.layerGroupWrapper} onClick={handleClick}>
+                <div className={styles.layerGroupChevron}>
                     <FontAwesomeIcon size="md" fixedWidth icon={isOpen ? faChevronDown : faChevronRight} />
                 </div>
-                <span className="layer-group-name">{groupName}</span>
+                <span className={styles.layerGroupName}>{groupName}</span>
             </button>
             {isOpen && 
-                <div className="layer-group-children">
+                <div className={styles.layerGroupChildren}>
                     {children}
                 </div>
             }

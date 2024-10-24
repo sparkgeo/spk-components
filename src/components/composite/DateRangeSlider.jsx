@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import * as d3 from "d3";
 import { RangeSlider } from "../core/RangeSlider";
-import "./DateRangeSlider.css";
+import styles from "./DateRangeSlider.module.css";
 
 export const DateRangeSlider = ({ label, bounds, valuesChanging, valuesChanged }) => {
     const timelineRef = useRef(null);
@@ -34,11 +34,11 @@ export const DateRangeSlider = ({ label, bounds, valuesChanging, valuesChanged }
     }, [bounds]);
 
     return (
-        <div ref={sliderWrapperRef} className="date-range-slider">
+        <div ref={sliderWrapperRef}>
             <div className="ui-label">{label}</div>
             <RangeSlider label={label} bounds={sliderBounds} valuesChanged={cbValuesChanged} valuesChanging={cbValuesChanging} />
-            <svg ref={timelineRef} className="daterange-slider-timeline">
-                <g className="timeline-axis"/>
+            <svg ref={timelineRef} className={styles.daterangeSliderTimeline}>
+                <g className={styles.timelineAxis}/>
             </svg>
         </div>
     );
