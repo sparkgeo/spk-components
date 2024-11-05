@@ -1,6 +1,6 @@
 import react from "@vitejs/plugin-react";
 import { resolve } from "node:path";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 
 import * as packageJson from "./package.json";
 
@@ -9,6 +9,11 @@ export default defineConfig({
     plugins: [
         react(),
     ],
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: ['./src/setupTests.ts'],
+    },
     build: {
         lib: {
             entry: resolve("src", "components/index.ts"),

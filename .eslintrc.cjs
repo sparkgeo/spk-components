@@ -1,6 +1,10 @@
 module.exports = {
     root: true,
-    env: { browser: true, es2020: true },
+    env: {
+        browser: true,
+        es2020: true,
+        "vitest-globals/env": true
+    },
     extends: [
         "eslint:recommended",
         "plugin:react/recommended",
@@ -18,11 +22,11 @@ module.exports = {
         react: { version: "18.2" },
         "import/resolver": {
             "node": {
-              "extensions": [".js", ".jsx", ".ts", ".tsx"]
+              "extensions": [".js", ".jsx", ".ts", ".tsx", ".d.ts"]
             }
           }
     },
-    plugins: ["react-refresh"],
+    plugins: ["react-refresh", "vitest-globals"],
     rules: {
         "react/jsx-no-target-blank": "off",
         'react/jsx-filename-extension': [2, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
@@ -55,8 +59,9 @@ module.exports = {
               "ts": "never",
               "tsx": "never"
             }
-          ]
-    },
+          ],
+          "react/react-in-jsx-scope": "off",
+        },
     overrides: [
         {
             "files": ['*.stories.@(ts|tsx|js|jsx|mjs|cjs)'],
