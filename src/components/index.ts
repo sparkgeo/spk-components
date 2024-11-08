@@ -2,6 +2,7 @@ import { LayerButtonReel } from "./composite/LayerButtonReel";
 import { LayerCard } from "./composite/LayerCard";
 import { SwatchLegend } from "./composite/SwatchLegend";
 
+import { DatePicker } from "./core/DatePicker";
 import { GradientLegend } from "./core/GradientLegend";
 import { IconButton } from "./core/IconButton";
 import { LayerToggle } from "./core/LayerToggle";
@@ -18,9 +19,10 @@ import { Standard } from "./layout/Standard";
 
 import { SliderControl } from "./composite/SliderControl";
 
-import "./styles/variables.css";
+import "./styles/theme.css";
 
 export {
+    DatePicker,
     GradientLegend,
     IconButton,
     LayerButtonReel,
