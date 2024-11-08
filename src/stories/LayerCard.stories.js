@@ -15,6 +15,7 @@ export default {
 export const Default = {
     args: {
         layerName: "Example Layer",
+        description: "This is an example layercard that can optionally contain a descriptive text string for the layer",
         isActive: true,
         onChange: fn(),
         buttons: {
