@@ -15,8 +15,8 @@ export const LayerGroup = ({ groupName, children }) => {
     }
 
     return (
-        <div className={styles.layerGroup}>
-            <button type="button" className={styles.layerGroupWrapper} onClick={handleClick}>
+        <div className={styles.layerGroupWrapper}>
+            <button type="button" className={styles.layerGroupButton} onClick={handleClick}>
                 <div className={styles.layerGroupChevron}>
                     <FontAwesomeIcon size="md" fixedWidth icon={isOpen ? faChevronDown : faChevronRight} />
                 </div>
@@ -27,7 +27,6 @@ export const LayerGroup = ({ groupName, children }) => {
                     {children}
                 </div>
             }
-
         </div>
     )
 }

@@ -5,13 +5,43 @@
     align-items: start;
     border-bottom: 1px solid var(--border-color);
     background-color: var(--secondary-color);
+    position: relative;
 }
 
 .layerCardWrapper {
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
+    display: grid;
     align-items: center;
-    overflow: hidden;
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas: "text controls toggle";
+    padding: var(--spacing-medium) 0;
+}
+
+.layerCardTextWrapper {
+    display: flex;
+    flex-direction: column;
+    grid-area: text;
+    justify-self: stretch;
+    padding: var(--spacing-medium);
+}
+
+.layerCardTitle {
+    padding-bottom: var(--spacing-small);
+}
+
+.layerCardDescription {
+    font-size: var(--font-size-small);
+    filter: brightness(80%);
+}
+
+.layerCardControls {
+    grid-area: controls;
+    justify-self: end
+}
+
+.layerCardToggle {
+    grid-area: toggle;
+    justify-self: end
 }
 
 .layerCardChildren {
