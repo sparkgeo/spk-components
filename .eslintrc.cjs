@@ -26,7 +26,7 @@ module.exports = {
             }
           }
     },
-    plugins: ["react-refresh", "vitest-globals"],
+    plugins: ["react-refresh", "vitest-globals", "@typescript-eslint"],
     rules: {
         "react/jsx-no-target-blank": "off",
         'react/jsx-filename-extension': [2, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
@@ -40,6 +40,7 @@ module.exports = {
         ],
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
+        "react/jsx-props-no-spreading": "off",
         "react/function-component-definition": [
             "error",
             {
@@ -59,8 +60,10 @@ module.exports = {
               "tsx": "never"
             }
           ],
-          "react/react-in-jsx-scope": "off",
-        },
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    },
+        
     overrides: [
         {
             "files": ['*.stories.@(ts|tsx|js|jsx|mjs|cjs)'],

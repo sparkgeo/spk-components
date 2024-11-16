@@ -1,8 +1,17 @@
-.react-aria-DatePicker {
+.datePicker {
     /*  The 'composes' keyword allows us to extend the react-aria-DatePicker class
         so we can override rules here without rewriting all of them
     */
     composes: react-aria-DatePicker from global;
 
     /* See src/components/core/DatePicker.css for ideas on customizing this component */
-  }
+}
+
+.dateInput {
+    composes: react-aria-DateInput from global;
+}
+
+.hoverDatepicker {
+    outline: 3px solid var(--highlight-hover);
+    outline-offset: -1px;
+}
