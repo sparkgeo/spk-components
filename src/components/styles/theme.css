@@ -3,19 +3,20 @@
 /* Base styles */
 :root {
     font-family: system-ui;
-    font-size: 14px;
+    font-size: var(--font-size-base);
     line-height: 1.5;
     background: var(--background-color);
+    box-sizing: border-box;
   }
 
 :root {
     /* Typography */
-    /* --font-size-base: 16px;
-    --font-size-small: 14px;
-    --font-size-large: 18px;
+    --font-size-base: 14px;
+    --font-size-small: 12px;
+    --font-size-large: 16px;
     --font-weight-normal: 400;
     --font-weight-bold: 700;
-    --line-height-base: 1.5; */
+    --line-height-base: 1.5;
 
     /* Spacing */
     /* --spacing-unit: 8px;
@@ -166,20 +167,51 @@
   }
 }
 
-
-/* Button global override
+/*
+  Global CSS overrides
   Potentially put these overrides in a different file
 */
+
+/* Button */
+.react-aria-Button {
+  font-size: var(--font-size-base);
+}
+
+/* Button hover*/
 .react-aria-Button:hover {
   outline: 3px solid var(--highlight-hover);
   outline-offset: -1px;
   cursor: pointer;
 }
 
+/* Calendar */
 .react-aria-Calendar {
     .react-aria-CalendarCell:hover{
         outline: 3px solid var(--highlight-hover);
         outline-offset: -1px;
         cursor: pointer;
     }
+
+    header {
+      .react-aria-Heading {
+        font-size: var(--font-size-large);
+      }
+    }
+
+
+    [slot=errorMessage] {
+      font-size: var(--font-size-small);
+      color: var(--invalid-color);
+    }
+}
+
+/* Field Error */
+.react-aria-DatePicker, .react-aria-DateField {
+  .react-aria-FieldError {
+    font-size: var(--font-size-small);
+  }
+
+  [slot=description] {
+    font-size: var(--font-size-small);
+  }
 }

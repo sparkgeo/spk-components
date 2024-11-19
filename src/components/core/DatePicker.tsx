@@ -32,7 +32,6 @@ import styles from "./DatePicker.module.css";
  * @property {string} [helperText] - The helper texts for the date picker.
  * @property {string | ((validationResult: ValidationResult) => string)} [errorMessage] - The error message to display, or a function that returns the error message based on the validation result.
  * @see [react-aria-components datepicker value documentation](https://react-spectrum.adobe.com/react-aria/DatePicker.html#value) for possible types for the value prop.
-
  */
 interface DatePickerProps {
     value: DateValue;
@@ -66,6 +65,7 @@ export const DatePicker = ({
             <Label>{label}</Label>
             <Group>
                 <DateInput
+                    // Hovering input or button will show hover state on date innput
                     className={`${styles.dateInput} ${isHovered || isButtonHovered ? styles.hoverDatepicker : ""}`}
                     {...hoverProps}
                 >
