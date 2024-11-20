@@ -4,7 +4,6 @@ import styles from "./LayerToggle.module.css";
 
 export const LayerToggle = ({ layerName, isActive, onChange }) => (
     <div className={styles.layerToggle}>
-        <p>{layerName}</p>
         <div className={styles.switch}>
             <input
                 type="checkbox"

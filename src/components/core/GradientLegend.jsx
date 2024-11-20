@@ -5,14 +5,15 @@ import PropTypes from "prop-types";
 import styles from "./GradientLegend.module.css";
 
 export const GradientLegend = ({
-    title = "Gradient Legend",
+    title,
     startColor = "red",
     endColor = "yellow",
-    startNo = 0,
-    endNo = 100,
+    startNo,
+    endNo,
     titleBelow = false,
     bins = 0,
     precision = 2,
+    units
 }) => {
     const binsArray =
         bins > 0
@@ -38,9 +39,9 @@ export const GradientLegend = ({
                     }}
                 />
                 <div className={styles.gradientNumbers}>
-                    <span>{startNo}</span>
+                    <span>{startNo} {units}</span>
                     {binsArray}
-                    <span>{endNo}</span>
+                    <span>{endNo} {units}</span>
                 </div>
                 {titleBelow && <div className={styles.uiTitle}> {title}</div>}
             </div>
@@ -57,4 +58,5 @@ GradientLegend.propTypes = {
     titleBelow: PropTypes.bool,
     bins: PropTypes.number,
     precision: PropTypes.number,
+    units: PropTypes.string,
 };
