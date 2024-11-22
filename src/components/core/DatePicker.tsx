@@ -35,8 +35,8 @@ import styles from "./DatePicker.module.css";
  */
 interface DatePickerProps {
     value: DateValue;
-    onChange: (_value: DateValue) => void;
-    label?: string;
+    onChange: (value: DateValue | null) => void;
+    label: string;
     helperText?: string;
     errorMessage?: string | ((_validationResult: ValidationResult) => string);
 }
