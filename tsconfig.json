@@ -23,9 +23,16 @@
       "noFallthroughCasesInSwitch": true,
 
       /* Testing types */
-      "types": ["vitest/globals", "@testing-library/jest-dom"]
+      "types": ["vitest/globals", "@testing-library/jest-dom"],
+
+      /* Type declaration */
+      "declaration": true,
+      "declarationDir": "./dist",
+      "emitDeclarationOnly": false,
+      "outDir": "./dist",
 
   },
   "include": ["src"],
+  "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
