@@ -1,4 +1,5 @@
-import type { DateValue, ValidationResult } from "react-aria-components";
+import { useState, JSX, ReactNode } from "react";
+import type { ValidationResult } from "react-aria-components";
 import {
     Button,
     Calendar,
@@ -20,31 +21,64 @@ import { useHover } from "react-aria";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import the module, not the default react-aria css file (src/components/core/DatePicker.css)
-import { useState } from "react";
+import { DateValue } from "@internationalized/date";
 import styles from "./DatePicker.module.css";
 
-/**
- * Props for the DatePicker component.
- * @interface DatePickerProps
- * @property {DateValue} value - The currently selected date.
- * @property {(value: DateValue) => void} onChange - The function to call when the date is changed.
- * @property {string} [label] - The label for the date picker.
- * @property {string} [helperText] - The helper texts for the date picker.
- * @property {string | ((validationResult: ValidationResult) => string)} [errorMessage] - The error message to display, or a function that returns the error message based on the validation result.
- * @see [react-aria-components datepicker value documentation](https://react-spectrum.adobe.com/react-aria/DatePicker.html#value) for possible types for the value prop.
- */
-interface DatePickerProps {
-    value: DateValue;
+// Base interface with explicit types and descriptions
+interface BaseDatePickerProps {
+    /** The currently selected date */
+    value: DateValue | null;
+    /** Callback fired when the date changes */
     onChange: (value: DateValue | null) => void;
-    label: string;
+    /** Optional helper text displayed below the input */
     helperText?: string;
-    errorMessage?: string | ((_validationResult: ValidationResult) => string);
+    /** Error message or error message generator function */
+    errorMessage?: string | ((validationResult: ValidationResult) => string);
 }
 
+interface WithVisibleLabel extends BaseDatePickerProps {
+    /** Label text or element to display above the input */
+    label: string | ReactNode;
+    "aria-label"?: never;
+    "aria-labelledby"?: never;
+}
+
+interface WithAriaLabel extends BaseDatePickerProps {
+    label?: never;
+    /** Accessible label for screen readers */
+    "aria-label": string;
+    "aria-labelledby"?: never;
+}
+
+interface WithAriaLabelledBy extends BaseDatePickerProps {
+    label?: never;
+    "aria-label"?: never;
+    /** ID of element that labels this field */
+    "aria-labelledby": string;
+}
+
+export type DatePickerProps =
+    | WithVisibleLabel
+    | WithAriaLabel
+    | WithAriaLabelledBy;
+
 /**
- * A date picker component that uses the react-aria-components library.
- * @param {DatePickerProps} props - The component props.
- * @returns {React.ReactElement} - The rendered date picker component.
+ * A date picker component that uses the react-aria-component library.
+ * @param {string|ReactNode} [props.label] - Label text or element to display above the input.
+ *        Required if aria-label or aria-labelledby is not provided.
+ * @param {string} [props.aria-label] - Accessible label for screen readers.
+ *        Required if label or aria-labelledby is not provided.
+ * @param {string} [props.aria-labelledby] - ID of element that labels this field.
+ *        Required if label or aria-label is not provided.
+ * @param {string} [props.helperText] - Optional helper text displayed below the input
+ * @param {string|Function} [props.errorMessage] - Error message or function that generates
+ *        error message based on validation result. If a function is provided, it receives
+ *        a ValidationResult object and should return a string.
+ * @param {DateValue|null} props.value - The currently selected date value. Uses the
+ *        DateValue type from '@internationalized/date'.
+ * @param {Function} props.onChange - Callback fired when the date changes.
+ *        Receives the new DateValue or null as its argument.
+ * @returns {React.ReactElement} The rendered date picker component.
  */
 export const DatePicker = ({
     label,
@@ -52,7 +86,9 @@ export const DatePicker = ({
     errorMessage,
     value,
     onChange,
-}: DatePickerProps) => {
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
+}: DatePickerProps): JSX.Element => {
     const [isButtonHovered, setIsButtonHovered] = useState(false);
     const { hoverProps, isHovered } = useHover({});
 
@@ -61,8 +97,10 @@ export const DatePicker = ({
             className={styles.datePicker}
             value={value}
             onChange={onChange}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledBy}
         >
-            <Label>{label}</Label>
+            {label && <Label>{label}</Label>}
             <Group>
                 <DateInput
                     // Hovering input or button will show hover state on date innput

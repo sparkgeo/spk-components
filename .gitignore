@@ -23,3 +23,7 @@ dist-ssr
 *.sw?
 
 *storybook.log
+
+# Typescript declaration files generated at build time
+dist/**/*.d.ts
+dist/**/*.d.ts.map
