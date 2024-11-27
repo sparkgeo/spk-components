@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# If perormance becomes an issue, consider using Vitest's --changed flag to run only the tests affected by the changes
+npm run test -- --run --coverage=false || exit 1
