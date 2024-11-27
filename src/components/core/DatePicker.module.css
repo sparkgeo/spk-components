@@ -3,8 +3,10 @@
         so we can override rules here without rewriting all of them
     */
     composes: react-aria-DatePicker from global;
-
     /* See src/components/core/DatePicker.css for ideas on customizing this component */
+
+    display: flex;
+    flex-direction: column;
 }
 
 .dateInput {

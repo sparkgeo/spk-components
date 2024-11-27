@@ -1,5 +1,9 @@
 import { useState, JSX, ReactNode } from "react";
-import type { ValidationResult } from "react-aria-components";
+import type {
+    ValidationResult,
+    DatePickerProps as ReactAriaDatePickerProps,
+    DateValue,
+} from "react-aria-components";
 import {
     Button,
     Calendar,
@@ -21,11 +25,11 @@ import { useHover } from "react-aria";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import the module, not the default react-aria css file (src/components/core/DatePicker.css)
-import { DateValue } from "@internationalized/date";
 import styles from "./DatePicker.module.css";
 
 // Base interface with explicit types and descriptions
-interface BaseDatePickerProps {
+interface BaseDatePickerProps
+    extends Omit<ReactAriaDatePickerProps<DateValue>, "children"> {
     /** The currently selected date */
     value: DateValue | null;
     /** Callback fired when the date changes */
@@ -78,6 +82,8 @@ export type DatePickerProps =
  *        DateValue type from '@internationalized/date'.
  * @param {Function} props.onChange - Callback fired when the date changes.
  *        Receives the new DateValue or null as its argument.
+ * @param {ReactAriaDatePickerProps} props - Additional props from react-aria-components DatePicker.
+ *        See react-aria-components documentation for all available props.
  * @returns {React.ReactElement} The rendered date picker component.
  */
 export const DatePicker = ({
@@ -88,6 +94,7 @@ export const DatePicker = ({
     onChange,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
+    ...props
 }: DatePickerProps): JSX.Element => {
     const [isButtonHovered, setIsButtonHovered] = useState(false);
     const { hoverProps, isHovered } = useHover({});
@@ -99,6 +106,7 @@ export const DatePicker = ({
             onChange={onChange}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
+            {...props}
         >
             {label && <Label>{label}</Label>}
             <Group>
