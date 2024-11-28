@@ -6,7 +6,7 @@ import styles from './ComparisonControl.module.css';
 interface ComparisonControlProps {
     onChange: (value: number | null) => void;
     label: string;
-    showLabel: boolean;
+    showLabel?: boolean;
 };
 
 export const ComparisonControl = ({
