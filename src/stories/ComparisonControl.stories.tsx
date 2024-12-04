@@ -1,4 +1,5 @@
 import { fn } from "@storybook/test";
+import { useState } from "react";
 import { ComparisonControl } from "../components/composite/ComparisonControl";
 
 export default {
@@ -26,12 +27,16 @@ export const ComparisonControlWithLabel = {
         label: "This is the label",
         showLabel: true,
     },
-    render: (args: StoryArgs) => (
-        <ComparisonControl
-            {...args}
-            onChange={fn()}
-        />
-    )
+    render: (args: StoryArgs) => {
+        const [value, setValue] = useState(0)
+        return (
+            <ComparisonControl
+                {...args}
+                value={value}
+                onChange={fn((newValue) => setValue(newValue) )}
+            />
+        )
+    }
 };
 
 export const ComparisonControlWithoutLabel = {
@@ -39,10 +44,14 @@ export const ComparisonControlWithoutLabel = {
         label: "This is the label",
         showLabel: false,
     },
-    render: (args: StoryArgs) => (
-        <ComparisonControl
-            {...args}
-            onChange={fn()}
-        />
-    )
+    render: (args: StoryArgs) => {
+        const [value, setValue] = useState(0)
+        return (
+            <ComparisonControl
+                {...args}
+                value={value}
+                onChange={fn((newValue) => setValue(newValue) )}
+            />
+        )
+    }
 };
