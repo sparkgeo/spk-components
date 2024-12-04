@@ -35,10 +35,11 @@ export const ComparisonControl = ({
     label,
     showLabel = true,
     onChange,
-    value = 50
+    value = 50,
+    ...props
 }: BaseComparisonControlProps) => 
     <div className={styles.comparisonControl}>
-        <Slider maxValue={94} minValue={6} step={0.1} className={styles.slider} aria-label={!showLabel && typeof label === "string" ? label : undefined} onChange={onChange} value={value}>
+        <Slider maxValue={94} minValue={6} step={0.1} className={styles.slider} aria-label={!showLabel && typeof label === "string" ? label : undefined} onChange={onChange} value={value} {...props}>
             {showLabel && <Label className={styles.sliderLabel}>{label}</Label>}
             <SliderTrack className={styles.sliderTrack}>
                 <SliderThumb className={styles.sliderThumb}>
