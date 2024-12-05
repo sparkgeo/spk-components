@@ -6,6 +6,7 @@ import { SidebarContainer } from "../components/containers/SidebarContainer";
 import { Standard as Layout } from "../components/layout/Standard";
 import { LayerCard } from "../components/composite/LayerCard";
 import { EXAMPLE_LAYERS } from "./constants";
+import { ComparisonControl } from "../components/composite/ComparisonControl";
 
 export default {
     title: "Layouts/Standard",
@@ -80,7 +81,9 @@ export const PopulatedExample = {
                         );
                     })}
                 </SidebarContainer>
-                <MapContainer mapContainer={mapContainer} />
+                <MapContainer mapContainer={mapContainer}>
+                    <ComparisonControl label="Clipping Slider" showLabel={false}/>
+                </MapContainer>
             </Layout>
         );
     },
