@@ -1,9 +1,10 @@
-name: Test
+name: Run Tests
 
 on:
   push:
     branches: [ $default-branch ]
   pull_request:
+    types: [opened, edited, reopened, synchronize]
     branches: [ $default-branch ]
 
 jobs:
