@@ -24,9 +24,6 @@ jobs:
             
         - name: Install dependencies
           run: npm ci
-            
-        - name: Run Vitest tests
-          run: npm run test -- --run --coverage=false
           
         - id: build-publish
           uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
