@@ -3,13 +3,13 @@
 Storybook documentation: https://sparkgeo.github.io/spk-components/
 
 ---
+**Note: This project still very much a work in progress and will be subject to breaking changes in the near future.**
+
 This is an early attempt at creating a collection of useful and reusable React components focussed on geospatial web map applications. 
 
-As many fundamental UI components already exist in the vast ecosystem of React UI libraries, the aim for this project is to be a tool which provides larger and more complex components that are common within a geospatial UI. This aim will likely make the library's components more opinonated.
+As many fundamental UI components already exist in the vast ecosystem of React UI libraries, the aim of this project is to provide larger and more complex components that are common within a geospatial UI, with a focus on open standards like [STAC](https://stacspec.org/). This aim will likely make the library's components more opinonated.
 
-This project is open to contributions from anyone who is intrested. If you would like to participate any discussions please join the slack channel `#spk-ui-component-library`
-
-Note: This project still very much a WIP and will be subject to breaking changes in the near future.
+This project is open to contributions from anyone who is intrested. See [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
 
 ## Features
 ???
