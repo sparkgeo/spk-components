@@ -27,8 +27,8 @@ Components are organized in the [components](src/components/) directory into:
   - Default styles are in [src/components/styles/react-aria](src/components/styles/react-aria) (do not modify)
   - To customize React Aria styles:
     1. Preferred: Use [`composes`](https://github.com/css-modules/css-modules/blob/master/docs/composition.md) to apply default styles within a CSS module. Relevant default CSS files must be imported into [theme.css](src/components/styles/theme.css)
-    3. Alternative: If composing isn't practical, copy and modify React Aria styles directly in the component's CSS Module
-  - For global style overrides: Add to the bottom of [theme.css](src/components/styles/theme.css) (e.g., adding hover states or applying font properties using CSS variables)
+    2. Alternative: If composing isn't practical, copy and modify React Aria styles directly in the component's CSS Module
+    3. For global style overrides: Add to the bottom of [theme.css](src/components/styles/theme.css) (e.g., adding hover states or applying font properties using CSS variables)
 
 ### Documentation
 - Add [JSDoc](https://jsdoc.app/about-getting-started) comments to provide better code hints for developers
@@ -50,6 +50,7 @@ Components are organized in the [components](src/components/) directory into:
   - User interactions
   - Accessibility features
   - Error states
+  - Desktop vs touch device behavior (e.g. no hover on state on touch device)
 
 ## Getting Started
 1. Request to be added as a collaborator or fork the repository
@@ -84,6 +85,8 @@ Components are organized in the [components](src/components/) directory into:
 - [ ] User interaction tests
 - [ ] Accessibility tests
 - [ ] Error state tests
+- [ ] Touch device functionality (e.g. no hover on state on touch device)
+
 
 ### Documentation
 - [ ] Add JSDoc component description
