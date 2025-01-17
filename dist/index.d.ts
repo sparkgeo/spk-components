@@ -4,6 +4,7 @@ import { DateValue } from 'react-aria-components';
 import { default as default_2 } from 'prop-types';
 import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { JSX as JSX_3 } from 'react';
+import { ReactElement } from 'react';
 import { ReactNode } from 'react';
 import { ValidationResult } from 'react-aria-components';
 
@@ -103,6 +104,13 @@ export declare namespace IconButton {
             { iconName_1 as iconName };
     }
 }
+
+export declare const InfoPanelContainer: ({ children, position }: InfoPanelProps) => JSX_2.Element;
+
+declare type InfoPanelProps = {
+    children: ReactElement;
+    position: string;
+};
 
 export declare function LayerButtonReel({ buttons }: {
     buttons: any;
