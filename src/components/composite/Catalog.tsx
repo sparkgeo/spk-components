@@ -13,7 +13,7 @@ export const Catalog = ({ catalogs, ...props }: CatalogProps) => (
         </div>
         <div className={styles.catalogList}>
             {catalogs.map((catalog) => (
-                <CatalogCard {...catalog} />
+                <CatalogCard {...catalog} key={catalog.id} />
             ))}
         </div>
     </div>

@@ -9,6 +9,8 @@ export type TemporalExtent = [DateValue, DateValue?];
 export type IndicatorTag = "API" | "Catalog";
 
 export interface BaseCatalog {
+    // eslint-disable-next-line react/no-unused-prop-types
+    id: string;
     title: string;
     description: string;
     temporalExtent: TemporalExtent;

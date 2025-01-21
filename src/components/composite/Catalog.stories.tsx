@@ -18,6 +18,7 @@ const longDescription =
 
 const catalogs: BaseCatalog[] = [
     {
+        id: "1",
         title: "Catalog 1",
         description: longDescription,
         temporalExtent: [
@@ -26,6 +27,7 @@ const catalogs: BaseCatalog[] = [
         indicatorTag: "API",
     },
     {
+        id: "2",
         title: "Catalog 2",
         description: "Catalog 2 Description",
         temporalExtent: [
@@ -35,6 +37,7 @@ const catalogs: BaseCatalog[] = [
         indicatorTag: "API",
     },
     {
+        id: "3",
         title: "Catalog 3",
         description: "Catalog 3 Description",
         temporalExtent: [
