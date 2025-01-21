@@ -36,3 +36,13 @@ export const MissingDate: Story = {
         indicatorTag: "Catalog",
     },
 };
+
+export const CustomDescription: Story = {
+    args: {
+        title: "This is a title",
+        description: longDescription,
+        temporalExtent: [new CalendarDateTime(2024, 1, 1)],
+        indicatorTag: "Catalog",
+        renderDescription: (description) => (<p>{description}</p>)
+    },
+}

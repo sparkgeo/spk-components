@@ -47,6 +47,16 @@
     color: white;
 }
 
+.tagAPI {
+    background-color: #FFC5003B;
+    color: #A16B00;
+}
+
+.tagCatalog {
+    background-color: #00000010;
+    color: #0000009B;
+}
+
 .browseButton {
     color: #202020;
     font-size: var(--font-size-base);

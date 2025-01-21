@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, JSX } from "react";
 import { Button, Link } from "react-aria-components";
 
 import { DateValue } from "react-aria";
@@ -13,15 +13,14 @@ export interface CatalogCardProps {
     description: string;
     temporalExtent: [DateValue, DateValue?];
     indicatorTag?: IndicatorTag;
+    renderDescription?: (description: string) => JSX.Element;
 }
 
 const Tag = ({ indicatorTag }: { indicatorTag: IndicatorTag }) => (
     <div
-        className={styles.tag}
-        style={{
-            backgroundColor: indicatorTag === "API" ? "#FFC5003B" : "#00000010",
-            color: indicatorTag === "API" ? "#A16B00" : "#0000009B",
-        }}
+        className={`${styles.tag} ${
+            indicatorTag === "API" ? styles.tagAPI : styles.tagCatalog
+        }`}
     >
         {indicatorTag}
     </div>
@@ -32,21 +31,19 @@ export const CatalogCard = ({
     description: initialDescription,
     temporalExtent,
     indicatorTag,
+    renderDescription,
 }: CatalogCardProps) => {
     const [shouldTruncateDescription, setShouldTruncateDescription] =
         useState(true);
 
-    const shouldShowReadMore = useMemo(
-        () => initialDescription.length > MAX_LENGTH,
-        [initialDescription.length],
-    );
+    const isLongText = initialDescription.length > MAX_LENGTH;
 
     const description = useMemo(
         () =>
             shouldTruncateDescription
-                ? `${initialDescription.slice(0, MAX_LENGTH)}...`
+                ? `${initialDescription.slice(0, MAX_LENGTH)}${isLongText ? "..." : ""}`
                 : initialDescription,
-        [initialDescription, shouldTruncateDescription],
+        [initialDescription, isLongText, shouldTruncateDescription],
     );
 
     const dateRange = useMemo(() => {
@@ -65,27 +62,30 @@ export const CatalogCard = ({
         return `${startDate}${endDate ? ` - ${endDate}` : ""}`;
     }, [temporalExtent]);
 
+    const renderDefaultDescription = () => (
+        <p className={styles.description}>
+            {description}{" "}
+            {isLongText && (
+                <Button
+                    className={styles.readMore}
+                    onPress={() =>
+                        setShouldTruncateDescription(!shouldTruncateDescription)
+                    }
+                    aria-expanded={!shouldTruncateDescription}
+                >
+                    {shouldTruncateDescription ? "Read More" : "Read Less"}
+                </Button>
+            )}
+        </p>
+    );
+
     return (
         <div className={styles.cardContainer}>
             <div className={styles.infoContainer}>
                 <h3 className={styles.title}>{title}</h3>
-                <p className={styles.description}>
-                    {description}{" "}
-                    {shouldShowReadMore && (
-                        <Button
-                            className={styles.readMore}
-                            onPress={() =>
-                                setShouldTruncateDescription(
-                                    !shouldTruncateDescription,
-                                )
-                            }
-                        >
-                            {shouldTruncateDescription
-                                ? "Read More"
-                                : "Read Less"}
-                        </Button>
-                    )}
-                </p>
+                {renderDescription
+                    ? renderDescription(initialDescription)
+                    : renderDefaultDescription()}
                 <p className={styles.date}>{dateRange}</p>
             </div>
             <div className={styles.footerContainer}>
