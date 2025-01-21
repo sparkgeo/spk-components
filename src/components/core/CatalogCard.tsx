@@ -1,20 +1,25 @@
 import { useMemo, useState, JSX } from "react";
 import { Button, Link } from "react-aria-components";
 
-import { DateValue } from "react-aria";
+import type { DateValue } from "react-aria";
 import styles from "./CatalogCard.module.css";
 
-type IndicatorTag = "API" | "Catalog";
+export type TemporalExtent = [DateValue, DateValue?];
 
-const MAX_LENGTH = 250;
+export type IndicatorTag = "API" | "Catalog";
 
-export interface CatalogCardProps {
+export interface BaseCatalog {
     title: string;
     description: string;
-    temporalExtent: [DateValue, DateValue?];
+    temporalExtent: TemporalExtent;
     indicatorTag?: IndicatorTag;
+}
+
+export interface CatalogCardProps extends BaseCatalog {
     renderDescription?: (description: string) => JSX.Element;
 }
+
+const MAX_LENGTH = 250;
 
 const Tag = ({ indicatorTag }: { indicatorTag: IndicatorTag }) => (
     <div

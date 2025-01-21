@@ -23,7 +23,7 @@
 }
 
 .description {
-    font-size: 14px;
+    font-size: var(--font-size-base);
     font-weight: 400;
 }
 
@@ -40,7 +40,6 @@
 }
 
 .tag {
-    /* display: inline-block; */
     font-size: var(--font-size-base);
     padding: 2px 6px;
     border-radius: 3px;
