@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { CalendarDateTime } from "@internationalized/date";
-import { Catalog } from "./Catalog";
-import { BaseCatalog } from "../core/CatalogCard";
+import { Catalog } from "../components/composite/Catalog";
+import { BaseCatalog } from "../components/core/CatalogCard";
 
 const meta = {
     title: "Composite/Catalog",
