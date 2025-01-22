@@ -24,8 +24,9 @@ import { useHover } from "react-aria";
 
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import the module, not the default react-aria css file (src/components/core/DatePicker.css)
 import { parseDate } from "@internationalized/date";
+
+// import the module, not the default react-aria css file (src/components/core/DatePicker.css)
 import styles from "./DatePicker.module.css";
 
 // Base interface with explicit types and descriptions
