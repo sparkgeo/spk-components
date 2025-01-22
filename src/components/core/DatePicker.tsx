@@ -25,15 +25,19 @@ import { useHover } from "react-aria";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import the module, not the default react-aria css file (src/components/core/DatePicker.css)
+import { parseDate } from "@internationalized/date";
 import styles from "./DatePicker.module.css";
 
 // Base interface with explicit types and descriptions
 interface BaseDatePickerProps
-    extends Omit<ReactAriaDatePickerProps<DateValue>, "children"> {
+    extends Omit<
+        ReactAriaDatePickerProps<DateValue>,
+        "children" | "value" | "onChange"
+    > {
     /** The currently selected date */
-    value: DateValue | null;
+    value: Date | null;
     /** Callback fired when the date changes */
-    onChange: (value: DateValue | null) => void;
+    onChange: (value: Date | null) => void;
     /** Optional helper text displayed below the input */
     helperText?: string;
     /** Error message or error message generator function */
@@ -78,12 +82,13 @@ export type DatePickerProps =
  * @param {string|Function} [props.errorMessage] - Error message or function that generates
  *        error message based on validation result. If a function is provided, it receives
  *        a ValidationResult object and should return a string.
- * @param {DateValue|null} props.value - The currently selected date value. Uses the
- *        DateValue type from '@internationalized/date'.
+ * @param {Date|null} props.value - The currently selected date value. Uses the
+ *        Date type from '@internationalized/date'.
  * @param {Function} props.onChange - Callback fired when the date changes.
- *        Receives the new DateValue or null as its argument.
+ *        Receives the new Date or null as its argument.
  * @param {ReactAriaDatePickerProps} props - Additional props from react-aria-components DatePicker.
  *        See react-aria-components documentation for all available props.
+ * @paraam {string} [props.className] - CSS class name(s) to apply to the root element. Will be combined with default styles.
  * @returns {React.ReactElement} The rendered date picker component.
  */
 export const DatePicker = ({
@@ -94,16 +99,32 @@ export const DatePicker = ({
     onChange,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
+    className,
     ...props
 }: DatePickerProps): JSX.Element => {
     const [isButtonHovered, setIsButtonHovered] = useState(false);
     const { hoverProps, isHovered } = useHover({});
 
+    const internalValue = value
+        ? parseDate(value.toISOString().split("T")[0])
+        : null;
+
+    // Handle internal onChange to convert DateValue back to Date
+    const handleChange = (newValue: DateValue | null) => {
+        if (newValue) {
+            // Convert to local timezone date
+            const date = new Date(newValue.toString());
+            onChange(date);
+        } else {
+            onChange(null);
+        }
+    };
+
     return (
         <ReactAriaDatePicker
-            className={styles.datePicker}
-            value={value}
-            onChange={onChange}
+            className={`${className || ""} ${styles.datePicker}`.trim()}
+            value={internalValue}
+            onChange={handleChange}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
             {...props}

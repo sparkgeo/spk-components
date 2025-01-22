@@ -1,0 +1,19 @@
+.largeDatePicker {
+    width: 300px;
+    border: 2px solid #4a90e2;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+/* Modify .react-aria-DateInput input class within .largeDatePicker */
+.largeDatePicker :global(.react-aria-DateInput) {
+    font-size: 20px;
+}
+
+.largeDatePicker:hover {
+    border-color: red;
+}
+
+.container {
+    margin-bottom: 20px;
+}

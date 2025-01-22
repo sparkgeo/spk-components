@@ -4,12 +4,12 @@ import { render, screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { parseDate } from "@internationalized/date";
 
-import { DateValue } from "react-aria";
 import { DatePicker } from "./DatePicker";
+import styles from "./DatePicker.module.css";
 
 describe("DatePicker", () => {
     // Helper to create a test date value
-    const testDate = parseDate("2024-01-15");
+    const testDate = new Date("2024-01-15");
 
     // Common props used across tests
     const defaultProps = {
@@ -57,7 +57,7 @@ describe("DatePicker", () => {
         const user = userEvent.setup();
         const errorMessage = "Date is required";
         const TestWrapper = () => {
-            const [date, setDate] = useState<DateValue | null>(testDate);
+            const [date, setDate] = useState<Date | null>(testDate);
 
             return (
                 <DatePicker
@@ -157,5 +157,38 @@ describe("DatePicker", () => {
         // Buttons should still be present after navigation
         expect(prevButton).toBeInTheDocument();
         expect(nextButton).toBeInTheDocument();
+    });
+
+    it("applies custom className alongside default styles", () => {
+        const customClass = "custom-date-picker";
+
+        const { container } = render(
+            <DatePicker
+                value={null}
+                onChange={() => {}}
+                className={customClass}
+                aria-label="Test date picker"
+            />,
+        );
+
+        const datePicker = container.querySelector(`.${styles.datePicker}`);
+        expect(datePicker).toBeInTheDocument();
+        expect(datePicker).toHaveClass(customClass, styles.datePicker);
+        expect(datePicker?.classList.length).toBe(2);
+    });
+
+    it("works without a custom className", () => {
+        const { container } = render(
+            <DatePicker
+                value={null}
+                onChange={() => {}}
+                aria-label="Test date picker"
+            />,
+        );
+
+        const datePicker = container.querySelector(`.${styles.datePicker}`);
+        expect(datePicker).toBeInTheDocument();
+        expect(datePicker).toHaveClass(styles.datePicker);
+        expect(datePicker?.classList.length).toBe(1);
     });
 });
