@@ -10,15 +10,15 @@ const shortCatalog: BaseCatalog = {
     id: "1",
     title: "Catalog 1",
     description: shortDescription,
-    temporalExtent: [new Date(2024, 1, 1), new Date(2025, 1, 1)],
+    temporalExtent: [new Date(Date.UTC(2024, 1, 1)), new Date(Date.UTC(2025, 1, 1))],
     indicatorTag: "API",
 };
 
 const longCatalog: BaseCatalog = {
-    id: "@",
+    id: "2",
     title: "Catalog 2",
     description: longDescription,
-    temporalExtent: [new Date(2024, 1, 1), new Date(2025, 1, 1)],
+    temporalExtent: [new Date(Date.UTC(2024, 1, 1)), new Date(Date.UTC(2025, 1, 1))],
 };
 
 describe("CatalogCard", () => {
@@ -27,7 +27,7 @@ describe("CatalogCard", () => {
         expect(screen.getByText("Catalog 1")).toBeInTheDocument();
         expect(
             screen.getByText(
-                "2/1/2024, 5:00:00 AM UTC - 2/1/2025, 5:00:00 AM UTC",
+                "2/1/2024, 12:00:00 AM UTC - 2/1/2025, 12:00:00 AM UTC",
             ),
         ).toBeInTheDocument();
         expect(screen.getByText(shortDescription)).toBeInTheDocument();
@@ -56,21 +56,21 @@ describe("CatalogCard", () => {
     });
 
     it("renders one date when only one date is provided", () => {
-        const date = new Date(2024, 1, 1);
+        const date = new Date(Date.UTC(2024, 1, 1, 9, 0, 0));
         render(<CatalogCard {...longCatalog} temporalExtent={[date]} />);
         expect(
-            screen.getByText("2/1/2024, 5:00:00 AM UTC"),
+            screen.getByText("2/1/2024, 9:00:00 AM UTC"),
         ).toBeInTheDocument();
     });
 
     it("renders one date when two dates are the same", () => {
-        const date1 = new Date(2024, 1, 1);
-        const date2 = new Date(2024, 1, 1);
+        const date1 = new Date(Date.UTC(2024, 1, 1, 0, 0, 0));
+        const date2 = new Date(Date.UTC(2024, 1, 1, 0, 0, 0));
         render(
             <CatalogCard {...longCatalog} temporalExtent={[date1, date2]} />,
         );
         expect(
-            screen.getByText("2/1/2024, 5:00:00 AM UTC"),
+            screen.getByText("2/1/2024, 12:00:00 AM UTC"),
         ).toBeInTheDocument();
     });
 
