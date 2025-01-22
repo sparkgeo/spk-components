@@ -1673,7 +1673,7 @@ In.propTypes = {
     s.node
   ]).isRequired
 };
-const Nn = "_infoPanelContainer_1lo6h_1", Dn = "_topLeft_1lo6h_15", Ln = "_topRight_1lo6h_19", Mn = "_centerLeft_1lo6h_23", Wn = "_centerRight_1lo6h_27", qn = "_bottomLeft_1lo6h_31", Fn = "_bottomRight_1lo6h_35", Sr = {
+const Nn = "_infoPanelContainer_lsvmo_1", Dn = "_topLeft_lsvmo_14", Ln = "_topRight_lsvmo_19", Mn = "_centerLeft_lsvmo_24", Wn = "_centerRight_lsvmo_29", qn = "_bottomLeft_lsvmo_34", Fn = "_bottomRight_lsvmo_39", Sr = {
   infoPanelContainer: Nn,
   topLeft: Dn,
   topRight: Ln,
