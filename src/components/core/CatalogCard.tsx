@@ -3,7 +3,7 @@ import { Button } from "react-aria-components";
 
 import type { PressEvent } from "react-aria";
 import styles from "./CatalogCard.module.css";
-import { truncateText } from "../../utils";
+import { convertDateToUTCString, truncateText } from "../../utils";
 
 export type TemporalExtent = [Date, Date?];
 
@@ -57,7 +57,7 @@ export const CatalogCard = ({
     );
 
     const dateRange = useMemo(() => {
-        const startDate = temporalExtent[0].toString();
+        const startDate = convertDateToUTCString(temporalExtent[0]);
 
         let endDate: string = "";
 
@@ -66,7 +66,7 @@ export const CatalogCard = ({
             temporalExtent[1] &&
             temporalExtent[1].getTime() > temporalExtent[0].getTime()
         ) {
-            endDate = temporalExtent[1].toString();
+            endDate = convertDateToUTCString(temporalExtent[1]);
         }
 
         return `${startDate}${endDate ? ` - ${endDate}` : ""}`;

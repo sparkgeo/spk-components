@@ -41,7 +41,7 @@ const catalogs: BaseCatalog[] = [
         description: "Catalog 3 Description",
         temporalExtent: [
             new Date(2024, 1, 1),
-            new Date(2025, 1, 1),
+            new Date(),
         ],
         indicatorTag: "API",
     },
