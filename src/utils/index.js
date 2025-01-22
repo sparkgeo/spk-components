@@ -1,1 +1,0 @@
-export { exampleFunction } from './exampleFunction';

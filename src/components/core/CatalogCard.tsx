@@ -3,6 +3,7 @@ import { Button, Link } from "react-aria-components";
 
 import type { DateValue } from "react-aria";
 import styles from "./CatalogCard.module.css";
+import { truncateText } from "../../utils";
 
 export type TemporalExtent = [DateValue, DateValue?];
 
@@ -18,6 +19,7 @@ export interface BaseCatalog {
 }
 
 export interface CatalogCardProps extends BaseCatalog {
+    maxDescriptionLength?: number;
     renderDescription?: (description: string) => JSX.Element;
 }
 
@@ -38,19 +40,18 @@ export const CatalogCard = ({
     description: initialDescription,
     temporalExtent,
     indicatorTag,
+    maxDescriptionLength = MAX_LENGTH,
     renderDescription,
 }: CatalogCardProps) => {
     const [shouldTruncateDescription, setShouldTruncateDescription] =
         useState(true);
 
-    const isLongText = initialDescription.length > MAX_LENGTH;
-
     const description = useMemo(
         () =>
             shouldTruncateDescription
-                ? `${initialDescription.slice(0, MAX_LENGTH)}${isLongText ? "..." : ""}`
+                ? truncateText(initialDescription, maxDescriptionLength)
                 : initialDescription,
-        [initialDescription, isLongText, shouldTruncateDescription],
+        [initialDescription, maxDescriptionLength, shouldTruncateDescription],
     );
 
     const dateRange = useMemo(() => {
@@ -72,7 +73,7 @@ export const CatalogCard = ({
     const renderDefaultDescription = () => (
         <p className={styles.description}>
             {description}{" "}
-            {isLongText && (
+            {initialDescription.length > maxDescriptionLength && (
                 <Button
                     className={styles.readMore}
                     onPress={() =>

@@ -3,6 +3,7 @@ import { type BaseCatalog, CatalogCard } from "../core/CatalogCard";
 
 export interface CatalogProps {
     catalogs: BaseCatalog[];
+    maxDescriptionLength?: number;
 }
 
 export const Catalog = ({ catalogs, ...props }: CatalogProps) => (
