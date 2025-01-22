@@ -52,3 +52,9 @@ export const Default: Story = {
         catalogs,
     },
 };
+
+export const EmptyList: Story = {
+    args: {
+        catalogs: null,
+    },
+};
