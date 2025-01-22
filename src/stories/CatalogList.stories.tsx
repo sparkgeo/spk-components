@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Catalog } from "../components/composite/Catalog";
+import { CatalogList } from "../components/composite/CatalogList";
 import { BaseCatalog } from "../components/core/CatalogCard";
 
 const meta = {
-    title: "Composite/Catalog",
-    component: Catalog,
-} satisfies Meta<typeof Catalog>;
+    title: "Composite/CatalogList",
+    component: CatalogList,
+} satisfies Meta<typeof CatalogList>;
 
 export default meta;
 
