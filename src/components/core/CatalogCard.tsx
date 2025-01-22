@@ -1,11 +1,11 @@
 import { useMemo, useState, JSX } from "react";
-import { Button, Link } from "react-aria-components";
+import { Button } from "react-aria-components";
 
-import type { DateValue } from "react-aria";
+import type { PressEvent } from "react-aria";
 import styles from "./CatalogCard.module.css";
 import { truncateText } from "../../utils";
 
-export type TemporalExtent = [DateValue, DateValue?];
+export type TemporalExtent = [Date, Date?];
 
 export type IndicatorTag = "API" | "Catalog";
 
@@ -19,6 +19,7 @@ export interface BaseCatalog {
 }
 
 export interface CatalogCardProps extends BaseCatalog {
+    onBrowsePress?: (e: PressEvent) => void;
     maxDescriptionLength?: number;
     renderDescription?: (description: string) => JSX.Element;
 }
@@ -41,6 +42,7 @@ export const CatalogCard = ({
     temporalExtent,
     indicatorTag,
     maxDescriptionLength = MAX_LENGTH,
+    onBrowsePress,
     renderDescription,
 }: CatalogCardProps) => {
     const [shouldTruncateDescription, setShouldTruncateDescription] =
@@ -62,7 +64,7 @@ export const CatalogCard = ({
         // Check if end date exists and compare with start date
         if (
             temporalExtent[1] &&
-            temporalExtent[1].compare(temporalExtent[0]) !== 0
+            temporalExtent[1].getTime() > temporalExtent[0].getTime()
         ) {
             endDate = temporalExtent[1].toString();
         }
@@ -75,7 +77,7 @@ export const CatalogCard = ({
             {description}{" "}
             {initialDescription.length > maxDescriptionLength && (
                 <Button
-                    className={styles.readMore}
+                    className={styles.button}
                     onPress={() =>
                         setShouldTruncateDescription(!shouldTruncateDescription)
                     }
@@ -100,13 +102,9 @@ export const CatalogCard = ({
             <div className={styles.footerContainer}>
                 <div>{indicatorTag && <Tag indicatorTag={indicatorTag} />}</div>
                 <div>
-                    <Link
-                        href="#todo"
-                        target="_blank"
-                        className={styles.browseButton}
-                    >
+                    <Button onPress={onBrowsePress} className={styles.button}>
                         Browse
-                    </Link>
+                    </Button>
                 </div>
             </div>
         </div>

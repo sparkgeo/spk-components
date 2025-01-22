@@ -61,7 +61,7 @@
     font-size: var(--font-size-base);
 }
 
-.readMore {
+.button {
     border: none;
     text-decoration: underline;
     cursor: pointer;

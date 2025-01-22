@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { CalendarDateTime } from "@internationalized/date";
 import { CatalogCard } from "../components/core/CatalogCard";
 
 const meta = {
@@ -18,11 +17,12 @@ const longDescription =
 
 export const Default: Story = {
     args: {
+        id: "1",
         title: "This is a title",
         description: longDescription,
         temporalExtent: [
-            new CalendarDateTime(2024, 1, 1),
-            new CalendarDateTime(2025, 1, 1),
+            new Date(2024, 1, 1),
+            new Date(2025, 1, 1),
         ],
         indicatorTag: "API",
     },
@@ -30,18 +30,20 @@ export const Default: Story = {
 
 export const MissingDate: Story = {
     args: {
+        id: "1",
         title: "This is a title",
         description: shortDescription,
-        temporalExtent: [new CalendarDateTime(2024, 1, 1)],
+        temporalExtent: [new Date(2024, 1, 1)],
         indicatorTag: "Catalog",
     },
 };
 
 export const CustomDescriptionRender: Story = {
     args: {
+        id: "1",
         title: "This is a title",
         description: longDescription,
-        temporalExtent: [new CalendarDateTime(2024, 1, 1)],
+        temporalExtent: [new Date(2024, 1, 1)],
         indicatorTag: "Catalog",
         renderDescription: (description) => (
             <p style={{ color: "red" }}>{description}</p>

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { CalendarDateTime } from "@internationalized/date";
 import { Catalog } from "../components/composite/Catalog";
 import { BaseCatalog } from "../components/core/CatalogCard";
 
@@ -22,7 +21,7 @@ const catalogs: BaseCatalog[] = [
         title: "Catalog 1",
         description: longDescription,
         temporalExtent: [
-            new CalendarDateTime(2024, 1, 1, 12, 22, 11),
+            new Date(2024, 1, 1, 12, 22, 11),
         ],
         indicatorTag: "API",
     },
@@ -31,8 +30,8 @@ const catalogs: BaseCatalog[] = [
         title: "Catalog 2",
         description: "Catalog 2 Description",
         temporalExtent: [
-            new CalendarDateTime(2024, 1, 1),
-            new CalendarDateTime(2024, 1, 1),
+            new Date(2024, 1, 1),
+            new Date(2024, 1, 1),
         ],
         indicatorTag: "API",
     },
@@ -41,8 +40,8 @@ const catalogs: BaseCatalog[] = [
         title: "Catalog 3",
         description: "Catalog 3 Description",
         temporalExtent: [
-            new CalendarDateTime(2024, 1, 1),
-            new CalendarDateTime(2025, 1, 1),
+            new Date(2024, 1, 1),
+            new Date(2025, 1, 1),
         ],
         indicatorTag: "API",
     },
