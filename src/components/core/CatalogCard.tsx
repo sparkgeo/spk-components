@@ -80,6 +80,7 @@ export const CatalogCard = ({
                         setShouldTruncateDescription(!shouldTruncateDescription)
                     }
                     aria-expanded={!shouldTruncateDescription}
+                    aria-label="Read more"
                 >
                     {shouldTruncateDescription ? "Read More" : "Read Less"}
                 </Button>
