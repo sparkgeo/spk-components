@@ -22,7 +22,9 @@ export const CatalogList = ({
     <div className={`${className} ${styles.catalogContainer}`} {...props}>
         <div className={styles.catalogHeader}>
             <h2>Catalogs</h2>
-            <span>{Array.isArray(catalogs) ? catalogs.length : 0}</span>
+            <span data-testid="catalogSize">
+                {Array.isArray(catalogs) && !isLoading ? catalogs.length : 0}
+            </span>
         </div>
         {isLoading ? (
             <Loading />
