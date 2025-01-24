@@ -28,7 +28,10 @@
     --border-radius-small: 33%;
     --border-radius-medium: 50%;
     --border-radius-large: 66%;
+<<<<<<< HEAD
     --border-radius-input: 4px;
+=======
+>>>>>>> dcd89ad (fix: removes unneeded div and updates info panel border radius)
 
     /* Shadows */
     /* --box-shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
