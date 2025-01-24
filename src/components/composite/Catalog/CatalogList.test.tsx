@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { BaseCatalog } from "../core/CatalogCard";
+import { BaseCatalog } from "./types";
 import { CatalogList } from "./CatalogList";
 
 const shortDescription = "Lorem ipsum dolor sit amet";

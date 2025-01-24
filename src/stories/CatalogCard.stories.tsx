@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { CatalogCard } from "../components/core/CatalogCard";
+import { CatalogCard } from "../components/composite/Catalog";
 
 const meta = {
     title: "Core/CatalogCard",

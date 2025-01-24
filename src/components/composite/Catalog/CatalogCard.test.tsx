@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { CatalogCard, type BaseCatalog } from "./CatalogCard";
+import { CatalogCard } from "./CatalogCard";
+import { BaseCatalog } from "./types";
 
 const shortDescription = "Lorem ipsum dolor sit amet";
 const longDescription =

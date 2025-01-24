@@ -1,5 +1,6 @@
 import styles from "./CatalogList.module.css";
-import { type BaseCatalog, CatalogCard } from "../core/CatalogCard";
+import { CatalogCard } from "./CatalogCard";
+import { BaseCatalog } from "./types";
 
 export interface CatalogProps {
     catalogs: BaseCatalog[] | null | undefined;

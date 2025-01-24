@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { CatalogList } from "../components/composite/CatalogList";
-import { BaseCatalog } from "../components/core/CatalogCard";
+import { CatalogList, type BaseCatalog } from "../components/composite/Catalog";
 
 const meta = {
     title: "Composite/CatalogList",
@@ -20,29 +19,21 @@ const catalogs: BaseCatalog[] = [
         id: "1",
         title: "Catalog 1",
         description: longDescription,
-        temporalExtent: [
-            new Date(2024, 1, 1, 12, 22, 11),
-        ],
+        temporalExtent: [new Date(2024, 1, 1, 12, 22, 11)],
         indicatorTag: "API",
     },
     {
         id: "2",
         title: "Catalog 2",
         description: "Catalog 2 Description",
-        temporalExtent: [
-            new Date(2024, 1, 1),
-            new Date(2024, 1, 1),
-        ],
+        temporalExtent: [new Date(2024, 1, 1), new Date(2024, 1, 1)],
         indicatorTag: "API",
     },
     {
         id: "3",
         title: "Catalog 3",
         description: "Catalog 3 Description",
-        temporalExtent: [
-            new Date(2024, 1, 1),
-            new Date(),
-        ],
+        temporalExtent: [new Date(2024, 1, 1), new Date()],
         indicatorTag: "API",
     },
 ];

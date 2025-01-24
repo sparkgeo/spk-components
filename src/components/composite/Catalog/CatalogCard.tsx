@@ -3,19 +3,8 @@ import { Button } from "react-aria-components";
 
 import type { PressEvent } from "react-aria";
 import styles from "./CatalogCard.module.css";
-import { convertDateToUTCString, truncateText } from "../../utils";
-
-export type TemporalExtent = [Date, Date?];
-
-export type IndicatorTag = "API" | "Catalog";
-
-export interface BaseCatalog {
-    id: string;
-    title?: string;
-    description: string;
-    temporalExtent?: TemporalExtent;
-    indicatorTag?: IndicatorTag;
-}
+import { convertDateToUTCString, truncateText } from "../../../utils";
+import { BaseCatalog, IndicatorTag } from "./types";
 
 export interface CatalogCardProps extends BaseCatalog {
     onBrowsePress?: (e: PressEvent) => void;
