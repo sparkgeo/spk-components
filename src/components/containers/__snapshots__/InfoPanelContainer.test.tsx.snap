@@ -6,9 +6,7 @@ exports[`InfoPanelContainer > renders with correct position class and children 1
     class="_infoPanelContainer_0bef1b _topLeft_0bef1b"
   >
     <div>
-      <div>
-        This is a stubbed child element
-      </div>
+      This is a stubbed child element
     </div>
   </div>
 </div>
