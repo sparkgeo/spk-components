@@ -25,9 +25,10 @@
     --spacing-large: calc(var(--spacing-unit) * 2); */
 
     /* Border Radius */
-    /* --border-radius-small: 33%;
+    --border-radius-small: 33%;
     --border-radius-medium: 50%;
-    --border-radius-large: 66%; */
+    --border-radius-large: 66%;
+    --border-radius-input: 4px;
 
     /* Shadows */
     /* --box-shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
