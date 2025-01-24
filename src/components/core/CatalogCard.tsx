@@ -10,11 +10,10 @@ export type TemporalExtent = [Date, Date?];
 export type IndicatorTag = "API" | "Catalog";
 
 export interface BaseCatalog {
-    // eslint-disable-next-line react/no-unused-prop-types
     id: string;
-    title: string;
+    title?: string;
     description: string;
-    temporalExtent: TemporalExtent;
+    temporalExtent?: TemporalExtent;
     indicatorTag?: IndicatorTag;
 }
 
@@ -37,6 +36,7 @@ const Tag = ({ indicatorTag }: { indicatorTag: IndicatorTag }) => (
 );
 
 export const CatalogCard = ({
+    id,
     title,
     description: initialDescription,
     temporalExtent,
@@ -57,6 +57,8 @@ export const CatalogCard = ({
     );
 
     const dateRange = useMemo(() => {
+        if (!temporalExtent) return "";
+
         const startDate = convertDateToUTCString(temporalExtent[0]);
 
         let endDate: string = "";
@@ -93,7 +95,7 @@ export const CatalogCard = ({
     return (
         <div className={styles.cardContainer}>
             <div className={styles.infoContainer}>
-                <h3 className={styles.title}>{title}</h3>
+                <h3 className={styles.title}>{title ?? `ID: ${id}`}</h3>
                 {renderDescription
                     ? renderDescription(initialDescription)
                     : renderDefaultDescription()}
