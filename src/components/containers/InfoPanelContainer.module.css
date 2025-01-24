@@ -6,8 +6,7 @@
     align-self: center;
     flex-direction: column;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    border-radius: 8px;
-    z-index: 1;
+    border-radius: var(--border-radius-small);
     margin: 8px;
 }
 

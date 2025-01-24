@@ -8,6 +8,6 @@ type InfoPanelProps = {
 
 export const InfoPanelContainer = ({children, position='centerRight'}:InfoPanelProps) => (
     <div className={`${styles.infoPanelContainer} ${styles[position]}`}>
-        <div>{children}</div>
+        {children}
     </div>
 );
