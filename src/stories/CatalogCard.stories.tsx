@@ -38,6 +38,24 @@ export const MissingDate: Story = {
     },
 };
 
+export const NoDate: Story = {
+    args: {
+        id: "1",
+        title: "This is a title",
+        description: shortDescription,
+        indicatorTag: "Catalog",
+    },
+};
+
+export const NoTitle: Story = {
+    args: {
+        id: "1",
+        description: shortDescription,
+        temporalExtent: [new Date(2024, 1, 1)],
+        indicatorTag: "Catalog",
+    },
+}
+
 export const CustomDescriptionRender: Story = {
     args: {
         id: "1",
