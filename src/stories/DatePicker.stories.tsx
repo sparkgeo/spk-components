@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { Button, Form } from "react-aria-components";
 import { DatePicker } from "../components";
 import { DatePickerProps } from "../components/core/DatePicker";
 import styles from "./DatePickerStories.module.css";
@@ -41,7 +42,6 @@ export const BasicDatePicker = {
     args: {
         label: "This is the label",
         helperText: "This is the helper text",
-        errorMessage: "This is the error message",
     },
     parameters: {
         docs: {
@@ -59,8 +59,41 @@ export const BasicDatePicker = {
                 onChange={setDate}
                 label={args.label || ""}
                 helperText={args.helperText || ""}
-                errorMessage={args.errorMessage || ""}
             />
+        );
+    },
+};
+
+export const DatePickerInFormWithError = {
+    args: {
+        label: "This is the label",
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "Demonstrates the DatePicker component within a form, with an error message displayed upon submit. This is useful for showing how the component behaves when an error is present, such as when a required field is not filled out.",
+            },
+        },
+    },
+    render: (args: StoryArgs) => {
+        const [date, setDate] = useState<Date | null>(null);
+
+        const handleSubmit = (e: FormEvent) => {
+            e.preventDefault();
+        };
+
+        return (
+            <Form onSubmit={handleSubmit}>
+                <DatePicker
+                    isRequired
+                    value={date}
+                    onChange={setDate}
+                    label={args.label || ""}
+                />
+                <Button type="submit">
+                    Click me to submit and display error
+                </Button>
+            </Form>
         );
     },
 };
@@ -69,7 +102,6 @@ export const DatePickerWithNullStart = {
     args: {
         label: "Start with no date selected",
         helperText: "Click to select a date",
-        errorMessage: "This is the error message",
     },
     parameters: {
         docs: {
@@ -83,11 +115,11 @@ export const DatePickerWithNullStart = {
 
         return (
             <DatePicker
+                isRequired
                 value={date}
                 onChange={setDate}
                 label={args.label || ""}
                 helperText={args.helperText || ""}
-                errorMessage={args.errorMessage || ""}
             />
         );
     },
@@ -101,7 +133,6 @@ export const DatePickerWithReactNodeLabel = {
             </div>
         ),
         helperText: "This is the helper text",
-        errorMessage: "This is the error message",
     },
     parameters: {
         docs: {
@@ -119,7 +150,6 @@ export const DatePickerWithReactNodeLabel = {
                 onChange={setDate}
                 label={args.label || ""}
                 helperText={args.helperText || ""}
-                errorMessage={args.errorMessage || ""}
             />
         );
     },
@@ -127,7 +157,6 @@ export const DatePickerWithReactNodeLabel = {
 
 export const DatePickerNoLabelOrHelperText = {
     args: {
-        errorMessage: "This is the error message",
         "aria-label": "This is an accessible label",
     },
     parameters: {
@@ -144,7 +173,6 @@ export const DatePickerNoLabelOrHelperText = {
             <DatePicker
                 value={date}
                 onChange={setDate}
-                errorMessage={args.errorMessage || ""}
                 aria-label={args["aria-label"] || ""}
             />
         );

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { vi } from "vitest";
 import { render, screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { parseDate } from "@internationalized/date";
 
 import { DatePicker } from "./DatePicker";
 import styles from "./DatePicker.module.css";
@@ -65,7 +64,7 @@ describe("DatePicker", () => {
                     value={date}
                     onChange={setDate}
                     errorMessage={errorMessage}
-                    maxValue={parseDate("2024-11-26")}
+                    maxValue={new Date("2024-11-26")}
                 />
             );
         };
