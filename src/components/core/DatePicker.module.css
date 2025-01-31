@@ -11,7 +11,8 @@
 
 .dateInput {
     composes: react-aria-DateInput from global;
-}
+    border-radius: var(--border-radius-input);
+  }
 
 .hoverDatepicker {
     outline: 3px solid var(--highlight-hover);

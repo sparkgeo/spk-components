@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { parseDate } from "@internationalized/date";
-import { DateValue } from "react-aria-components";
+import { FormEvent, useState } from "react";
+import { Button, Form } from "react-aria-components";
 import { DatePicker } from "../components";
 import { DatePickerProps } from "../components/core/DatePicker";
+import styles from "./DatePickerStories.module.css";
 
 export default {
     title: "Core/DatePicker",
@@ -42,7 +42,6 @@ export const BasicDatePicker = {
     args: {
         label: "This is the label",
         helperText: "This is the helper text",
-        errorMessage: "This is the error message",
     },
     parameters: {
         docs: {
@@ -52,9 +51,7 @@ export const BasicDatePicker = {
         },
     },
     render: (args: StoryArgs) => {
-        const [date, setDate] = useState<DateValue | null>(
-            parseDate(new Date().toISOString().slice(0, 10)),
-        );
+        const [date, setDate] = useState<Date | null>(new Date());
 
         return (
             <DatePicker
@@ -62,7 +59,67 @@ export const BasicDatePicker = {
                 onChange={setDate}
                 label={args.label || ""}
                 helperText={args.helperText || ""}
-                errorMessage={args.errorMessage || ""}
+            />
+        );
+    },
+};
+
+export const DatePickerInFormWithError = {
+    args: {
+        label: "This is the label",
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "Demonstrates the DatePicker component within a form, with an error message displayed upon submit. This is useful for showing how the component behaves when an error is present, such as when a required field is not filled out.",
+            },
+        },
+    },
+    render: (args: StoryArgs) => {
+        const [date, setDate] = useState<Date | null>(null);
+
+        const handleSubmit = (e: FormEvent) => {
+            e.preventDefault();
+        };
+
+        return (
+            <Form onSubmit={handleSubmit}>
+                <DatePicker
+                    isRequired
+                    value={date}
+                    onChange={setDate}
+                    label={args.label || ""}
+                />
+                <Button type="submit">
+                    Click me to submit and display error
+                </Button>
+            </Form>
+        );
+    },
+};
+
+export const DatePickerWithNullStart = {
+    args: {
+        label: "Start with no date selected",
+        helperText: "Click to select a date",
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "Demonstrates the DatePicker starting with no date selected (null value). This is useful for forms where the user needs to explicitly select a date and no default value should be provided.",
+            },
+        },
+    },
+    render: (args: StoryArgs) => {
+        const [date, setDate] = useState<Date | null>(null);
+
+        return (
+            <DatePicker
+                isRequired
+                value={date}
+                onChange={setDate}
+                label={args.label || ""}
+                helperText={args.helperText || ""}
             />
         );
     },
@@ -76,7 +133,6 @@ export const DatePickerWithReactNodeLabel = {
             </div>
         ),
         helperText: "This is the helper text",
-        errorMessage: "This is the error message",
     },
     parameters: {
         docs: {
@@ -86,9 +142,7 @@ export const DatePickerWithReactNodeLabel = {
         },
     },
     render: (args: StoryArgs) => {
-        const [date, setDate] = useState<DateValue | null>(
-            parseDate(new Date().toISOString().slice(0, 10)),
-        );
+        const [date, setDate] = useState<Date | null>(new Date());
 
         return (
             <DatePicker
@@ -96,7 +150,6 @@ export const DatePickerWithReactNodeLabel = {
                 onChange={setDate}
                 label={args.label || ""}
                 helperText={args.helperText || ""}
-                errorMessage={args.errorMessage || ""}
             />
         );
     },
@@ -104,7 +157,6 @@ export const DatePickerWithReactNodeLabel = {
 
 export const DatePickerNoLabelOrHelperText = {
     args: {
-        errorMessage: "This is the error message",
         "aria-label": "This is an accessible label",
     },
     parameters: {
@@ -115,51 +167,53 @@ export const DatePickerNoLabelOrHelperText = {
         },
     },
     render: (args: StoryArgs) => {
-        const [date, setDate] = useState<DateValue | null>(
-            parseDate(new Date().toISOString().slice(0, 10)),
-        );
+        const [date, setDate] = useState<Date | null>(new Date());
 
         return (
             <DatePicker
                 value={date}
                 onChange={setDate}
-                errorMessage={args.errorMessage || ""}
                 aria-label={args["aria-label"] || ""}
             />
         );
     },
 };
 
-export const DatePickerWithMaxDate = {
+export const DatePickerWithCustomStyles = {
     args: {
-        label: "This is the label",
-        errorMessage: "This is the error message",
+        label: "Styled DatePicker",
+        helperText: "Custom styles applied via className",
+        className: styles.largeDatePicker,
     },
     parameters: {
         docs: {
             description: {
-                story: "Illustrates how to set a maximum selectable date (maxValue) for the DatePicker. In this example, the maximum date is set to yesterday, preventing users from selecting future dates. Setting the date to a future date manually will display the error message. Note that all props available in react-aria components are supported (see https://react-spectrum.adobe.com/react-aria/DatePicker.html#props for more information).",
+                story: "Demonstrates how to customize the DatePicker appearance using className. This example shows how to apply custom sizing and borders using CSS modules.",
             },
         },
     },
     render: (args: StoryArgs) => {
-        const [date, setDate] = useState<DateValue | null>(
-            parseDate(new Date().toISOString().slice(0, 10)),
-        );
-
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() - 1);
-
-        const maxDate = parseDate(tomorrow.toISOString().slice(0, 10));
+        const [date, setDate] = useState<Date | null>(null);
 
         return (
-            <DatePicker
-                label={args.label || ""}
-                value={date}
-                onChange={setDate}
-                errorMessage={args.errorMessage || ""}
-                maxValue={maxDate}
-            />
+            <>
+                <div className={styles.container}>
+                    <DatePicker
+                        value={date}
+                        onChange={setDate}
+                        label="Default Styling"
+                        helperText="No custom className applied"
+                    />
+                </div>
+
+                <DatePicker
+                    value={date}
+                    onChange={setDate}
+                    label={args.label}
+                    helperText={args.helperText}
+                    className={args.className}
+                />
+            </>
         );
     },
 };

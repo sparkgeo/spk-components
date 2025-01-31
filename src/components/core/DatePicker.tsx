@@ -24,20 +24,29 @@ import { useHover } from "react-aria";
 
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CalendarDate } from "@internationalized/date";
+
 // import the module, not the default react-aria css file (src/components/core/DatePicker.css)
 import styles from "./DatePicker.module.css";
 
 // Base interface with explicit types and descriptions
 interface BaseDatePickerProps
-    extends Omit<ReactAriaDatePickerProps<DateValue>, "children"> {
+    extends Omit<
+        ReactAriaDatePickerProps<DateValue>,
+        "children" | "value" | "onChange" | "maxValue" | "minValue"
+    > {
     /** The currently selected date */
-    value: DateValue | null;
+    value: Date | null;
     /** Callback fired when the date changes */
-    onChange: (value: DateValue | null) => void;
+    onChange: (value: Date | null) => void;
     /** Optional helper text displayed below the input */
     helperText?: string;
     /** Error message or error message generator function */
     errorMessage?: string | ((validationResult: ValidationResult) => string);
+    /** Maximum date value allowed */
+    maxValue?: Date;
+    /** Minimum date value allowed */
+    minValue?: Date;
 }
 
 interface WithVisibleLabel extends BaseDatePickerProps {
@@ -66,6 +75,9 @@ export type DatePickerProps =
     | WithAriaLabel
     | WithAriaLabelledBy;
 
+const convertDateToCalendarDate = (date: Date): CalendarDate =>
+    new CalendarDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
+
 /**
  * A date picker component that uses the react-aria-component library.
  * @param {string|ReactNode} [props.label] - Label text or element to display above the input.
@@ -78,12 +90,13 @@ export type DatePickerProps =
  * @param {string|Function} [props.errorMessage] - Error message or function that generates
  *        error message based on validation result. If a function is provided, it receives
  *        a ValidationResult object and should return a string.
- * @param {DateValue|null} props.value - The currently selected date value. Uses the
- *        DateValue type from '@internationalized/date'.
+ * @param {Date|null} props.value - The currently selected date value. Uses the
+ *        Date type from default JS Date class.
  * @param {Function} props.onChange - Callback fired when the date changes.
- *        Receives the new DateValue or null as its argument.
+ *        Receives the new Date or null as its argument.
  * @param {ReactAriaDatePickerProps} props - Additional props from react-aria-components DatePicker.
  *        See react-aria-components documentation for all available props.
+ * @paraam {string} [props.className] - CSS class name(s) to apply to the root element. Will be combined with default styles.
  * @returns {React.ReactElement} The rendered date picker component.
  */
 export const DatePicker = ({
@@ -94,25 +107,49 @@ export const DatePicker = ({
     onChange,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
+    className,
+    maxValue,
+    minValue,
     ...props
 }: DatePickerProps): JSX.Element => {
     const [isButtonHovered, setIsButtonHovered] = useState(false);
     const { hoverProps, isHovered } = useHover({});
 
+    const internalValue = value ? convertDateToCalendarDate(value) : null;
+    const internalMaxValue = maxValue
+        ? convertDateToCalendarDate(maxValue)
+        : null;
+    const internalMinValue = minValue
+        ? convertDateToCalendarDate(minValue)
+        : null;
+
+    // Handle internal onChange to convert DateValue back to Date
+    const handleChange = (newValue: DateValue | null) => {
+        if (newValue) {
+            // Convert to local timezone date
+            const date = new Date(newValue.toString());
+            onChange(date);
+        } else {
+            onChange(null);
+        }
+    };
+
     return (
         <ReactAriaDatePicker
-            className={styles.datePicker}
-            value={value}
-            onChange={onChange}
+            className={`${styles.datePicker} ${className || ""}`.trim()}
+            value={internalValue}
+            onChange={handleChange}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
+            maxValue={internalMaxValue}
+            minValue={internalMinValue}
             {...props}
         >
             {label && <Label>{label}</Label>}
             <Group>
                 <DateInput
                     // Hovering input or button will show hover state on date innput
-                    className={`${styles.dateInput} ${isHovered || isButtonHovered ? styles.hoverDatepicker : ""}`}
+                    className={`${isHovered || isButtonHovered ? styles.hoverDatepicker : ""} ${styles.dateInput}`.trim()}
                     {...hoverProps}
                 >
                     {(segment) => <DateSegment segment={segment} />}
@@ -127,7 +164,11 @@ export const DatePicker = ({
                 </Button>
             </Group>
             {helperText && <Text slot="description">{helperText}</Text>}
-            <FieldError>{errorMessage}</FieldError>
+            {errorMessage ? (
+                <FieldError>{errorMessage}</FieldError>
+            ) : (
+                <FieldError />
+            )}
             <Popover>
                 <Dialog>
                     <Calendar>

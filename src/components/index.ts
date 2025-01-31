@@ -1,3 +1,6 @@
+// Import the theme file first to ensure the default react-aria styles are included before the css modules in the bundled css
+import "./styles/theme.css";
+
 import { LayerButtonReel } from "./composite/LayerButtonReel";
 import { LayerCard } from "./composite/LayerCard";
 import { SwatchLegend } from "./composite/SwatchLegend";
@@ -19,8 +22,6 @@ import { Stacked } from "./layout/Stacked";
 import { Standard } from "./layout/Standard";
 
 import { SliderControl } from "./composite/SliderControl";
-
-import "./styles/theme.css";
 
 export {
     ComparisonControl,
