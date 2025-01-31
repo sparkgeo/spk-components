@@ -30,6 +30,13 @@ declare interface BaseDatePickerProps extends Omit<DatePickerProps_2<DateValue>,
     minValue?: Date;
 }
 
+declare interface BaseSimpleSliderProps extends AriaSliderProps {
+    onChange: (value: number | number[]) => void;
+    label: ReactNode | string;
+    showLabel?: boolean;
+    value?: number;
+}
+
 /**
  * A composite component that renders a slider control with optional label and custom thumb icon.
  *
@@ -222,35 +229,7 @@ export declare namespace SidebarContainer {
     }
 }
 
-export declare function SimpleSlider({ units, label, onChange, min, max, step, value, }: {
-    units: any;
-    label: any;
-    onChange: any;
-    min: any;
-    max: any;
-    step: any;
-    value: any;
-}): JSX_2.Element;
-
-export declare namespace SimpleSlider {
-    export namespace propTypes {
-        let onChange: default_2.Validator<(...args: any[]) => any>;
-        let min: default_2.Validator<number>;
-        let max: default_2.Validator<number>;
-        let step: default_2.Validator<number>;
-        let value: default_2.Requireable<number>;
-        let label: default_2.Requireable<string>;
-        let units: default_2.Requireable<string>;
-    }
-    export namespace defaultProps {
-        let value_1: number;
-            { value_1 as value };
-        let units_1: string;
-            { units_1 as units };
-        let label_1: string;
-            { label_1 as label };
-    }
-}
+export declare const SimpleSlider: ({ label, onChange, minValue, maxValue, step, value, showLabel, ...props }: BaseSimpleSliderProps) => JSX_2.Element;
 
 export declare function SliderControl({ title, units, sliderConfig }: {
     title: any;
