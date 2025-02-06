@@ -26,14 +26,8 @@ Components are organized in the [components](src/components/) directory into:
 - Follow React Aria styling conventions:
   - Default styles are in [src/components/styles/react-aria](src/components/styles/react-aria) (do not modify)
   - To customize React Aria styles:
-    1. Preferred: Use `:global()` selector in your CSS module to combine React Aria styles with your local styles. For example:
-       ```css
-       .myComponent:global(.react-aria-Component) {
-         /* Your styles here will apply when both classes are present */
-       }
-       ```
-       Relevant default CSS files must be imported into [theme.css](src/components/styles/theme.css)
-    2. Alternative: If extending React Aria styles isn't practical, copy and modify React Aria styles directly in the component's CSS Module
+    1. Preferred: Use [`composes`](https://github.com/css-modules/css-modules/blob/master/docs/composition.md) to apply default styles within a CSS module. Relevant default CSS files must be imported into [theme.css](src/components/styles/theme.css)
+    2. Alternative: If composing isn't practical, copy and modify React Aria styles directly in the component's CSS Module
     3. For global style overrides: Add to the bottom of [theme.css](src/components/styles/theme.css) (e.g., adding hover states or applying font properties using CSS variables)
 
 ### Documentation

@@ -1,22 +1,20 @@
-.datePicker:global(.react-aria-DatePicker) {
-    /* Using :global() allows us to style elements that have both:
-     * 1. Our local CSS Module class (.datePicker -> datePicker)
-     * 2. AND the global react-aria class (.react-aria-DatePicker)
-     * This is an alternative to CSS modules' 'composes' that works reliably in both dev and prod builds
-     */
+.datePicker {
+    /*  The 'composes' keyword allows us to extend the react-aria-DatePicker class
+        so we can override rules here without rewriting all of them
+    */
+    composes: react-aria-DatePicker from global;
+    /* See src/components/core/DatePicker.css for ideas on customizing this component */
+
     display: flex;
     flex-direction: column;
 }
 
-.dateInput:global(.react-aria-DateInput) {
-    /* When using :global() syntax, styles only apply when both classes are present
-     * This ensures our styles are properly scoped while still being able to 
-     * extend react-aria's base styles
-     */
+.dateInput {
+    composes: react-aria-DateInput from global;
     border-radius: var(--border-radius-input);
-}
+  }
 
 .hoverDatepicker {
     outline: 3px solid var(--highlight-hover);
-    outline-offset: 1px;
+    outline-offset: -1px;
 }
