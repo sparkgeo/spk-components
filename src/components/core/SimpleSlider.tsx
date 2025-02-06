@@ -5,6 +5,7 @@ import styles from "./SimpleSlider.module.css";
 
 export interface BaseSimpleSliderProps
     extends AriaSliderProps {
+    className: string;
     onChange: (value: number | number[]) => void;
     label: ReactNode | string;
     showLabel?: boolean;
@@ -12,6 +13,7 @@ export interface BaseSimpleSliderProps
 }
 
 export const SimpleSlider = ({
+    className,
     label = "",
     onChange,
     minValue,
@@ -21,8 +23,7 @@ export const SimpleSlider = ({
     showLabel,
     ...props
 }: BaseSimpleSliderProps) => (
-
-    <Slider maxValue={maxValue} minValue={minValue} step={step} className={styles.slider} aria-label={!showLabel && typeof label === "string" ? label : undefined} onChange={onChange} value={value} {...props}>
+    <Slider maxValue={maxValue} minValue={minValue} step={step} className={`${styles.slider} ${className || ""}`.trim()} aria-label={!showLabel && typeof label === "string" ? label : undefined} onChange={onChange} value={value} {...props}>
         {showLabel && <Label className={styles.sliderLabel}>{label}</Label>}
         <SliderTrack className={styles.sliderTrack}>
             <SliderThumb className={styles.sliderThumb}/>
