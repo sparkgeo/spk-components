@@ -1673,7 +1673,7 @@ In.propTypes = {
     s.node
   ]).isRequired
 };
-const Nn = "_infoPanelContainer_lsvmo_1", Dn = "_topLeft_lsvmo_14", Ln = "_topRight_lsvmo_19", Mn = "_centerLeft_lsvmo_24", Wn = "_centerRight_lsvmo_29", qn = "_bottomLeft_lsvmo_34", Fn = "_bottomRight_lsvmo_39", Sr = {
+const Nn = "_infoPanelContainer_gnoj6_1", Dn = "_topLeft_gnoj6_13", Ln = "_topRight_gnoj6_18", Mn = "_centerLeft_gnoj6_23", Wn = "_centerRight_gnoj6_28", qn = "_bottomLeft_gnoj6_33", Fn = "_bottomRight_gnoj6_38", Sr = {
   infoPanelContainer: Nn,
   topLeft: Dn,
   topRight: Ln,
@@ -1681,7 +1681,7 @@ const Nn = "_infoPanelContainer_lsvmo_1", Dn = "_topLeft_lsvmo_14", Ln = "_topRi
   centerRight: Wn,
   bottomLeft: qn,
   bottomRight: Fn
-}, ta = ({ children: r, position: d = "centerRight" }) => /* @__PURE__ */ a.jsx("div", { className: `${Sr.infoPanelContainer} ${Sr[d]}`, children: /* @__PURE__ */ a.jsx("div", { children: r }) }), Yn = ({ showToggle: r, children: d }) => {
+}, ta = ({ children: r, position: d = "centerRight" }) => /* @__PURE__ */ a.jsx("aside", { className: `${Sr.infoPanelContainer} ${Sr[d]}`, children: r }), Yn = ({ showToggle: r, children: d }) => {
   const [f, c] = Ke(!1), v = `sidebar ${f ? "closed" : ""}`, p = () => {
     c(!f);
   };

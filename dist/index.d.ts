@@ -109,7 +109,7 @@ export declare const InfoPanelContainer: ({ children, position }: InfoPanelProps
 
 declare type InfoPanelProps = {
     children: ReactElement;
-    position: string;
+    position: Position;
 };
 
 export declare function LayerButtonReel({ buttons }: {
@@ -207,6 +207,8 @@ export declare namespace NavContainer {
         let children: default_2.Validator<NonNullable<NonNullable<default_2.ReactNodeLike>>>;
     }
 }
+
+declare type Position = 'topLeft' | 'topRight' | 'centerLeft' | 'centerRight' | 'bottomLeft' | 'bottomRight';
 
 export declare function SidebarContainer({ showToggle, children }: {
     showToggle: any;
