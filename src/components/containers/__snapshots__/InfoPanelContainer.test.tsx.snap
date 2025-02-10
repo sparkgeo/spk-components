@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InfoPanelContainer > renders with correct position class and children 1`] = `
+<div>
+  <aside
+    class="_infoPanelContainer_0bef1b _topLeft_0bef1b"
+  >
+    <div>
+      This is a stubbed child element
+    </div>
+  </aside>
+</div>
+`;
