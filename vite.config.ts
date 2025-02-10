@@ -37,6 +37,9 @@ export default defineConfig({
                     react: "React",
                     "@fortawesome/react-fontawesome": "FontAwesome",
                     "@fortawesome/free-solid-svg-icons": "FreeSolidSvgIcons",
+                    'react-aria-components': 'ReactAriaComponents',
+                    'react-aria': 'ReactAria',
+                    '@internationalized/date': 'InternationalizedDate'
                 },
             },
         },
