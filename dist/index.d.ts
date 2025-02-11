@@ -4,6 +4,7 @@ import { DateValue } from 'react-aria-components';
 import { default as default_2 } from 'prop-types';
 import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { JSX as JSX_3 } from 'react';
+import { ReactElement } from 'react';
 import { ReactNode } from 'react';
 import { ValidationResult } from 'react-aria-components';
 
@@ -104,6 +105,13 @@ export declare namespace IconButton {
     }
 }
 
+export declare const InfoPanelContainer: ({ children, position }: InfoPanelProps) => JSX_2.Element;
+
+declare type InfoPanelProps = {
+    children: ReactElement;
+    position: Position;
+};
+
 export declare function LayerButtonReel({ buttons }: {
     buttons: any;
 }): JSX_2.Element;
@@ -199,6 +207,8 @@ export declare namespace NavContainer {
         let children: default_2.Validator<NonNullable<NonNullable<default_2.ReactNodeLike>>>;
     }
 }
+
+declare type Position = 'topLeft' | 'topRight' | 'centerLeft' | 'centerRight' | 'bottomLeft' | 'bottomRight';
 
 export declare function SidebarContainer({ showToggle, children }: {
     showToggle: any;

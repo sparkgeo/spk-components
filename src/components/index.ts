@@ -16,6 +16,7 @@ import { LayerGroup } from "./core/LayerGroup";
 
 import { MapContainer } from "./containers/MapContainer";
 import { NavContainer } from "./containers/NavContainer";
+import { InfoPanelContainer } from "./containers/InfoPanelContainer";
 import { SidebarContainer } from "./containers/SidebarContainer";
 
 import { Stacked } from "./layout/Stacked";
@@ -34,6 +35,7 @@ export {
     LayerToggle,
     MapContainer,
     NavContainer,
+    InfoPanelContainer,
     SidebarContainer,
     SimpleSlider,
     SliderControl,
