@@ -5,7 +5,7 @@ import styles from "./SimpleSlider.module.css";
 
 export interface BaseSimpleSliderProps
     extends AriaSliderProps {
-    className: string;
+    className?: string;
     onChange: (value: number | number[]) => void;
     label: ReactNode | string;
     showLabel?: boolean;

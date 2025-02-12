@@ -31,6 +31,7 @@ declare interface BaseDatePickerProps extends Omit<DatePickerProps_2<DateValue>,
 }
 
 declare interface BaseSimpleSliderProps extends AriaSliderProps {
+    className?: string;
     onChange: (value: number | number[]) => void;
     label: ReactNode | string;
     showLabel?: boolean;
@@ -229,7 +230,7 @@ export declare namespace SidebarContainer {
     }
 }
 
-export declare const SimpleSlider: ({ label, onChange, minValue, maxValue, step, value, showLabel, ...props }: BaseSimpleSliderProps) => JSX_2.Element;
+export declare const SimpleSlider: ({ className, label, onChange, minValue, maxValue, step, value, showLabel, ...props }: BaseSimpleSliderProps) => JSX_2.Element;
 
 export declare function SliderControl({ title, units, sliderConfig }: {
     title: any;
