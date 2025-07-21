@@ -15,7 +15,3 @@ export const LayerButtonReel = ({ buttons }) => (
 LayerButtonReel.propTypes = {
     buttons: PropTypes.objectOf(PropTypes.func),
 };
-
-LayerButtonReel.defaultProps = {
-    buttons: null,
-};

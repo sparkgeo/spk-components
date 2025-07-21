@@ -8,13 +8,26 @@
     position: relative;
 }
 
-.layerCardWrapper {
+.layerCardAttributionWrapper {
+    margin-top: 4px;
+    font-size: 0.7rem;
+    font-style: italic;
+    align-self: center;
+    width: 90%;
+}
+
+.layerCardAttribution {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.layerCardHeader {
     width: 100%;
     display: grid;
     align-items: center;
     grid-template-columns: 1fr auto auto;
     grid-template-areas: "text controls toggle";
-    padding: var(--spacing-medium) 0;
 }
 
 .layerCardTextWrapper {
@@ -27,11 +40,19 @@
 
 .layerCardTitle {
     padding-bottom: var(--spacing-small);
+    font-size: var(--font-size-small);
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
 }
 
 .layerCardDescription {
-    font-size: var(--font-size-small);
-    filter: brightness(80%);
+    padding: 4px;
+    align-self: center;
+    width: 90%;
+    text-wrap: pretty;
+    word-wrap: break-word;
+    font-size: var(--text-size-small);
 }
 
 .layerCardControls {
@@ -44,11 +65,14 @@
     justify-self: end
 }
 
-.layerCardChildren {
+.layerCardContent {
     display: flex;
     flex-direction: column;
-    align-items: start;
     width: 100%;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
     background-color: var(--background-color);
     color: var(--text-color-secondary);
+    font-size: var(--font-size-small);
 }
