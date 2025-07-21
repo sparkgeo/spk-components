@@ -42,7 +42,3 @@ IconButton.propTypes = {
     ]),
     onClick: PropTypes.func.isRequired,
 };
-
-IconButton.defaultProps = {
-    iconName: "ellipsis",
-};

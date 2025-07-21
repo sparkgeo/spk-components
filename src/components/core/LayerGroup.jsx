@@ -18,7 +18,7 @@ export const LayerGroup = ({ groupName, children }) => {
         <div className={styles.layerGroupWrapper}>
             <button type="button" className={styles.layerGroupButton} onClick={handleClick}>
                 <div className={styles.layerGroupChevron}>
-                    <FontAwesomeIcon size="md" fixedWidth icon={isOpen ? faChevronDown : faChevronRight} />
+                    <FontAwesomeIcon size="sm" fixedWidth icon={isOpen ? faChevronDown : faChevronRight} />
                 </div>
                 <span className={styles.layerGroupName}>{groupName}</span>
             </button>
