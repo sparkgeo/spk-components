@@ -1,16 +1,21 @@
+.layerGroupWrapper {
+    width: 100%;
+}
+
 .layerGroupButton {
     border-radius: 0;
     box-sizing: border-box;
     background-color: var(--primary-color);
     color: var(--text-color-primary);
     display: flex;
-    width: 100%;
     justify-content: start;
     align-items: center;
+    border: 1px solid transparent;
+    width: 100%;
 }
 
 .layerGroupChevron {
-    padding: 8px;
+    padding: 4px;
 }
 
 .layerGroupButton:hover {
@@ -24,9 +29,14 @@
 
 .layerGroupName {
     padding: 8px;
-    font-weight: bold;
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
     white-space: nowrap;
+    text-wrap: pretty;
     text-overflow: ellipsis;
+    font-weight: 700;
+    font-size: var(--font-size-medium);
 }
 
 :nth-last-child(1 of .layerGroupWrapper) .layerGroupChildren {

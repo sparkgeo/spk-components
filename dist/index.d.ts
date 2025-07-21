@@ -107,10 +107,6 @@ export declare namespace IconButton {
         let iconName: default_2.Requireable<string>;
         let onClick: default_2.Validator<(...args: any[]) => any>;
     }
-    export namespace defaultProps {
-        let iconName_1: string;
-            { iconName_1 as iconName };
-    }
 }
 
 export declare const InfoPanelContainer: ({ children, position }: InfoPanelProps) => JSX_2.Element;
@@ -130,17 +126,13 @@ export declare namespace LayerButtonReel {
             [x: string]: ((...args: any[]) => any) | null | undefined;
         }>;
     }
-    export namespace defaultProps {
-        let buttons_1: null;
-            { buttons_1 as buttons };
-    }
 }
 
-export declare function LayerCard({ layerName, isActive, onChange, buttons, description, children }: {
+export declare function LayerCard({ layerName, isActive, onChange, attribution, description, children }: {
     layerName: any;
     isActive: any;
     onChange: any;
-    buttons: any;
+    attribution: any;
     description: any;
     children: any;
 }): JSX_2.Element;
@@ -172,7 +164,7 @@ export declare namespace LayerGroup {
 
 export declare function LayerToggle({ layerName, isActive, onChange }: {
     layerName: any;
-    isActive: any;
+    isActive?: boolean | undefined;
     onChange: any;
 }): JSX_2.Element;
 
@@ -181,12 +173,6 @@ export declare namespace LayerToggle {
         let layerName: default_2.Requireable<string>;
         let isActive: default_2.Requireable<boolean>;
         let onChange: default_2.Validator<(...args: any[]) => any>;
-    }
-    export namespace defaultProps {
-        let layerName_1: string;
-            { layerName_1 as layerName };
-        let isActive_1: boolean;
-            { isActive_1 as isActive };
     }
 }
 
