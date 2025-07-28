@@ -1,10 +1,10 @@
 .layerCard {
-    color: var(--text-color-primary);
+    color: var(--text-color-secondary);
     display: flex;
     flex-direction: column;
     align-items: start;
     border-bottom: 1px solid var(--border-color);
-    background-color: var(--secondary-color);
+    background-color: var(--background-color);
     position: relative;
 }
 
@@ -28,6 +28,7 @@
     align-items: center;
     grid-template-columns: 1fr auto auto;
     grid-template-areas: "text controls toggle";
+    font-weight: bold;
 }
 
 .layerCardTextWrapper {
@@ -47,7 +48,7 @@
 }
 
 .layerCardDescription {
-    padding: 4px;
+    padding: var(--spacing-medium);
     align-self: center;
     width: 90%;
     text-wrap: pretty;
@@ -68,11 +69,19 @@
 .layerCardContent {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
     overflow: hidden;
     justify-content: center;
+    justify-self: center;
     align-items: center;
-    background-color: var(--background-color);
+    align-self: center;
+    border-radius: 8px;
+    background-color: var(--foreground-color);
     color: var(--text-color-secondary);
     font-size: var(--font-size-small);
+    margin-bottom: var(--spacing-large);
+}
+
+.layerCardContent:empty {
+    margin-bottom: 0; 
 }
