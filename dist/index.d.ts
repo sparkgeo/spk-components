@@ -142,10 +142,10 @@ export declare namespace LayerCard {
         let layerName: default_2.Validator<string>;
         let isActive: default_2.Requireable<boolean>;
         let onChange: default_2.Validator<(...args: any[]) => any>;
-        let buttons: default_2.Requireable<{
-            [x: string]: ((...args: any[]) => any) | null | undefined;
-        }>;
         let description: default_2.Requireable<string>;
+        let attribution: default_2.Requireable<{
+            [x: string]: any;
+        }>;
         let children: default_2.Requireable<NonNullable<default_2.ReactNodeLike>>;
     }
 }
