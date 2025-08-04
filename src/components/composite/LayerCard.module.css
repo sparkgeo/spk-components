@@ -82,6 +82,10 @@
     margin-bottom: var(--spacing-large);
 }
 
+.layerCardInfoIcon {
+    color: var(--tertiary-color);
+}
+
 .layerCardContent:empty {
     margin-bottom: 0; 
 }

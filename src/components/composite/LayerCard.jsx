@@ -14,7 +14,7 @@ export const LayerCard = ({ layerName, isActive, onChange, attribution, descript
                 <div className={styles.layerCardTextWrapper}>
                     <span className={styles.layerCardTitle}>{layerName}</span>
                 </div>
-                <FontAwesomeIcon onClick={() => setShowLayerInfo(!showLayerInfo)} icon={faInfoCircle} />
+                <FontAwesomeIcon className={styles.layerCardInfoIcon} onClick={() => setShowLayerInfo(!showLayerInfo)} icon={faInfoCircle} />
                 { onChange &&
                     <LayerToggle
                         layerName={layerName}
@@ -26,7 +26,7 @@ export const LayerCard = ({ layerName, isActive, onChange, attribution, descript
             </div>
             <div className={styles.layerCardContent}>
                 {description && showLayerInfo && (<span className={styles.layerCardDescription}>{description}</span>)}
-                {attribution && showLayerInfo && (
+                {attribution && isActive && (
                     <div className={styles.layerCardAttributionWrapper}>
                         <span className={styles.layerCardAttribution}>
                             Source: <a href={attribution.url}>{attribution.text}</a>
