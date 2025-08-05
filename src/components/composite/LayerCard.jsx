@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faInfo } from "@fortawesome/free-solid-svg-icons";
+import { Button, Tooltip, TooltipTrigger } from "react-aria-components";
 import { LayerToggle } from "../core/LayerToggle";
 import styles from "./LayerCard.module.css";
+
 
 export const LayerCard = ({ layerName, isActive, onChange, attribution, description, children }) => {
     const [showLayerInfo, setShowLayerInfo] = useState(false);
@@ -14,7 +16,12 @@ export const LayerCard = ({ layerName, isActive, onChange, attribution, descript
                 <div className={styles.layerCardTextWrapper}>
                     <span className={styles.layerCardTitle}>{layerName}</span>
                 </div>
-                <FontAwesomeIcon className={styles.layerCardInfoIcon} onClick={() => setShowLayerInfo(!showLayerInfo)} icon={faInfoCircle} />
+                <TooltipTrigger delay={300}>
+                    <Tooltip>Toggle layer description</Tooltip>
+                    <Button className={styles.layerCardInfoIcon} onClick={() => setShowLayerInfo(!showLayerInfo)}>
+                        <FontAwesomeIcon size="xs" fontWeight="bold" icon={faInfo} />
+                    </Button>
+                </TooltipTrigger>
                 { onChange &&
                     <LayerToggle
                         layerName={layerName}
@@ -26,7 +33,7 @@ export const LayerCard = ({ layerName, isActive, onChange, attribution, descript
             </div>
             <div className={styles.layerCardContent}>
                 {description && showLayerInfo && (<span className={styles.layerCardDescription}>{description}</span>)}
-                {attribution && isActive && (
+                {attribution && (isActive || showLayerInfo) && (
                     <div className={styles.layerCardAttributionWrapper}>
                         <span className={styles.layerCardAttribution}>
                             Source: <a href={attribution.url}>{attribution.text}</a>
