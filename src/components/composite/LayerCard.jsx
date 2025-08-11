@@ -10,6 +10,7 @@ import styles from "./LayerCard.module.css";
 export const LayerCard = ({ layerName, isActive, onChange, attribution, description, children }) => {
     const [showLayerInfo, setShowLayerInfo] = useState(false);
 
+    const shouldShowAttribution = attribution && Boolean(attribution.text) && (isActive || showLayerInfo)
     return (
         <div className={styles.layerCard}>
             <div className={styles.layerCardHeader}>
@@ -29,11 +30,10 @@ export const LayerCard = ({ layerName, isActive, onChange, attribution, descript
                         onChange={onChange}
                     />
                 }
-
             </div>
             <div className={styles.layerCardContent}>
                 {description && showLayerInfo && (<span className={styles.layerCardDescription}>{description}</span>)}
-                {attribution && (isActive || showLayerInfo) && (
+                {shouldShowAttribution && (
                     <div className={styles.layerCardAttributionWrapper}>
                         <span className={styles.layerCardAttribution}>
                             Source: <a href={attribution.url}>{attribution.text}</a>
