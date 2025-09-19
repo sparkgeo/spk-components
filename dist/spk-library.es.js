@@ -1437,7 +1437,7 @@ const gn = "_slider_1bnet_1", bn = "_sliderLabel_1bnet_16", Tn = "_sliderThumb_1
   sliderThumb: Tn,
   sliderTrack: xn,
   comparisonControl: Cn
-}, Ta = ({
+}, ga = ({
   label: t,
   showLabel: r = !0,
   onChange: s,
@@ -1450,7 +1450,7 @@ const gn = "_slider_1bnet_1", bn = "_sliderLabel_1bnet_16", Tn = "_sliderThumb_1
   datePicker: En,
   dateInput: Rn,
   hoverDatepicker: wn
-}, Ke = (t) => new kt(t.getFullYear(), t.getMonth() + 1, t.getDate()), xa = ({
+}, Ke = (t) => new kt(t.getFullYear(), t.getMonth() + 1, t.getDate()), ba = ({
   label: t,
   helperText: r,
   errorMessage: s,
@@ -1622,17 +1622,15 @@ qn.propTypes = {
     d.node
   ]).isRequired
 };
-const Yn = "_rangeSliderContainer_1yoc5_1", Vn = "_rangeSliderHandleBar_1yoc5_7", Bn = "_rangeSliderHandleLeft_1yoc5_17", Hn = "_rangeSliderHandleRight_1yoc5_18", Gn = "_rangeSlider_1yoc5_1", Un = "_sliderLabel_1yoc5_54", zn = "_sliderThumb_1yoc5_58", Jn = "_rangeSliderTrack_1yoc5_79", be = {
-  rangeSliderContainer: Yn,
-  rangeSliderHandleBar: Vn,
-  rangeSliderHandleLeft: Bn,
-  rangeSliderHandleRight: Hn,
-  rangeSlider: Gn,
-  sliderLabel: Un,
-  sliderThumb: zn,
-  rangeSliderTrack: Jn
+const Yn = "_rangeSlider_1vgx8_1", Vn = "_rangeSliderContainer_1vgx8_8", Bn = "_rangeSliderTrack_1vgx8_16", Hn = "_rangeSliderHandleBar_1vgx8_25", Gn = "_rangeSliderHandleLeft_1vgx8_35", Un = "_rangeSliderHandleRight_1vgx8_36", be = {
+  rangeSlider: Yn,
+  rangeSliderContainer: Vn,
+  rangeSliderTrack: Bn,
+  rangeSliderHandleBar: Hn,
+  rangeSliderHandleLeft: Gn,
+  rangeSliderHandleRight: Un
 };
-function Kn(t, r) {
+function zn(t, r) {
   switch (r.type) {
     case "ChangeStep": {
       let s = { lower: Math.max(r.bounds.min, t.lower), upper: Math.min(r.bounds.max, t.upper) };
@@ -1655,8 +1653,8 @@ function Kn(t, r) {
       throw Error(`Unknown action:  ${r.type}`);
   }
 }
-const Xn = ({ label: t, bounds: r, step: s = 0, valuesChanging: l, valuesChanged: v }) => {
-  const [n, m] = st(Kn, { lower: r.min, upper: r.max }), y = lt(null), [h, E] = ue(0), [_, b] = ue(0), [x, L] = ue("none"), [U, N] = ue(0), B = Ce((G) => {
+const Jn = ({ label: t, bounds: r, step: s = 0, valuesChanging: l, valuesChanged: v }) => {
+  const [n, m] = st(zn, { lower: r.min, upper: r.max }), y = lt(null), [h, E] = ue(0), [_, b] = ue(0), [x, L] = ue("none"), [U, N] = ue(0), B = Ce((G) => {
     const P = (G - r.min) / (r.max - r.min);
     return y.current.clientWidth * P;
   }, [r]), H = Ce((G) => {
@@ -1778,7 +1776,7 @@ const Xn = ({ label: t, bounds: r, step: s = 0, valuesChanging: l, valuesChanged
     )
   ] }) });
 };
-Xn.propTypes = {
+Jn.propTypes = {
   label: d.string.isRequired,
   bounds: d.shape({
     min: d.number.isRequired,
@@ -1788,14 +1786,14 @@ Xn.propTypes = {
   valuesChanging: d.func,
   valuesChanged: d.func
 };
-const Zn = "_mapWrapper_1gyf5_1", Qn = "_mapContainer_1gyf5_10", jr = {
-  mapWrapper: Zn,
-  mapContainer: Qn
-}, ea = ({ mapContainer: t, id: r, children: s }) => /* @__PURE__ */ o.jsxs("div", { className: jr.mapWrapper, children: [
+const Kn = "_mapWrapper_1gyf5_1", Xn = "_mapContainer_1gyf5_10", jr = {
+  mapWrapper: Kn,
+  mapContainer: Xn
+}, Zn = ({ mapContainer: t, id: r, children: s }) => /* @__PURE__ */ o.jsxs("div", { className: jr.mapWrapper, children: [
   /* @__PURE__ */ o.jsx("div", { className: jr.mapContainer, id: r, ref: t }),
   s
 ] });
-ea.propTypes = {
+Zn.propTypes = {
   mapContainer: d.oneOfType([
     d.func,
     d.shape({ current: d.instanceOf(Element) })
@@ -1803,22 +1801,22 @@ ea.propTypes = {
   children: d.node,
   id: d.string
 };
-const ra = ({ children: t }) => /* @__PURE__ */ o.jsx("div", { className: "nav-container", children: t });
-ra.propTypes = {
+const Qn = ({ children: t }) => /* @__PURE__ */ o.jsx("div", { className: "nav-container", children: t });
+Qn.propTypes = {
   children: d.oneOfType([
     d.arrayOf(d.node),
     d.node
   ]).isRequired
 };
-const ta = "_infoPanelContainer_gnoj6_1", na = "_topLeft_gnoj6_13", aa = "_topRight_gnoj6_18", oa = "_centerLeft_gnoj6_23", ia = "_centerRight_gnoj6_28", sa = "_bottomLeft_gnoj6_33", la = "_bottomRight_gnoj6_38", Sr = {
-  infoPanelContainer: ta,
-  topLeft: na,
-  topRight: aa,
-  centerLeft: oa,
-  centerRight: ia,
-  bottomLeft: sa,
-  bottomRight: la
-}, Ca = ({ children: t, position: r = "centerRight" }) => /* @__PURE__ */ o.jsx("aside", { className: `${Sr.infoPanelContainer} ${Sr[r]}`, children: t }), ca = ({ showToggle: t, children: r }) => {
+const ea = "_infoPanelContainer_gnoj6_1", ra = "_topLeft_gnoj6_13", ta = "_topRight_gnoj6_18", na = "_centerLeft_gnoj6_23", aa = "_centerRight_gnoj6_28", oa = "_bottomLeft_gnoj6_33", ia = "_bottomRight_gnoj6_38", Sr = {
+  infoPanelContainer: ea,
+  topLeft: ra,
+  topRight: ta,
+  centerLeft: na,
+  centerRight: aa,
+  bottomLeft: oa,
+  bottomRight: ia
+}, Ta = ({ children: t, position: r = "centerRight" }) => /* @__PURE__ */ o.jsx("aside", { className: `${Sr.infoPanelContainer} ${Sr[r]}`, children: t }), sa = ({ showToggle: t, children: r }) => {
   const [s, l] = ue(!1), v = `sidebar ${s ? "closed" : ""}`, n = () => {
     l(!s);
   };
@@ -1833,32 +1831,32 @@ const ta = "_infoPanelContainer_gnoj6_1", na = "_topLeft_gnoj6_13", aa = "_topRi
     ) })
   ] });
 };
-ca.propTypes = {
+sa.propTypes = {
   showToggle: d.bool,
   children: d.oneOfType([
     d.arrayOf(d.node),
     d.node
   ]).isRequired
 };
-const ua = ({ children: t }) => /* @__PURE__ */ o.jsx("div", { className: "layout-stacked", children: t });
-ua.propTypes = {
+const la = ({ children: t }) => /* @__PURE__ */ o.jsx("div", { className: "layout-stacked", children: t });
+la.propTypes = {
   children: d.oneOfType([
     d.arrayOf(d.node),
     d.node
   ]).isRequired
 };
-const fa = ({ align: t = "left", children: r }) => /* @__PURE__ */ o.jsx("div", { className: `layout-standard ${t}`, children: r });
-fa.propTypes = {
+const ca = ({ align: t = "left", children: r }) => /* @__PURE__ */ o.jsx("div", { className: `layout-standard ${t}`, children: r });
+ca.propTypes = {
   align: d.oneOf(["left", "right"]),
   children: d.oneOfType([
     d.arrayOf(d.node),
     d.node
   ]).isRequired
 };
-const da = "_sliderControlWrapper_2tznx_1", pa = "_sliderLabel_2tznx_9", Or = {
-  sliderControlWrapper: da,
-  sliderLabel: pa
-}, va = ({ title: t, units: r, sliderConfig: s }) => /* @__PURE__ */ o.jsxs("div", { className: Or.sliderControlWrapper, children: [
+const ua = "_sliderControlWrapper_2tznx_1", fa = "_sliderLabel_2tznx_9", Or = {
+  sliderControlWrapper: ua,
+  sliderLabel: fa
+}, da = ({ title: t, units: r, sliderConfig: s }) => /* @__PURE__ */ o.jsxs("div", { className: Or.sliderControlWrapper, children: [
   /* @__PURE__ */ o.jsx("div", { className: "ui-label", children: t }),
   /* @__PURE__ */ o.jsx("div", {}),
   s && s.map((l) => {
@@ -1880,29 +1878,29 @@ const da = "_sliderControlWrapper_2tznx_1", pa = "_sliderLabel_2tznx_9", Or = {
     );
   })
 ] });
-va.propTypes = {
+da.propTypes = {
   title: d.string.isRequired,
   units: d.string.isRequired,
   sliderConfig: d.arrayOf(d.objectOf(d.string)).isRequired
 };
 export {
-  Ta as ComparisonControl,
-  xa as DatePicker,
+  ga as ComparisonControl,
+  ba as DatePicker,
   Pn as GradientLegend,
   rr as IconButton,
-  Ca as InfoPanelContainer,
+  Ta as InfoPanelContainer,
   Jt as LayerButtonReel,
   un as LayerCard,
   qn as LayerGroup,
   Mr as LayerToggle,
-  ea as MapContainer,
-  ra as NavContainer,
-  Xn as RangeSlider,
-  ca as SidebarContainer,
+  Zn as MapContainer,
+  Qn as NavContainer,
+  Jn as RangeSlider,
+  sa as SidebarContainer,
   Dn as SimpleSlider,
-  va as SliderControl,
-  ua as Stacked,
-  fa as Standard,
+  da as SliderControl,
+  la as Stacked,
+  ca as Standard,
   yn as Swatch,
   _n as SwatchLegend
 };
