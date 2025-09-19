@@ -13,6 +13,7 @@ import { LayerToggle } from "./core/LayerToggle";
 import { SimpleSlider } from "./core/SimpleSlider";
 import { Swatch } from "./core/Swatch";
 import { LayerGroup } from "./core/LayerGroup";
+import { RangeSlider } from "./core/RangeSlider";
 
 import { MapContainer } from "./containers/MapContainer";
 import { NavContainer } from "./containers/NavContainer";
@@ -36,6 +37,7 @@ export {
     MapContainer,
     NavContainer,
     InfoPanelContainer,
+    RangeSlider,
     SidebarContainer,
     SimpleSlider,
     SliderControl,
