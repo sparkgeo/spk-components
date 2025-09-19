@@ -37,16 +37,15 @@
 
     /* Colors */
     /* Original Vars */
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71;
-    --accent-color: #e74c3c;
-    --background-color: #f8f8f8;
+    --primary-color: #003247;
+    --secondary-color: #335e6f;
+    --tertiary-color: #008e7a;
+    --accent-color: #fbab18;
+    --background-color: #f3f7f8;
     --foreground-color: #ffffff;
-    --text-color-primary: #3b3b50;
-    --text-color-secondary: #ededed;
-    --border-color: #dddddd;
-
-    
+    --text-color-primary: #ffffff;
+    --text-color-secondary: #333333;
+    --border-color: #8197a6;
 }
 
 /* color themes for dark and light modes, generated with Leonardo.
