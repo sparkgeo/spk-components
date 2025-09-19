@@ -213,6 +213,7 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
 
     return (
         <div className={styles.rangeSlider}>
+            <div className={styles.rangeSliderLabel}>{label}</div>
             <div className={styles.rangeSliderContainer}>
                 <div
                     className={styles.rangeSliderTrack}

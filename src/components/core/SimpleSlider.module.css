@@ -47,7 +47,7 @@
       content: '';
       display: block;
       position: absolute;
-      background: var(--border-color);
+      background: #ddd;
     }
 
     &[data-orientation=horizontal] {

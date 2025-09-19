@@ -1,22 +1,33 @@
 .rangeSlider {
-    position: relative;
-    width: 100%;
-    height: 24px;
-    /*padding-bottom: 24px;*/
+    display: grid;
+    grid-template-areas: "label output"
+                         "track track";
+    grid-template-columns: 1fr auto;
+    max-width: 100%;
+    color: var(--text-color);
+    justify-self: center;
+    box-sizing: border-box;
+    width: 90%;
+}
+
+.rangeSliderLabel {
+    grid-area: label;
 }
 
 .rangeSliderContainer {
-    display: flex;
-    position: absolute;
+    display: inline-flex;
+    position: relative;
+    grid-area: track;
     margin: 0 0;
     width: 100%;
     align-items: center;
+    height: 30px;
 }
 
 .rangeSliderTrack {
+    position: absolute;
     z-index: 0;
     height: 2px;
-    position: absolute;
     margin: 3px 0;
     width: 100%;
     background: #ddd;
@@ -34,8 +45,8 @@
 
 .rangeSliderHandleLeft,
 .rangeSliderHandleRight {
+    margin: 0 -10px;
     z-index: 2;
-    margin: 0 -6px;
     cursor: col-resize;
     display: inline;
     position: absolute;
