@@ -204,6 +204,27 @@ export declare namespace NavContainer {
 
 declare type Position = 'topLeft' | 'topRight' | 'centerLeft' | 'centerRight' | 'bottomLeft' | 'bottomRight';
 
+export declare function RangeSlider({ label, bounds, step, valuesChanging, valuesChanged }: {
+    label: any;
+    bounds: any;
+    step?: number | undefined;
+    valuesChanging: any;
+    valuesChanged: any;
+}): JSX_2.Element;
+
+export declare namespace RangeSlider {
+    export namespace propTypes {
+        let label: default_2.Validator<string>;
+        let bounds: default_2.Requireable<default_2.InferProps<{
+            min: default_2.Validator<number>;
+            max: default_2.Validator<number>;
+        }>>;
+        let step: default_2.Requireable<number>;
+        let valuesChanging: default_2.Requireable<(...args: any[]) => any>;
+        let valuesChanged: default_2.Requireable<(...args: any[]) => any>;
+    }
+}
+
 export declare function SidebarContainer({ showToggle, children }: {
     showToggle: any;
     children: any;
