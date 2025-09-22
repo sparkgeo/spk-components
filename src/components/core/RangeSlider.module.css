@@ -1,8 +1,9 @@
 .rangeSlider {
     display: grid;
-    grid-template-areas: "label output"
-                         "track track";
-    grid-template-columns: 1fr auto;
+    grid-template-areas: "label"
+                         "track"
+                         "values";
+    grid-template-columns: 1fr;
     max-width: 100%;
     color: var(--text-color);
     justify-self: center;
@@ -14,10 +15,27 @@
     grid-area: label;
 }
 
+.rangeSliderValues {
+    grid-area: values;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8em;
+    color: var(--secondary-text-color);
+}
+
+.rangeSliderMin {
+    margin-right: auto;
+}
+
+.rangeSliderMax {
+    margin-left: auto;
+}
+
 .rangeSliderContainer {
     display: inline-flex;
-    position: relative;
     grid-area: track;
+    position: relative;
     margin: 0 0;
     width: 100%;
     align-items: center;

@@ -257,6 +257,10 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
                     style={{ left: `${pxRight}px` }}
                 />
             </div>
+            <div className={styles.rangeSliderValues}>
+                <span className={styles.rangeSliderMin}>{bounds.min}</span>
+                <span className={styles.rangeSliderMax}>{bounds.max}</span>
+            </div>
         </div>
     );
 };
