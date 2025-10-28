@@ -242,27 +242,28 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
                         width: `${pxRight - pxLeft}px`
                     }}
                 />
-                <div
-                    className={styles.rangeSliderHandleLeft}
-                    role="button"
-                    tabIndex="0"
-                    aria-label={`${label} lower handle`}
-                    data-handle-id="left"
-                    onMouseDown={handleHandlebarMouseDown}
-                    style={{ left: `${pxLeft}px` }}
-                >
+                <div className={styles.rangeSliderHandleGroup} style={{ left: `${pxLeft-10}px` }}>
                     {showValues && <span className={styles.rangeSliderValue} >{Math.round(values.lower)}</span> }
+                    <div
+                        className={styles.rangeSliderHandleLeft}
+                        role="button"
+                        tabIndex="0"
+                        aria-label={`${label} lower handle`}
+                        data-handle-id="left"
+                        onMouseDown={handleHandlebarMouseDown}
+                        
+                    />
                 </div>
-                <div
-                    className={styles.rangeSliderHandleRight}
-                    role="button"
-                    tabIndex="0"
-                    aria-label={`${label} upper handle`}
-                    data-handle-id="right"
-                    onMouseDown={handleHandlebarMouseDown}
-                    style={{ left: `${pxRight}px` }}
-                >
+                <div className={styles.rangeSliderHandleGroup} style={{ left: `${pxRight-10}px` }}>
                     {showValues && <span className={styles.rangeSliderValue}>{Math.round(values.upper)}</span> }
+                    <div
+                        className={styles.rangeSliderHandleRight}
+                        role="button"
+                        tabIndex="0"
+                        aria-label={`${label} upper handle`}
+                        data-handle-id="right"
+                        onMouseDown={handleHandlebarMouseDown}
+                    />
                 </div>
             </div>
             <div className={styles.rangeSliderValues}>
