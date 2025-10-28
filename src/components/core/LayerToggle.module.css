@@ -10,6 +10,7 @@
 }
 
 .switch {
+    display: inline-flex;
     cursor: pointer;
     background: #dbdbdb;
     padding: var(--padding);
@@ -20,6 +21,7 @@
 
 .switch input {
     position: absolute;
+    justify-self: center;
     opacity: 0;
     width: var(--width);
     height: var(--height);
@@ -28,6 +30,7 @@
 
 .slider {
     height: 100%;
+    width: 100%;
     display: grid;
     grid-template-columns: 0fr 1fr 1fr;
     transition: 0.2s;
