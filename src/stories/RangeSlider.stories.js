@@ -34,3 +34,32 @@ export const Default = {
         },
     },
 };
+
+export const Controlled = {
+    args: {
+        label: "Used flux capacity",
+        bounds: {
+            min: 0.0,
+            max: 100.0,
+        },
+        currentValues: {
+            lower: 25.0,
+            upper: 90.0
+        }
+    },
+};
+
+export const WithValues = {
+    args: {
+        label: "Used flux capacity",
+        bounds: {
+            min: 0.0,
+            max: 100.0,
+        },
+        currentValues: {
+            lower: 10.0,
+            upper: 80.0
+        },
+        showValues: true
+    },
+};

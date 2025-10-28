@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useCallback, useEffect, useRef, useState, useReducer } from "react";
 import PropTypes from "prop-types";
 import styles from "./RangeSlider.module.css";
@@ -45,9 +46,12 @@ function valueReducer(values, action) {
     }
 }
 
-export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesChanged }) => {
+export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesChanged, currentValues = {}, showValues}) => {
+    const lowerDefault = Math.max(isNaN(currentValues.lower) ? -Infinity :  currentValues.lower, bounds.min);
+    const upperDefault = Math.min(isNaN(currentValues.upper) ? Infinity :  currentValues.upper, bounds.max)
+
     // noinspection JSCheckFunctionSignatures
-    const [values, dispatch] = useReducer(valueReducer, {lower: bounds.min, upper: bounds.max});
+    const [values, dispatch] = useReducer(valueReducer, {lower: lowerDefault, upper: upperDefault});
     const sliderTrackRef = useRef(null);
     const [pxLeft, setPxLeft] = useState(0);
     const [pxRight, setPxRight] = useState(0);
@@ -246,7 +250,9 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
                     data-handle-id="left"
                     onMouseDown={handleHandlebarMouseDown}
                     style={{ left: `${pxLeft}px` }}
-                />
+                >
+                    {showValues && <span className={styles.rangeSliderValue} >{Math.round(values.lower)}</span> }
+                </div>
                 <div
                     className={styles.rangeSliderHandleRight}
                     role="button"
@@ -255,7 +261,9 @@ export const RangeSlider = ({ label, bounds, step = 0.0, valuesChanging, valuesC
                     data-handle-id="right"
                     onMouseDown={handleHandlebarMouseDown}
                     style={{ left: `${pxRight}px` }}
-                />
+                >
+                    {showValues && <span className={styles.rangeSliderValue}>{Math.round(values.upper)}</span> }
+                </div>
             </div>
             <div className={styles.rangeSliderValues}>
                 <span className={styles.rangeSliderMin}>{bounds.min}</span>
@@ -274,4 +282,9 @@ RangeSlider.propTypes = {
     step: PropTypes.number,
     valuesChanging: PropTypes.func,
     valuesChanged: PropTypes.func,
+    currentValues: PropTypes.shape({
+        lower: PropTypes.number,
+        upper: PropTypes.number
+    }),
+    showValues: PropTypes.bool
 };
