@@ -162,7 +162,8 @@ export declare namespace LayerGroup {
     }
 }
 
-export declare function LayerToggle({ layerName, isActive, onChange }: {
+export declare function LayerToggle({ layerName, isActive, onChange, ...props }: {
+    [x: string]: any;
     layerName: any;
     isActive?: boolean | undefined;
     onChange: any;
@@ -173,6 +174,7 @@ export declare namespace LayerToggle {
         let layerName: default_2.Requireable<string>;
         let isActive: default_2.Requireable<boolean>;
         let onChange: default_2.Validator<(...args: any[]) => any>;
+        let disabled: default_2.Requireable<boolean>;
     }
 }
 
