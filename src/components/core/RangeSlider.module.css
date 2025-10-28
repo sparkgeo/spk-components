@@ -12,6 +12,7 @@
 }
 
 .rangeSliderLabel {
+    margin-bottom: 10px;
     grid-area: label;
 }
 
@@ -74,4 +75,11 @@
     background: var(--secondary-color);
     border: 2px solid var(--background-color);
     forced-color-adjust: none;
+}
+
+.rangeSliderValue {
+    position: absolute;
+    top: -18px;
+    font-size: 0.75rem;
+    color: var(--text-color);
 }

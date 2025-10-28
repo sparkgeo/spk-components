@@ -4,50 +4,71 @@
     --height: calc(var(--width) / 2);
 }
 
-.layerToggle {
-    align-items: center;
-    padding: 0 8px;
-}
-
 .switch {
-    display: inline-flex;
-    cursor: pointer;
-    background: #dbdbdb;
+  display: flex;
+  /* This is needed so the HiddenInput is positioned correctly */
+  position: relative;
+  align-items: center;
+  padding: calc(var(--padding) * 2);
+  gap: 0.571rem;
+  font-size: 1.143rem;
+  color: var(--text-color-secondary);
+  forced-color-adjust: none;
+  cursor: pointer;
+
+  .indicator {
+    width: var(--width);
     padding: var(--padding);
-    width: var(--width);
     height: var(--height);
-    border-radius: calc(var(--height) - var(--padding));
-}
+    border: none;
+    background: var(--background-color-secondary);
+    border-radius: 1.143rem;
+    transition: all 200ms;
 
-.switch input {
-    position: absolute;
-    justify-self: center;
-    opacity: 0;
-    width: var(--width);
-    height: var(--height);
-    margin: 0;
-}
+    &:before {
+      content: '';
+      align-self: center;
+      display: block;
+      width: calc((var(--width) - var(--padding))/1.8);
+      height: calc((var(--width) - var(--padding))/1.8);
+      background: var(--foreground-color);
+      border-radius: 16px;
+      transition: all 200ms;
+    }
+  }
 
-.slider {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 0fr 1fr 1fr;
-    transition: 0.2s;
-}
+  &[data-pressed] .indicator {
+    &:before {
+      background: var(--tertiary-color);
+    }
+  }
 
-.slider::after {
-    content: "";
-    border-radius: 50%;
-    background: #fff;
-    grid-column: 2;
-    transition: background 0.2s;
-}
+  &[data-selected] {
+    .indicator {
+      background: var(--background-color-secondary);
 
-input:checked + .slider {
-    grid-template-columns: 1fr 1fr 0fr;
-}
+      &:before {
+        background: var(--tertiary-color);
+        transform: translateX(100%);
+      }
+    }
+  }
 
-input:checked + .slider::after {
-    background-color: var(--tertiary-color)
+  &[data-focus-visible] .indicator {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+
+  &[data-disabled] {
+    color: var(--disabled-color);
+    cursor: not-allowed;
+
+    .indicator {
+      background-color: var(--background-color);
+
+      &:before {
+        background: var(--foreground-color);
+      }
+    }
+  }
 }

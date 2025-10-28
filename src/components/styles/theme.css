@@ -42,10 +42,12 @@
     --tertiary-color: #008e7a;
     --accent-color: #fbab18;
     --background-color: #f3f7f8;
+    --background-color-secondary: #dbdbdb;
     --foreground-color: #ffffff;
     --text-color-primary: #ffffff;
     --text-color-secondary: #333333;
     --border-color: #8197a6;
+    --disabled-color: #dfdfdf;
 }
 
 /* color themes for dark and light modes, generated with Leonardo.
