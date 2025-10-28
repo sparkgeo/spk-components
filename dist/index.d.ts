@@ -206,12 +206,14 @@ export declare namespace NavContainer {
 
 declare type Position = 'topLeft' | 'topRight' | 'centerLeft' | 'centerRight' | 'bottomLeft' | 'bottomRight';
 
-export declare function RangeSlider({ label, bounds, step, valuesChanging, valuesChanged }: {
+export declare function RangeSlider({ label, bounds, step, valuesChanging, valuesChanged, currentValues, showValues }: {
     label: any;
     bounds: any;
     step?: number | undefined;
     valuesChanging: any;
     valuesChanged: any;
+    currentValues?: {} | undefined;
+    showValues: any;
 }): JSX_2.Element;
 
 export declare namespace RangeSlider {
@@ -224,6 +226,11 @@ export declare namespace RangeSlider {
         let step: default_2.Requireable<number>;
         let valuesChanging: default_2.Requireable<(...args: any[]) => any>;
         let valuesChanged: default_2.Requireable<(...args: any[]) => any>;
+        let currentValues: default_2.Requireable<default_2.InferProps<{
+            lower: default_2.Requireable<number>;
+            upper: default_2.Requireable<number>;
+        }>>;
+        let showValues: default_2.Requireable<boolean>;
     }
 }
 
