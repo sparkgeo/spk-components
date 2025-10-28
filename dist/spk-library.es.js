@@ -1322,9 +1322,9 @@ const Gt = "_layerButtonReel_1o59k_1", Ut = {
 Jt.propTypes = {
   buttons: d.objectOf(d.func)
 };
-const Kt = "_layerToggle_gvlf4_7", Xt = "_slider_gvlf4_29", Ue = {
+const Kt = "_layerToggle_ib94d_7", Xt = "_slider_ib94d_31", Ue = {
   layerToggle: Kt,
-  switch: "_switch_gvlf4_12",
+  switch: "_switch_ib94d_12",
   slider: Xt
 }, Mr = ({ layerName: t, isActive: r = !1, onChange: s }) => /* @__PURE__ */ n.jsx("div", { className: Ue.layerToggle, children: /* @__PURE__ */ n.jsxs("div", { className: Ue.switch, children: [
   /* @__PURE__ */ n.jsx(
