@@ -1,5 +1,5 @@
 :root {
-    --width: 1.5rem;
+    --width: 32px;
     --padding: calc(var(--width) / 10);
     --height: calc(var(--width) / 2);
 }
@@ -17,6 +17,8 @@
   cursor: pointer;
 
   .indicator {
+    display: flex;
+    align-items: center;
     width: var(--width);
     padding: var(--padding);
     height: var(--height);
@@ -29,10 +31,11 @@
       content: '';
       align-self: center;
       display: block;
-      width: calc((var(--width) - var(--padding))/1.8);
-      height: calc((var(--width) - var(--padding))/1.8);
+      width: calc((var(--width) * 0.5) - var(--padding));
+      height: calc((var(--height)) - var(--padding));
       background: var(--foreground-color);
       border-radius: 16px;
+      border: 1px solid var(--border-color);
       transition: all 200ms;
     }
   }
@@ -50,6 +53,7 @@
       &:before {
         background: var(--tertiary-color);
         transform: translateX(100%);
+        border: 1px solid color-mix(in srgb, var(--border-color), black 50%);
       }
     }
   }
@@ -67,7 +71,8 @@
       background-color: var(--background-color);
 
       &:before {
-        background: var(--foreground-color);
+        background: var(--disabled-color);
+        border: none;
       }
     }
   }
