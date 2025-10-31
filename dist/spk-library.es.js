@@ -1322,8 +1322,8 @@ const Jn = "_layerButtonReel_1o59k_1", Kn = {
 Xn.propTypes = {
   buttons: l.objectOf(l.func)
 };
-const Zn = "_indicator_g9vaa_19", Rr = {
-  switch: "_switch_g9vaa_7",
+const Zn = "_indicator_1wt51_19", Rr = {
+  switch: "_switch_1wt51_7",
   indicator: Zn
 }, Mr = ({ layerName: n, isActive: r = !1, onChange: i, ...c }) => /* @__PURE__ */ t.jsx(_n, { ...c, className: Rr.switch, isSelected: r, onChange: i, "aria-label": n, value: n, children: /* @__PURE__ */ t.jsx("div", { className: Rr.indicator }) });
 Mr.propTypes = {
