@@ -1,0 +1,41 @@
+.catalogContainer,
+.catalogList {
+    display: flex;
+    flex-direction: column;
+}
+
+.catalogList {
+    gap: 24px;
+}
+
+.catalogContainer {
+    height: 100%;
+    overflow-y: auto;
+    gap: 16px;
+}
+
+.catalogHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.catalogHeader h2 {
+    font-size: 28;
+    font-weight: 700;
+}
+
+.catalogHeader span {
+    padding: 4px;
+    background: #000;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 10px;
+    white-space: nowrap;
+    aspect-ratio: 1/1;
+    flex-shrink: 0;
+    min-width: 16px;
+}
