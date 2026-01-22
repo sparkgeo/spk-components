@@ -6,11 +6,17 @@ import { Button, Tooltip, TooltipTrigger } from "react-aria-components";
 import { LayerToggle } from "../core/LayerToggle";
 import styles from "./LayerCard.module.css";
 
-
-export const LayerCard = ({ layerName, isActive, onChange, attribution, description, children }) => {
+export const LayerCard = ({
+    layerName,
+    isActive,
+    onChange,
+    attribution,
+    description,
+    children,
+}) => {
     const [showLayerInfo, setShowLayerInfo] = useState(false);
 
-    const shouldShowAttribution = attribution && Boolean(attribution.text) && (isActive || showLayerInfo)
+    const hasAttribution = attribution && Boolean(attribution.text)
     return (
         <div className={styles.layerCard}>
             <div className={styles.layerCardHeader}>
@@ -19,29 +25,43 @@ export const LayerCard = ({ layerName, isActive, onChange, attribution, descript
                 </div>
                 <TooltipTrigger delay={300}>
                     <Tooltip>Toggle layer description</Tooltip>
-                    <Button className={styles.layerCardInfoIcon} onClick={() => setShowLayerInfo(!showLayerInfo)}>
-                        <FontAwesomeIcon size="xs" fontWeight="bold" icon={faInfo} />
+                    <Button
+                        className={styles.layerCardInfoIcon}
+                        onClick={() => setShowLayerInfo(!showLayerInfo)}
+                    >
+                        <FontAwesomeIcon
+                            size="xs"
+                            fontWeight="bold"
+                            icon={faInfo}
+                        />
                     </Button>
                 </TooltipTrigger>
-                { onChange &&
+                {onChange && (
                     <LayerToggle
                         layerName={layerName}
                         isActive={isActive}
                         onChange={onChange}
                     />
-                }
-            </div>
-            <div className={styles.layerCardContent}>
-                {description && showLayerInfo && (<span className={styles.layerCardDescription}>{description}</span>)}
-                {shouldShowAttribution && (
-                    <div className={styles.layerCardAttributionWrapper}>
-                        <span className={styles.layerCardAttribution}>
-                            Source: <a href={attribution.url}>{attribution.text}</a>
-                        </span>
-                    </div>
                 )}
-                {children && (children)}
             </div>
+            {showLayerInfo && (
+                <div className={styles.layerCardContent}>
+                    {description && (
+                        <span className={styles.layerCardDescription}>
+                            {description}
+                        </span>
+                    )}
+                    {hasAttribution && (
+                        <div className={styles.layerCardAttributionWrapper}>
+                            <span className={styles.layerCardAttribution}>
+                                Source:{" "}
+                                <a href={attribution.url}>{attribution.text}</a>
+                            </span>
+                        </div>
+                    )}
+                    {children && children}
+                </div>
+            )}
         </div>
     );
 };
@@ -53,10 +73,10 @@ LayerCard.propTypes = {
     description: PropTypes.string,
     attribution: PropTypes.objectOf({
         url: PropTypes.string,
-        text: PropTypes.string
+        text: PropTypes.string,
     }),
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node,
-    ])
+    ]),
 };
