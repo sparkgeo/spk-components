@@ -48,6 +48,17 @@ export const RightAligned = {
     ),
 };
 
+export const WithFooter = {
+    render: () => (
+        <Layout align="right" hasFooter>
+            <Navigation />
+            <SidebarContainer />
+            <MapContainer />
+            <div className="footer">This is footer</div>
+        </Layout>
+    ),
+};
+
 export const PopulatedExample = {
     render: () => {
         const mapContainer = useRef(null);
@@ -82,8 +93,12 @@ export const PopulatedExample = {
                     })}
                 </SidebarContainer>
                 <MapContainer mapContainer={mapContainer}>
-                    <ComparisonControl label="Clipping Slider" showLabel={false}/>
+                    <ComparisonControl
+                        label="Clipping Slider"
+                        showLabel={false}
+                    />
                 </MapContainer>
+                <div className="footer">This is footer</div>
             </Layout>
         );
     },
