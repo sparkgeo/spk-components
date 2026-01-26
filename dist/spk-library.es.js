@@ -1384,7 +1384,6 @@ const Qn = "_layerCard_mw8v9_1", et = "_layerCardAttributionWrapper_mw8v9_11", r
       )
     ] }),
     g && /* @__PURE__ */ t.jsxs("div", { className: fe.layerCardContent, children: [
-      /* @__PURE__ */ t.jsx("div", { children: "Test" }),
       y && /* @__PURE__ */ t.jsx("span", { className: fe.layerCardDescription, children: y }),
       m && /* @__PURE__ */ t.jsx("div", { className: fe.layerCardAttributionWrapper, children: /* @__PURE__ */ t.jsxs("span", { className: fe.layerCardAttribution, children: [
         "Source:",

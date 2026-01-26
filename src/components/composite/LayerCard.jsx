@@ -49,7 +49,6 @@ export const LayerCard = ({
             </div>
             {showLayerInfo && (
                 <div className={styles.layerCardContent}>
-                    <div>Test</div>
                     {description && (
                         <span className={styles.layerCardDescription}>
                             {description}
