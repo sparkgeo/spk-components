@@ -16,7 +16,7 @@ export const LayerCard = ({
 }) => {
     const [showLayerInfo, setShowLayerInfo] = useState(false);
 
-    const hasAttribution = attribution && Boolean(attribution.text)
+    const hasAttribution = attribution && Boolean(attribution.text);
     return (
         <div className={styles.layerCard}>
             <div className={styles.layerCardHeader}>
@@ -25,16 +25,18 @@ export const LayerCard = ({
                 </div>
                 <TooltipTrigger delay={300}>
                     <Tooltip>Toggle layer description</Tooltip>
-                    <Button
-                        className={styles.layerCardInfoIcon}
-                        onClick={() => setShowLayerInfo(!showLayerInfo)}
-                    >
-                        <FontAwesomeIcon
-                            size="xs"
-                            fontWeight="bold"
-                            icon={faInfo}
-                        />
-                    </Button>
+                    {(description || hasAttribution) && (
+                        <Button
+                            className={styles.layerCardInfoIcon}
+                            onClick={() => setShowLayerInfo(!showLayerInfo)}
+                        >
+                            <FontAwesomeIcon
+                                size="xs"
+                                fontWeight="bold"
+                                icon={faInfo}
+                            />
+                        </Button>
+                    )}
                 </TooltipTrigger>
                 {onChange && (
                     <LayerToggle
