@@ -128,7 +128,7 @@ export declare namespace LayerButtonReel {
     }
 }
 
-export declare function LayerCard({ layerName, isActive, onChange, attribution, description, children }: {
+export declare function LayerCard({ layerName, isActive, onChange, attribution, description, children, }: {
     layerName: any;
     isActive: any;
     onChange: any;
