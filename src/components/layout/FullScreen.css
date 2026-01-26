@@ -1,0 +1,21 @@
+.layout-fullscreen {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 64px 1fr;
+    grid-template-areas:
+        "nav"
+        "mapWrapper"
+        "footer";
+}
+
+.layout-fullscreen-footer {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 64px calc(100vh - 96px) 32px;
+    grid-template-areas:
+        "nav"
+        "mapWrapper"
+        "footer";
+}

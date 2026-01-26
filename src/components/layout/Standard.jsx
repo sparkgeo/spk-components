@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 import "./Standard.css";
 
-export const Standard = ({ align = "left", children }) => (
-    <div className={`layout-standard ${align}`}>{children}</div>
+export const Standard = ({ align = "left", hasFooter = false, children }) => (
+    <div className={`layout-standard ${align}${hasFooter ? ' footer' : ''}`}>{children}</div>
 );
 
 Standard.propTypes = {
@@ -13,4 +13,5 @@ Standard.propTypes = {
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node,
     ]).isRequired,
+    hasFooter: PropTypes.bool
 };

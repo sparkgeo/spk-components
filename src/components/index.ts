@@ -22,6 +22,7 @@ import { SidebarContainer } from "./containers/SidebarContainer";
 
 import { Stacked } from "./layout/Stacked";
 import { Standard } from "./layout/Standard";
+import { FullScreen } from "./layout/FullScreen";
 
 import { SliderControl } from "./composite/SliderControl";
 
@@ -45,4 +46,5 @@ export {
     SwatchLegend,
     Stacked,
     Standard,
+    FullScreen,
 };
