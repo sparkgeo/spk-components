@@ -2,14 +2,11 @@ import React, { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import { MapContainer } from "../components/containers/MapContainer";
 import { NavContainer } from "../components/containers/NavContainer";
-import { SidebarContainer } from "../components/containers/SidebarContainer";
-import { Standard as Layout } from "../components/layout/Standard";
-import { LayerCard } from "../components/composite/LayerCard";
-import { EXAMPLE_LAYERS } from "./constants";
+import { FullScreen as Layout } from "../components/layout/FullScreen";
 import { ComparisonControl } from "../components/composite/ComparisonControl";
 
 export default {
-    title: "Layouts/Standard",
+    title: "Layouts/FullScreen",
     component: Layout,
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
     tags: ["autodocs"],
@@ -28,21 +25,10 @@ const Navigation = () => (
     </NavContainer>
 );
 
-export const LeftAligned = {
+export const FullScreen = {
     render: () => (
         <Layout>
             <Navigation />
-            <SidebarContainer />
-            <MapContainer />
-        </Layout>
-    ),
-};
-
-export const RightAligned = {
-    render: () => (
-        <Layout align="right">
-            <Navigation />
-            <SidebarContainer />
             <MapContainer />
         </Layout>
     ),
@@ -50,14 +36,13 @@ export const RightAligned = {
 
 export const WithFooter = {
     render: () => (
-        <Layout align="right" hasFooter>
+        <Layout hasFooter>
             <Navigation />
-            <SidebarContainer />
             <MapContainer />
             <div className="footer">This is footer</div>
         </Layout>
-    ),
-};
+    )
+}
 
 export const PopulatedExample = {
     render: () => {
@@ -76,27 +61,10 @@ export const PopulatedExample = {
         }, []);
 
         return (
-            <Layout>
+            <Layout hasFooter>
                 <Navigation />
-                <SidebarContainer>
-                    {EXAMPLE_LAYERS.map((layer) => {
-                        const { layerName, isActive, onChange, buttons } =
-                            layer;
-                        return (
-                            <LayerCard
-                                layerName={layerName}
-                                isActive={isActive}
-                                onChange={onChange}
-                                buttons={buttons}
-                            />
-                        );
-                    })}
-                </SidebarContainer>
                 <MapContainer mapContainer={mapContainer}>
-                    <ComparisonControl
-                        label="Clipping Slider"
-                        showLabel={false}
-                    />
+                    <ComparisonControl label="Clipping Slider" showLabel={false}/>
                 </MapContainer>
                 <div className="footer">This is footer</div>
             </Layout>
