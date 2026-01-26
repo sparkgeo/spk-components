@@ -17,6 +17,7 @@ export const LayerCard = ({
     const [showLayerInfo, setShowLayerInfo] = useState(false);
 
     const hasAttribution = attribution && Boolean(attribution.text);
+
     return (
         <div className={styles.layerCard}>
             <div className={styles.layerCardHeader}>
@@ -48,6 +49,7 @@ export const LayerCard = ({
             </div>
             {showLayerInfo && (
                 <div className={styles.layerCardContent}>
+                    <div>Test</div>
                     {description && (
                         <span className={styles.layerCardDescription}>
                             {description}
