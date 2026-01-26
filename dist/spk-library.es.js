@@ -1332,7 +1332,7 @@ Mr.propTypes = {
   onChange: s.func.isRequired,
   disabled: s.bool
 };
-const Qn = "_layerCard_93xja_1", et = "_layerCardAttributionWrapper_93xja_11", rt = "_layerCardAttribution_93xja_11", nt = "_layerCardHeader_93xja_25", tt = "_layerCardTextWrapper_93xja_34", at = "_layerCardTitle_93xja_42", ot = "_layerCardDescription_93xja_50", it = "_layerCardControls_93xja_58", st = "_layerCardToggle_93xja_63", lt = "_layerCardContent_93xja_68", ct = "_layerCardInfoIcon_93xja_84", fe = {
+const Qn = "_layerCard_pr08s_1", et = "_layerCardAttributionWrapper_pr08s_11", rt = "_layerCardAttribution_pr08s_11", nt = "_layerCardHeader_pr08s_23", tt = "_layerCardTextWrapper_pr08s_32", at = "_layerCardTitle_pr08s_40", ot = "_layerCardDescription_pr08s_48", it = "_layerCardControls_pr08s_55", st = "_layerCardToggle_pr08s_60", lt = "_layerCardContent_pr08s_65", ct = "_layerCardInfoIcon_pr08s_83", fe = {
   layerCard: Qn,
   layerCardAttributionWrapper: et,
   layerCardAttribution: rt,
