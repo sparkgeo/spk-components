@@ -76,8 +76,8 @@
     font-size: var(--font-size-small);
     margin-bottom: var(--spacing-large);
     padding: var(--spacing-medium);
-    gap: 0.5rem;
     margin: var(--spacing-medium);
+    gap: 0.5rem;
 }
 
 .layerCardInfoIcon {
