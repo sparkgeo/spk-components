@@ -71,6 +71,18 @@ export declare const DatePicker: ({ label, helperText, errorMessage, value, onCh
 
 declare type DatePickerProps = WithVisibleLabel | WithAriaLabel | WithAriaLabelledBy;
 
+export declare function FullScreen({ hasFooter, children }: {
+    hasFooter?: boolean | undefined;
+    children: any;
+}): JSX_2.Element;
+
+export declare namespace FullScreen {
+    export namespace propTypes {
+        let children: default_2.Validator<NonNullable<NonNullable<default_2.ReactNodeLike>>>;
+        let hasFooter: default_2.Requireable<boolean>;
+    }
+}
+
 export declare function GradientLegend({ title, startColor, endColor, startNo, endNo, titleBelow, bins, precision, units }: {
     title: any;
     startColor?: string | undefined;
@@ -128,7 +140,7 @@ export declare namespace LayerButtonReel {
     }
 }
 
-export declare function LayerCard({ layerName, isActive, onChange, attribution, description, children }: {
+export declare function LayerCard({ layerName, isActive, onChange, attribution, description, children, }: {
     layerName: any;
     isActive: any;
     onChange: any;
@@ -274,8 +286,9 @@ export declare namespace Stacked {
     }
 }
 
-export declare function Standard({ align, children }: {
+export declare function Standard({ align, hasFooter, children }: {
     align?: string | undefined;
+    hasFooter?: boolean | undefined;
     children: any;
 }): JSX_2.Element;
 
@@ -283,6 +296,7 @@ export declare namespace Standard {
     export namespace propTypes {
         let align: default_2.Requireable<string>;
         let children: default_2.Validator<NonNullable<NonNullable<default_2.ReactNodeLike>>>;
+        let hasFooter: default_2.Requireable<boolean>;
     }
 }
 

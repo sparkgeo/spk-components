@@ -1,19 +1,37 @@
-.layout-standard.left {
+.layout-standard {
     height: 100vh;
     display: grid;
-    grid-template-columns: 25vw auto;
     grid-template-rows: 64px calc(100vh - 64px);
+}
+
+.layout-standard.left {
+    grid-template-columns: 25vw auto;
     grid-template-areas:
         "nav nav"
         "sidebar mapWrapper";
 }
 
 .layout-standard.right {
-    height: 100vh;
-    display: grid;
     grid-template-columns: auto 25vw;
-    grid-template-rows: 64px calc(100vh - 64px);
     grid-template-areas:
         "nav nav"
-        "map sidebar";
+        "mapWrapper sidebar";
+}
+
+.layout-standard.left.footer {
+    grid-template-columns: 25vw auto;
+    grid-template-rows: 64px calc(100vh - 96px) 32px;
+    grid-template-areas:
+        "nav nav"
+        "sidebar mapWrapper"
+        "footer footer";
+}
+
+.layout-standard.right.footer {
+    grid-template-columns: auto 25vw;
+    grid-template-rows: 64px calc(100vh - 96px) 32px;
+    grid-template-areas:
+        "nav nav"
+        "mapWrapper sidebar"
+        "footer footer";
 }
