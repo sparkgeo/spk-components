@@ -9,11 +9,9 @@
 }
 
 .layerCardAttributionWrapper {
-    margin-top: 4px;
     font-size: 0.7rem;
     font-style: italic;
-    align-self: center;
-    width: 90%;
+    align-self: flex-start;
 }
 
 .layerCardAttribution {
@@ -48,9 +46,7 @@
 }
 
 .layerCardDescription {
-    padding: var(--spacing-medium);
-    align-self: center;
-    width: 90%;
+    align-self: flex-start;
     text-wrap: pretty;
     word-wrap: break-word;
     font-size: var(--text-size-small);
@@ -58,18 +54,17 @@
 
 .layerCardControls {
     grid-area: controls;
-    justify-self: end
+    justify-self: end;
 }
 
 .layerCardToggle {
     grid-area: toggle;
-    justify-self: end
+    justify-self: end;
 }
 
 .layerCardContent {
     display: flex;
     flex-direction: column;
-    width: 90%;
     overflow: hidden;
     justify-content: center;
     justify-self: center;
@@ -80,6 +75,9 @@
     color: var(--text-color-secondary);
     font-size: var(--font-size-small);
     margin-bottom: var(--spacing-large);
+    padding: var(--spacing-medium);
+    margin: var(--spacing-medium);
+    gap: 0.5rem;
 }
 
 .layerCardInfoIcon {
@@ -104,5 +102,5 @@
 }
 
 .layerCardContent:empty {
-    margin-bottom: 0; 
+    margin-bottom: 0;
 }

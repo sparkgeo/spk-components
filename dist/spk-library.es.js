@@ -1332,7 +1332,7 @@ Mr.propTypes = {
   onChange: s.func.isRequired,
   disabled: s.bool
 };
-const Qn = "_layerCard_mw8v9_1", et = "_layerCardAttributionWrapper_mw8v9_11", rt = "_layerCardAttribution_mw8v9_11", nt = "_layerCardHeader_mw8v9_25", tt = "_layerCardTextWrapper_mw8v9_34", at = "_layerCardTitle_mw8v9_42", ot = "_layerCardDescription_mw8v9_50", it = "_layerCardControls_mw8v9_59", st = "_layerCardToggle_mw8v9_64", lt = "_layerCardContent_mw8v9_69", ct = "_layerCardInfoIcon_mw8v9_85", fe = {
+const Qn = "_layerCard_1hhfw_1", et = "_layerCardAttributionWrapper_1hhfw_11", rt = "_layerCardAttribution_1hhfw_11", nt = "_layerCardHeader_1hhfw_23", tt = "_layerCardTextWrapper_1hhfw_32", at = "_layerCardTitle_1hhfw_40", ot = "_layerCardDescription_1hhfw_48", it = "_layerCardControls_1hhfw_55", st = "_layerCardToggle_1hhfw_60", lt = "_layerCardContent_1hhfw_65", ct = "_layerCardInfoIcon_1hhfw_83", fe = {
   layerCard: Qn,
   layerCardAttributionWrapper: et,
   layerCardAttribution: rt,
@@ -1344,14 +1344,35 @@ const Qn = "_layerCard_mw8v9_1", et = "_layerCardAttributionWrapper_mw8v9_11", r
   layerCardToggle: st,
   layerCardContent: lt,
   layerCardInfoIcon: ct
-}, ut = ({ layerName: n, isActive: r, onChange: i, attribution: c, description: y, children: v }) => {
-  const [g, h] = de(!1), m = c && !!c.text && (r || g);
+}, ut = ({
+  layerName: n,
+  isActive: r,
+  onChange: i,
+  attribution: c,
+  description: y,
+  children: v
+}) => {
+  const [g, h] = de(!1), m = c && !!c.text;
   return /* @__PURE__ */ t.jsxs("div", { className: fe.layerCard, children: [
     /* @__PURE__ */ t.jsxs("div", { className: fe.layerCardHeader, children: [
       /* @__PURE__ */ t.jsx("div", { className: fe.layerCardTextWrapper, children: /* @__PURE__ */ t.jsx("span", { className: fe.layerCardTitle, children: n }) }),
       /* @__PURE__ */ t.jsxs(gn, { delay: 300, children: [
         /* @__PURE__ */ t.jsx(bn, { children: "Toggle layer description" }),
-        /* @__PURE__ */ t.jsx(Ne, { className: fe.layerCardInfoIcon, onClick: () => h(!g), children: /* @__PURE__ */ t.jsx(je, { size: "xs", fontWeight: "bold", icon: kr }) })
+        (y || m) && /* @__PURE__ */ t.jsx(
+          Ne,
+          {
+            className: fe.layerCardInfoIcon,
+            onClick: () => h(!g),
+            children: /* @__PURE__ */ t.jsx(
+              je,
+              {
+                size: "xs",
+                fontWeight: "bold",
+                icon: kr
+              }
+            )
+          }
+        )
       ] }),
       i && /* @__PURE__ */ t.jsx(
         Mr,
@@ -1362,10 +1383,11 @@ const Qn = "_layerCard_mw8v9_1", et = "_layerCardAttributionWrapper_mw8v9_11", r
         }
       )
     ] }),
-    /* @__PURE__ */ t.jsxs("div", { className: fe.layerCardContent, children: [
-      y && g && /* @__PURE__ */ t.jsx("span", { className: fe.layerCardDescription, children: y }),
+    g && /* @__PURE__ */ t.jsxs("div", { className: fe.layerCardContent, children: [
+      y && /* @__PURE__ */ t.jsx("span", { className: fe.layerCardDescription, children: y }),
       m && /* @__PURE__ */ t.jsx("div", { className: fe.layerCardAttributionWrapper, children: /* @__PURE__ */ t.jsxs("span", { className: fe.layerCardAttribution, children: [
-        "Source: ",
+        "Source:",
+        " ",
         /* @__PURE__ */ t.jsx("a", { href: c.url, children: c.text })
       ] }) }),
       v && v

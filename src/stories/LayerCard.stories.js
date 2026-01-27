@@ -7,8 +7,6 @@ export default {
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
     tags: ["autodocs"],
     parameters: {
-        // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
-        layout: "fullscreen",
     },
 };
 
@@ -16,6 +14,22 @@ export const Default = {
     args: {
         layerName: "Example Layer",
         description: "This is an example layercard that can optionally contain a descriptive text string for the layer",
+        isActive: true,
+        onChange: fn(),
+        buttons: {
+            fill: fn(),
+            filter: fn(),
+            info: fn(),
+            trash: fn(),
+        },
+    },
+};
+
+export const WithAttribution = {
+    args: {
+        layerName: "Example Layer",
+        description: "This is an example layercard that can optionally contain a descriptive text string for the layer",
+        attribution: { text: "This is attribution text" },
         isActive: true,
         onChange: fn(),
         buttons: {
