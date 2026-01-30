@@ -38,7 +38,3 @@
     font-weight: 700;
     font-size: var(--font-size-medium);
 }
-
-:nth-last-child(1 of .layerGroupWrapper) .layerGroupChildren {
-    border-bottom: 8px solid var(--primary-color); 
-}
