@@ -162,14 +162,16 @@ export declare namespace LayerCard {
     }
 }
 
-export declare function LayerGroup({ groupName, children }: {
+export declare function LayerGroup({ groupName, className, children }: {
     groupName: any;
+    className: any;
     children: any;
 }): JSX_2.Element;
 
 export declare namespace LayerGroup {
     export namespace propTypes {
         let groupName: default_2.Requireable<string>;
+        let className: default_2.Requireable<string>;
         let children: default_2.Validator<NonNullable<NonNullable<default_2.ReactNodeLike>>>;
     }
 }
