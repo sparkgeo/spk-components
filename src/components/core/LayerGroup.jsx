@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./LayerGroup.module.css";
 
-export const LayerGroup = ({ groupName, children }) => {
+export const LayerGroup = ({ groupName, className, children }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleClick = () => {
@@ -15,12 +15,13 @@ export const LayerGroup = ({ groupName, children }) => {
     }
 
     return (
-        <div className={styles.layerGroupWrapper}>
+        <div className={styles.layerGroupWrapper + (className ? ` ${className}` : "")}>
             <button type="button" className={styles.layerGroupButton} onClick={handleClick}>
+
+                <span className={styles.layerGroupName}>{groupName}</span>
                 <div className={styles.layerGroupChevron}>
                     <FontAwesomeIcon size="sm" fixedWidth icon={isOpen ? faChevronDown : faChevronRight} />
                 </div>
-                <span className={styles.layerGroupName}>{groupName}</span>
             </button>
             {isOpen && 
                 <div className={styles.layerGroupChildren}>
@@ -33,6 +34,7 @@ export const LayerGroup = ({ groupName, children }) => {
 
 LayerGroup.propTypes = {
     groupName: PropTypes.string,
+    className: PropTypes.string,
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node,
