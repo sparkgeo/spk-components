@@ -28,7 +28,7 @@
 }
 
 .layerGroupName {
-    padding: 8px;
+    padding: 8px 0;
     width: 100%;
     text-align: left;
     overflow: hidden;
