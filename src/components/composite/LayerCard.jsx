@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import { Button, Tooltip, TooltipTrigger } from "react-aria-components";
@@ -10,13 +10,10 @@ export const LayerCard = ({
     layerName,
     isActive,
     onChange,
-    attribution,
-    description,
+    onShowInfo,
     children,
 }) => {
-    const [showLayerInfo, setShowLayerInfo] = useState(false);
-
-    const hasAttribution = attribution && Boolean(attribution.text);
+    const hasChildren = children.length > 0;
 
     return (
         <div className={styles.layerCard}>
@@ -26,10 +23,10 @@ export const LayerCard = ({
                 </div>
                 <TooltipTrigger delay={300}>
                     <Tooltip>Toggle layer description</Tooltip>
-                    {(description || hasAttribution) && (
+                    {(hasChildren && onShowInfo) && (
                         <Button
                             className={styles.layerCardInfoIcon}
-                            onClick={() => setShowLayerInfo(!showLayerInfo)}
+                            onClick={onShowInfo}
                         >
                             <FontAwesomeIcon
                                 size="xs"
@@ -47,22 +44,9 @@ export const LayerCard = ({
                     />
                 )}
             </div>
-            {showLayerInfo && (
+            {hasChildren && (
                 <div className={styles.layerCardContent}>
-                    {description && (
-                        <span className={styles.layerCardDescription}>
-                            {description}
-                        </span>
-                    )}
-                    {hasAttribution && (
-                        <div className={styles.layerCardAttributionWrapper}>
-                            <span className={styles.layerCardAttribution}>
-                                Source:{" "}
-                                <a href={attribution.url}>{attribution.text}</a>
-                            </span>
-                        </div>
-                    )}
-                    {children && children}
+                    {children}
                 </div>
             )}
         </div>
@@ -73,11 +57,7 @@ LayerCard.propTypes = {
     layerName: PropTypes.string.isRequired,
     isActive: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
-    description: PropTypes.string,
-    attribution: PropTypes.objectOf({
-        url: PropTypes.string,
-        text: PropTypes.string,
-    }),
+    onShowInfo: PropTypes.func,
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node,
