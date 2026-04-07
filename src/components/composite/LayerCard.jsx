@@ -13,7 +13,7 @@ export const LayerCard = ({
     onShowInfo,
     children,
 }) => {
-    const hasChildren = children.length > 0;
+    const hasChildren = children && children.length > 0;
 
     return (
         <div className={styles.layerCard}>

@@ -80,15 +80,17 @@ export const PopulatedExample = {
                 <Navigation />
                 <SidebarContainer>
                     {EXAMPLE_LAYERS.map((layer) => {
-                        const { layerName, isActive, onChange, buttons } =
+                        const { layerName, isActive, onChange } =
                             layer;
                         return (
                             <LayerCard
                                 layerName={layerName}
                                 isActive={isActive}
                                 onChange={onChange}
-                                buttons={buttons}
-                            />
+                            >
+                                This is an example layercard child that is always rendered.
+                                {isActive && "This text is conditionally rendered based on the layer's active state."}
+                            </LayerCard>
                         );
                     })}
                 </SidebarContainer>

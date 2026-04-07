@@ -1351,7 +1351,7 @@ const Qn = "_layerCard_11s9h_1", et = "_layerCardAttributionWrapper_11s9h_11", r
   onShowInfo: c,
   children: y
 }) => {
-  const p = y.length > 0;
+  const p = y && y.length > 0;
   return /* @__PURE__ */ t.jsxs("div", { className: be.layerCard, children: [
     /* @__PURE__ */ t.jsxs("div", { className: be.layerCardHeader, children: [
       /* @__PURE__ */ t.jsx("div", { className: be.layerCardTextWrapper, children: /* @__PURE__ */ t.jsx("span", { className: be.layerCardTitle, children: n }) }),
