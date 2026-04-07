@@ -1,3 +1,4 @@
+import { fn } from "@storybook/test";
 import React from "react";
 import { SidebarContainer } from "../components/containers/SidebarContainer";
 import { LayerCard } from "../components/composite/LayerCard";
@@ -31,14 +32,18 @@ export const WithLayerCards = {
         <div style={{ width: "25vw", height: "100vh" }}>
             <SidebarContainer>
                 {EXAMPLE_LAYERS.map((layer) => {
-                    const { layerName, isActive, onChange, buttons } = layer;
+                    const { layerName, isActive, onChange } = layer;
                     return (
                         <LayerCard
                             layerName={layerName}
                             isActive={isActive}
                             onChange={onChange}
-                            buttons={buttons}
-                        />
+                            onShowInfo={fn()}
+                        >
+                            This is an example layercard child that is always rendered.
+                            
+                            {isActive && "This text is conditionally rendered based on the layer's active state."}
+                        </LayerCard>
                     );
                 })}
             </SidebarContainer>
@@ -55,14 +60,17 @@ export const WithLayerGroups = {
                     return (
                         <LayerGroup groupName={groupName}>
                             {layers.map((layer) => {
-                                const { layerName, isActive, onChange, buttons } = layer;
+                                const { layerName, isActive, onChange } = layer;
                                 return (
                                     <LayerCard
                                         layerName={layerName}
                                         isActive={isActive}
                                         onChange={onChange}
-                                        buttons={buttons}
-                                    />
+                                        onShowInfo={fn()}
+                                    >
+                                        This is an example layercard child that is always rendered.
+                                        {isActive && "This text is conditionally rendered based on the layer's active state."}
+                                    </LayerCard>
                                 );
                             })}
                         </LayerGroup>
