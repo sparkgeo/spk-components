@@ -140,12 +140,11 @@ export declare namespace LayerButtonReel {
     }
 }
 
-export declare function LayerCard({ layerName, isActive, onChange, attribution, description, children, }: {
+export declare function LayerCard({ layerName, isActive, onChange, onShowInfo, children, }: {
     layerName: any;
     isActive: any;
     onChange: any;
-    attribution: any;
-    description: any;
+    onShowInfo: any;
     children: any;
 }): JSX_2.Element;
 
@@ -154,10 +153,7 @@ export declare namespace LayerCard {
         let layerName: default_2.Validator<string>;
         let isActive: default_2.Requireable<boolean>;
         let onChange: default_2.Validator<(...args: any[]) => any>;
-        let description: default_2.Requireable<string>;
-        let attribution: default_2.Requireable<{
-            [x: string]: any;
-        }>;
+        let onShowInfo: default_2.Requireable<(...args: any[]) => any>;
         let children: default_2.Requireable<NonNullable<default_2.ReactNodeLike>>;
     }
 }
